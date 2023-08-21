@@ -1,12 +1,9 @@
-import './App.scss';
-import Home from '@pages/Home/Home.tsx';
-import OnBoarding from '@pages/OnBoarding/OnBoarding.tsx';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <>
-      <Home />
-      <OnBoarding />
+      <Outlet />
     </>
   );
 }
