@@ -1,3 +1,4 @@
-export default function Live() {
-    return <div>라이브 채널</div>;
-}
+const Live = () => {
+  return <div>라이브 채널</div>;
+};
+export default Live;
