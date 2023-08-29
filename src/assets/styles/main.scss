@@ -1,0 +1,20 @@
+@import 'reset';
+@import 'mixins';
+@import 'variables';
+
+body {
+  @include mobile {
+    background-color: $dark-bg-1;
+    @include heading-xxxl;
+    h1 {
+      margin: $space-2;
+      padding: $base;
+    }
+  }
+  @include tablet {
+    background-color: $red-1;
+  }
+  @include desktop {
+    background-color: $gray-500;
+  }
+}

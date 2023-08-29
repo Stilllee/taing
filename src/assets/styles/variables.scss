@@ -1,0 +1,43 @@
+// 주요 색상값, 간격, 폰트 크기
+
+// Breakpoints
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1920px;
+
+// Neutral Colors
+$black: #000000;
+$white: #ffffff;
+
+$gray-100: #e1e1e1;
+$gray-200: #c4c4c4;
+$gray-300: #a6a6a6;
+$gray-400: #898989;
+$gray-500: #6b6b6b;
+$gray-600: #565656;
+$gray-700: #404040;
+$gray-800: #2b2b2b;
+$gray-900: #151515;
+
+// Brand Colors
+$red-1: #ff153c;
+$red-2: #e93945;
+$dark-bg-1: #191919;
+$dark-bg-2: #212121;
+
+// Heading Styles
+$heading-font-weight: 700;
+$heading-line-height: 140%;
+
+// Label Styles
+$label-font-weight: 600;
+$label-line-height: 150%;
+
+// Paragraph Styles
+$paragraph-font-weight: 400;
+$paragraph-line-height: 160%;
+
+// Spacing
+$space-2: 8px;
+$base: 4px;
+$space-1: -32px;

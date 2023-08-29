@@ -1,0 +1,92 @@
+@import 'variables';
+
+// Media Query Mixins
+@mixin mobile {
+  @media (min-width: $mobile) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+// Common Text Style Mixin
+@mixin heading-base {
+  font-weight: $heading-font-weight;
+  line-height: $heading-line-height;
+}
+@mixin label-base {
+  font-weight: $label-font-weight;
+  line-height: $label-line-height;
+}
+@mixin paragraph-base {
+  font-weight: $paragraph-font-weight;
+  line-height: $paragraph-line-height;
+}
+
+// Text Styles
+@mixin heading-medium {
+  @include heading-base;
+  font-size: 16px;
+}
+@mixin heading-large {
+  @include heading-base;
+  font-size: 21.3px;
+}
+@mixin heading-xl {
+  @include heading-base;
+  font-size: 28.4px;
+}
+@mixin heading-xxl {
+  @include heading-base;
+  font-size: 37.9px;
+}
+@mixin heading-xxxl {
+  @include heading-base;
+  font-size: 50.5px;
+}
+@mixin label-small {
+  @include label-base;
+  font-size: 12px;
+}
+
+@mixin label-medium {
+  @include label-base;
+  font-size: 16px;
+}
+@mixin label-large {
+  @include label-base;
+  font-size: 21.3px;
+}
+@mixin label-xl {
+  @include label-base;
+  font-size: 28.4px;
+}
+@mixin label-xxl {
+  @include label-base;
+  font-size: 37.9px;
+}
+
+@mixin paragraph-small {
+  @include paragraph-base;
+  font-size: 12px;
+}
+@mixin paragraph-medium {
+  @include paragraph-base;
+  font-size: 16px;
+}
+@mixin paragraph-large {
+  @include paragraph-base;
+  font-size: 21.3px;
+}
+@mixin paragraph-xl {
+  @include paragraph-base;
+  font-size: 28.4px;
+}
