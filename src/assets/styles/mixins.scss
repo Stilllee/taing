@@ -1,5 +1,3 @@
-@import 'variables';
-
 // Media Query Mixins
 @mixin mobile {
   @media (min-width: $mobile) {

@@ -1,20 +1,6 @@
-@import 'reset';
-@import 'mixins';
-@import 'variables';
+@import 'reset.scss';
 
 body {
-  @include mobile {
-    background-color: $dark-bg-1;
-    @include heading-xxxl;
-    h1 {
-      margin: $space-2;
-      padding: $base;
-    }
-  }
-  @include tablet {
-    background-color: $red-1;
-  }
-  @include desktop {
-    background-color: $gray-500;
-  }
+  background-color: $black;
+  color: $white;
 }
