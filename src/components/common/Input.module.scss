@@ -60,6 +60,29 @@ input {
   }
 }
 
+.toogleButton {
+  position: absolute;
+  right: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 16px;
+  background-image: url('@/assets/images/sprite_image.png');
+  background-position: -371px -791px;
+  cursor: pointer;
+  @include desktop {
+    right: 72px;
+    width: 32px;
+    height: 28px;
+    background-position: -388px -827px;
+  }
+}
+
+.show {
+  width: 22px; // sprite_image상 이미지 크기 다름(width: 18, 32 필요)
+  background-position: -1096px -386px;
+}
+
 .hint {
   width: 100%;
   color: $gray-500;
