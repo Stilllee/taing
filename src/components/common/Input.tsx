@@ -20,7 +20,7 @@ const Input: React.FC<IInputProps> = ({
   };
 
   const inputType =
-    type !== 'password' || isPasswordVisible ? type : 'password';
+    type === 'password' ? (isPasswordVisible ? 'text' : 'password') : type;
 
   return (
     <>
@@ -37,6 +37,7 @@ const Input: React.FC<IInputProps> = ({
         />
         {inputValue && (
           <button
+            type="button"
             className={styles.clearButton}
             onClick={() => setInputValue('')}
             aria-label="입력 내용 지우기"
@@ -44,6 +45,7 @@ const Input: React.FC<IInputProps> = ({
         )}
         {type === 'password' && (
           <button
+            type="button"
             className={`${styles.toogleButton} ${
               isPasswordVisible && styles.show
             }`}
