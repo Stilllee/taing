@@ -41,16 +41,24 @@ input {
   }
 }
 
-.clearButton {
+.buttonBase {
   position: absolute;
-  right: 16px;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.clearButton,
+.toogleButton {
+  @extend .buttonBase;
+}
+
+.clearButton {
+  right: 16px;
   width: 14px;
   height: 14px;
   background-image: url('@/assets/images/sprite_image.png');
   background-position: -1205px -568px;
-  cursor: pointer;
 
   @include desktop {
     right: 24px;
@@ -68,15 +76,11 @@ input {
 }
 
 .toogleButton {
-  position: absolute;
   right: 46px;
-  top: 50%;
-  transform: translateY(-50%);
   width: 18px;
   height: 16px;
   background-image: url('@/assets/images/sprite_image.png');
   background-position: -65px -1208px;
-  cursor: pointer;
   @include desktop {
     right: 72px;
     width: 32px;

@@ -13,15 +13,14 @@ const Input: React.FC<IInputProps> = ({
   type,
 }) => {
   const [inputValue, setInputValue] = useState('');
-  const [showPW, setShowPW] = useState(false);
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handlePasswordVisibilityToggle = () => {
+    setPasswordVisibility(!isPasswordVisible);
   };
 
-  const toggleShowPW = () => {
-    setShowPW(!showPW);
-  };
+  const inputType =
+    type === 'password' && !isPasswordVisible ? 'password' : 'text';
 
   return (
     <>
@@ -31,26 +30,26 @@ const Input: React.FC<IInputProps> = ({
         }`}
       >
         <input
-          type={type === 'password' && !showPW ? 'password' : 'text'}
+          type={inputType}
           placeholder={placeholderText}
           value={inputValue}
-          onChange={handleInputChange}
+          onChange={e => setInputValue(e.target.value)}
         />
         {inputValue && (
-          <div
+          <button
             className={styles.clearButton}
             onClick={() => setInputValue('')}
-          ></div>
+            aria-label="입력 내용 지우기"
+          ></button>
         )}
         {type === 'password' && (
-          <div
-            className={
-              showPW
-                ? `${styles.toogleButton} ${styles.show}`
-                : `${styles.toogleButton}`
-            }
-            onClick={toggleShowPW}
-          ></div>
+          <button
+            className={`${styles.toogleButton} ${
+              isPasswordVisible && styles.show
+            }`}
+            onClick={handlePasswordVisibilityToggle}
+            aria-label="비밀번호 보이기/숨기기"
+          ></button>
         )}
       </div>
       <div className={styles.hint}>{hintMessage}</div>
