@@ -4,12 +4,14 @@ import styles from './Input.module.scss';
 interface IInputProps {
   placeholderText: string;
   hintMessage?: string;
+  errorMessage?: string;
   type: 'text' | 'password' | 'email';
 }
 
 const Input: React.FC<IInputProps> = ({
   placeholderText,
   hintMessage,
+  errorMessage,
   type,
 }) => {
   const [inputValue, setInputValue] = useState('');
@@ -54,7 +56,7 @@ const Input: React.FC<IInputProps> = ({
           ></button>
         )}
       </div>
-      <div className={styles.hint}>{hintMessage}</div>
+      <div className={styles.hint}>{errorMessage || hintMessage}</div>
     </>
   );
 };
