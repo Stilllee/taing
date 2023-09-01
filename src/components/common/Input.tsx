@@ -20,7 +20,7 @@ const Input: React.FC<IInputProps> = ({
   };
 
   const inputType =
-    type === 'password' && !isPasswordVisible ? 'password' : 'text';
+    type !== 'password' || isPasswordVisible ? type : 'password';
 
   return (
     <>
