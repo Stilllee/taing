@@ -25,7 +25,11 @@ const Input: React.FC<IInputProps> = ({
 
   return (
     <>
-      <div className={styles.inputWrapper}>
+      <div
+        className={`${styles.inputWrapper} ${
+          type === 'password' ? styles.passwordType : ''
+        }`}
+      >
         <input
           type={type === 'password' && !showPW ? 'password' : 'text'}
           placeholder={placeholderText}
