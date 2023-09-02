@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Input.module.scss';
 
 interface IInputProps {
@@ -8,12 +8,12 @@ interface IInputProps {
   type: 'text' | 'password' | 'email';
 }
 
-const Input: React.FC<IInputProps> = ({
+const Input = ({
   placeholderText,
   hintMessage,
   errorMessage,
   type,
-}) => {
+}: IInputProps) => {
   const [inputValue, setInputValue] = useState('');
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
