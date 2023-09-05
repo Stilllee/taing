@@ -19,6 +19,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) , rgba(0,0,0,0) );
+
 @include mobile {
     height: 38px;
     padding: 10px 16px;
@@ -34,6 +35,7 @@ background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) , rgba(0,0,0,0) );
 }
 
 .logo {
+    margin-top: 3px;
     @include mobile {
         background: url('../../assets/images/sprite_image.png') no-repeat -1002px -231px;
         width: 46px;
@@ -121,7 +123,7 @@ align-items: center;
 }
 .tv,.movie {
     display: block;
-   margin-top: 5px;
+    margin-top: 5px;
 }
 .paramount {
     display: block;
@@ -152,7 +154,7 @@ align-items: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
     @include mobile {
         height: 18px;
         width: 56px;
@@ -208,7 +210,7 @@ align-items: center;
         &:hover {
             background: url('../../assets/images/sprite_image.png') no-repeat -900px -498px;
             width: 10px;
-        height: 10px;
+            height: 10px;
         }
     }
     @include tablet {
@@ -218,7 +220,7 @@ align-items: center;
         &:hover {
             background: url('../../assets/images/sprite_image.png') no-repeat -898px -540px;
             width: 14px;
-        height: 14px;
+            height: 14px;
         }
     }
     @include desktop {
