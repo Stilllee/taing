@@ -1,19 +1,26 @@
 import { useLocation } from 'react-router';
 import styles from './Header.module.scss';
 import { useState } from 'react';
+import { useScroll, motion, useTransform } from 'framer-motion';
 const Header = () => {
+  const { scrollY } = useScroll();
   const { pathname } = useLocation();
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 80],
+    ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'],
+  );
   const [openModal, setOpenModal] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
 
   const onOpenModal = () => setOpenModal(true);
   const onCloseModal = () => setOpenModal(false);
-
   const onShowProfile = () => setOpenProfile(true);
   const onCloseProfile = () => setOpenProfile(false);
 
   return (
-    <div
+    <motion.div
+      style={{ backgroundColor }}
       className={`${styles.header} ${
         [
           '/onboarding',
@@ -69,7 +76,7 @@ const Header = () => {
       </ul>
       {/* 임시 프로필 */}
       {openProfile && <div>프로필</div>}
-    </div>
+    </motion.div>
   );
 };
 
