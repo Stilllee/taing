@@ -1,7 +1,21 @@
 import styles from './OnBoarding.module.scss';
+import TaingButton from '@components/taingButton/TaingButton';
 
 const OnBoarding = () => {
-  return <h1 className={styles.title}>온보딩이여유</h1>;
+  return (
+    <main>
+      <div className={styles.scroll_section_1}>
+        <p className={styles.title}>
+          티빙 오리지널 콘텐츠, <br /> 방송 영화, 해외시리즈까지! <br />
+          재미를 플레이해보세요.
+        </p>
+        <p className={styles.text}>
+          간편하게 가입하고, 원하실 때 해지할 수 있어요.
+        </p>
+        <TaingButton />
+      </div>
+    </main>
+  );
 };
 
 export default OnBoarding;
