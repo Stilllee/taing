@@ -14,6 +14,13 @@ const OnBoarding = () => {
         </p>
         <TaingButton />
       </div>
+      <div className={styles.scroll_section_2}></div>
+      <div className={styles.scroll_section_3}></div>
+      <div className={styles.message}>
+        <div className={styles.message_logo} />
+        <p className={styles.message_title}>지금 시작해보세요</p>
+        <TaingButton />
+      </div>
     </main>
   );
 };

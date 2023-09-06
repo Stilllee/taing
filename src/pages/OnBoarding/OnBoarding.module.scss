@@ -48,3 +48,56 @@ height: 382px;
   margin-bottom: 79px;
 }
 }
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @include mobile {
+    gap: 18px;
+    height: 228px;
+  }
+  @include tablet {
+    height: 368px;
+    gap: 14px;
+  }
+  
+  @include desktop {
+    height: 912px;
+    gap: 36px;
+  }
+}
+
+.message_logo{
+  background-image: url($sprite-image); 
+  @include mobile {
+    background-position: -575px -779px;
+    width: 84px;
+	  height: 32px;
+  }
+  @include tablet {
+    background-position: -808px -656px;
+    width: 136px;
+    height: 52px;
+  }
+  @include desktop {
+    background-position:-20px -779px;
+    width: 280px;
+    height: 111px;
+  }
+}
+
+.message_title {
+  @include mobile {
+    @include heading-medium
+  }
+  @include tablet {
+    @include heading-xl
+  }
+  
+  @include desktop {
+    @include heading-xxxl
+  }
+}
