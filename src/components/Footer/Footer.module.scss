@@ -1,0 +1,214 @@
+.footer {
+  margin: 0 auto;
+  color: $gray-500;
+  @include paragraph-small;
+  @include mobile {
+    width: 319px;
+  }
+  @include tablet {
+    width: 768px;
+  }
+  @include desktop {
+    width: 1920px;
+    @include paragraph-large;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  @include mobile {
+    margin: 52px 0 82px;
+    padding: 0 16px;
+  }
+  @include tablet {
+    margin: 70px 0 100px;
+    padding: 0 40px;
+  }
+  @include desktop {
+    margin: 140px 0 170px;
+    padding: 0 68px;
+  }
+}
+
+.info {
+  color: $gray-200;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  @include tablet {
+    margin-bottom: 16px;
+  }
+  @include desktop {
+    margin-bottom: 27px;
+  }
+}
+
+.notice {
+  display: flex;
+  gap: 4px;
+  @include tablet {
+    gap: 20px;
+  }
+}
+
+.title {
+  cursor: pointer;
+  color: $gray-500;
+}
+
+.message {
+  cursor: pointer;
+}
+
+.brandLink {
+  display: none;
+
+  @include tablet {
+    display: flex;
+  }
+  & div {
+    position: relative;
+    margin-right: 32px;
+    @include desktop {
+      margin-right: 60px;
+    }
+    &::after {
+      content: '|';
+      position: absolute;
+      right: -16px;
+      @include desktop {
+        right: -30px;
+      }
+    }
+    &:last-child {
+      margin-right: 0;
+      &::after {
+        content: '';
+      }
+    }
+  }
+}
+
+.list {
+  color: $gray-200;
+  cursor: pointer;
+  border-top: 1px solid $dark-bg-2;
+  display: flex;
+  @include mobile {
+    gap: 4px;
+    flex-direction: column;
+  }
+  @include tablet {
+    flex-direction: row;
+    gap: 20px;
+    padding: 16px 0 12px;
+  }
+  @include desktop {
+    @include paragraph-large;
+    gap: 36px;
+    padding: 27px 0 24px;
+  }
+}
+
+.copyrightBox {
+  display: none;
+  @include tablet {
+    display: block;
+  }
+  & p {
+    & a {
+      color: $gray-500;
+    }
+    & span {
+      position: relative;
+      margin-right: 16px;
+      &::after {
+        content: '|';
+        position: absolute;
+        right: -10px;
+        color: $dark-bg-2;
+      }
+      &:last-child {
+        margin-left: 0;
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+}
+
+.snsWrapper {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+  @include desktop {
+    gap: 20px;
+    margin: 24px 0;
+  }
+}
+
+.sns {
+  background-image: url($sprite-image);
+  background-position-x: -1362px;
+  @include mobile {
+    width: 24px;
+    height: 24px;
+  }
+  @include tablet {
+    width: 30px;
+    height: 30px;
+  }
+  @include desktop {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.youtube {
+  @include mobile {
+    background-position-y: -452px;
+  }
+  @include tablet {
+    background-position-y: -496px;
+  }
+  @include desktop {
+    background-position-y: -546px;
+  }
+}
+
+.instagram {
+  @include mobile {
+    background-position-y: -246px;
+  }
+  @include tablet {
+    background-position-y: -290px;
+  }
+  @include desktop {
+    background-position-y: -340px;
+  }
+}
+
+.twitter {
+  @include mobile {
+    background-position-y: -658px;
+  }
+  @include tablet {
+    background-position-y: -702px;
+  }
+  @include desktop {
+    background-position-y: -752px;
+  }
+}
+
+.facebook {
+  @include mobile {
+    background-position-y: -40px;
+  }
+  @include tablet {
+    background-position-y: -84px;
+  }
+  @include desktop {
+    background-position-y: -134px;
+  }
+}
