@@ -2,6 +2,7 @@ import { useLocation } from 'react-router';
 import styles from './Header.module.scss';
 import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 const Header = () => {
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
@@ -38,23 +39,23 @@ const Header = () => {
       </a>
       <ul className={styles.nav}>
         <li>
-          <a className={styles.live} href="#">
+          <Link className={styles.live} to={'/live'}>
             <span className={styles.liveIcon}></span>
             <span>실시간</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a className={styles.tv} href="#">
+          <Link className={styles.tv} to={'/tv'}>
             TV 프로그램
-          </a>
+          </Link>
         </li>
         <li>
-          <a className={styles.movie} href="#">
+          <Link className={styles.movie} to={'/movie'}>
             영화
-          </a>
+          </Link>
         </li>
         <li>
-          <a className={styles.paramount} href="#"></a>
+          <Link className={styles.paramount} to={'/movie'}></Link>
         </li>
       </ul>
       <ul className={styles.aside}>

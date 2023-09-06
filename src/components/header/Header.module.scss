@@ -1,6 +1,7 @@
 button {
     border: none;
     cursor: pointer;
+    background-color: transparent;
 }
 
 a {
@@ -36,18 +37,20 @@ background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) , rgba(0,0,0,0) );
 
 .logo {
     margin-top: 3px;
+    background-image: url($sprite-image); 
+    background-position-x: -1002px;
     @include mobile {
-        background: url('../../assets/images/sprite_image.png') no-repeat -1002px -231px;
+        background-position-y: -231px;
         width: 46px;
         height: 13px;
     }
     @include tablet {
-        background: url('../../assets/images/sprite_image.png') no-repeat -1002px -267px;
+        background-position-y: -267px;
         width: 75px;
         height: 20px;
     }
     @include desktop {
-        background: url('../../assets/images/sprite_image.png') no-repeat -1002px -313px;
+        background-position-y: -313px;
         width: 132px;
         height: 34px;
     }
@@ -100,14 +103,15 @@ align-items: center;
 
 
 .liveIcon {
+    background-image: url($sprite-image); 
     display: inline-block;
     @include tablet {
-        background: url('../../assets/images/sprite_image.png') no-repeat -341px -801px;
+        background-position:  -341px -801px;
     	width: 20px;
 	    height: 17px;
     }
     @include desktop {
-        background: url('../../assets/images/sprite_image.png')  no-repeat -340px -840px;
+        background-position: -340px -840px;
         width: 34px;
         height: 27px;
     }
@@ -127,25 +131,26 @@ align-items: center;
 }
 .paramount {
     display: block;
+    background-image: url($sprite-image); 
+
     @include tablet {
-        background: url('../../assets/images/sprite_image.png') no-repeat -294px -656px;
+        background-position: -294px -656px;
         width: 65px;
         height: 16px;
         &:hover  {
-            background: url('../../assets/images/sprite_image.png') no-repeat  -379px -656px;
+            background-position: -379px -656px;
             width: 65px;
             height: 16px;
         }
     }
     @include desktop {
-        background: url('../../assets/images/sprite_image.png') no-repeat -295px -694px;
+        background-position: -295px -694px;
         width: 111px;
         height: 26px;
         &:hover  {
-            background: url('../../assets/images/sprite_image.png') no-repeat  -427px -694px;
+            background-position:  -427px -694px;
             width: 111px;
             height: 26px;
-        
         }
     }
 }
@@ -154,6 +159,7 @@ align-items: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 2px;
 
     @include mobile {
         height: 18px;
@@ -171,82 +177,85 @@ align-items: center;
 }
 
 .search{
+    background-image: url($sprite-image); 
     @include mobile {
-        background: url('../../assets/images/sprite_image.png') no-repeat -1204px -42px;
+        background-position: -1204px -42px;
         width: 14px;
         height: 15px;
         &:hover {
-            background: url('../../assets/images/sprite_image.png') no-repeat -1242px -42px;
+            background-position:-1242px -42px;
             width: 14px;
             height: 15px;
         }
     }
     @include tablet {
-        background: url('../../assets/images/sprite_image.png') no-repeat  -1205px -81px;
+        background-position: -1205px -81px;
         width: 18px;
         height: 19px;
         &:hover {
-            background: url('../../assets/images/sprite_image.png') no-repeat  -1249px -81px;
+            background-position: -1249px -81px;
             width: 18px;
             height: 19px;
         }
     }
     @include desktop {
-        background: url('../../assets/images/sprite_image.png') no-repeat -1208px -128px;
+        background-position:-1208px -128px;
         width: 29px;
         height: 30px;
         &:hover {
-            background: url('../../assets/images/sprite_image.png') no-repeat -1268px -128px;
+            background-position: -1268px -128px;
             width: 29px;
             height: 30px;
         }
     }
 }
 .close {
+    background-image: url($sprite-image); 
     @include mobile {
-        background: url('../../assets/images/sprite_image.png') no-repeat  -845px -498px;
+        background-position:-845px -498px;
         width: 10px;
         height: 10px;
         &:hover {
-            background: url('../../assets/images/sprite_image.png') no-repeat -900px -498px;
+            background-position: -900px -498px;
             width: 10px;
             height: 10px;
         }
     }
     @include tablet {
-        background: url('../../assets/images/sprite_image.png') no-repeat  -843px -540px;
+        background-position: -843px -540px;
         width: 14px;
         height: 14px;
         &:hover {
-            background: url('../../assets/images/sprite_image.png') no-repeat -898px -540px;
+            background-position: -898px -540px;
             width: 14px;
             height: 14px;
         }
     }
     @include desktop {
-        background: url('../../assets/images/sprite_image.png') no-repeat -838px -582px;
+        background-position: -838px -582px;
         width: 24px;
         height: 24px;
         &:hover {
-            background: url('../../assets/images/sprite_image.png') no-repeat -893px -582px;
+            background-position: -893px -582px;
             width: 24px;
             height: 24px;
         }
     }
 }
 .profile{
+    background-image: url($sprite-image); 
     @include mobile {
-        background: url('../../assets/images/sprite_image.png') no-repeat -1362px -864px;
+        background-position:  -1362px -864px;
         width: 18px;
         height: 18px;
     }
     @include tablet {
-        background: url('../../assets/images/sprite_image.png') no-repeat   -1362px -902px;
+        background-position: -1362px -902px;
         width: 24px;
         height: 24px;
     }
     @include desktop {
-        background: url('../../assets/images/sprite_image.png')  no-repeat -1362px -946px;
+        background-position: -1362px -946px;
         width: 40px;
         height: 40px;
     }
