@@ -1,0 +1,41 @@
+.scroll_title{
+    width: 100%;
+    text-align: center;
+
+  & h2 {
+    @include mobile {
+        @include heading-large
+    }
+    @include tablet {
+        @include heading-xl
+    }
+    @include desktop {
+        @include heading-xxxl
+    }
+  }
+  & .sub {
+    @include mobile {
+        @include paragraph-small 
+    }
+    @include tablet {
+        @include label-medium
+    }
+    @include desktop {
+        padding: 20px 0 8px 0;
+        @include label-xl
+    }
+  }
+  & .paragraph {
+    @include mobile {
+        @include paragraph-small 
+    }
+    @include tablet {
+        @include label-small
+    }
+    @include desktop {
+        @include paragraph-large
+    }
+  }
+
+}
+
