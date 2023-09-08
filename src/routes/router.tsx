@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: 'login-selection',
+        path: 'loginSelection',
         element: <LoginSelection />,
       },
       {
