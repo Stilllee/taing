@@ -1,4 +1,4 @@
-const LogOut = () => {
-  return <div>로그아웃</div>;
+const LoginSelection = () => {
+  return <div>로그인목록</div>;
 };
-export default LogOut;
+export default LoginSelection;
