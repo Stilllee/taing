@@ -59,7 +59,7 @@ input {
   right: 16px;
   width: 14px;
   height: 14px;
-  background-image: url('@/assets/images/sprite_image.png');
+  background-image: url($sprite-image);
   background-position: -1205px -568px;
 
   @include desktop {
@@ -81,7 +81,7 @@ input {
   right: 46px;
   width: 18px;
   height: 16px;
-  background-image: url('@/assets/images/sprite_image.png');
+  background-image: url($sprite-image);
   background-position: -65px -1208px;
   @include desktop {
     right: 72px;
