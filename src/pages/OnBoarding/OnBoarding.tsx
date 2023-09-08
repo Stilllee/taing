@@ -1,4 +1,3 @@
-import ScrollTitle from '@components/scrollTitle/ScrollTitle';
 import styles from './OnBoarding.module.scss';
 import TaingButton from '@components/taingButton/TaingButton';
 import useFilterData, {
@@ -7,15 +6,18 @@ import useFilterData, {
 import { IImageData } from 'src/type';
 import { useEffect, useState } from 'react';
 import ScrollSlider from '@components/scrollSlider/ScrollSlider';
+import AutoSlider from '@components/autoSlider/AutoSlider';
 
 const OnBoarding = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
   const [onlySwipeSmall, setOnlySwipeSmall] = useState<IImageData[]>([]);
   const [onlySwipeLarge, setOnlySwipeLarge] = useState<IImageData[]>([]);
+  const [FindSwipe, setFindSwipe] = useState<IImageData[]>([]);
 
   useEffect(() => {
     setOnlySwipeSmall(filterDataByPage(filterData, 'onBoarding', 'small'));
     setOnlySwipeLarge(filterDataByPage(filterData, 'onBoarding', 'large'));
+    setFindSwipe(filterDataByPage(filterData, 'onBoarding', 'medium'));
   }, [filterData]);
 
   if (isLoading) {
@@ -39,14 +41,7 @@ const OnBoarding = () => {
         onlySwipeSmall={onlySwipeSmall}
         onlySwipeLarge={onlySwipeLarge}
       />
-      <div className={styles.scroll_section_3}>
-        <ScrollTitle
-          title="내가 찾던 재미"
-          subtitle="보고 싶은 콘텐츠를 발견하세요!"
-          paragraph="최신, 인기 TV프로그램, 영화, 해외시리즈, 파라마운트+ 오리지널 및 독점"
-        />
-        <div className={styles.swipe_2}></div>
-      </div>
+      <AutoSlider findSwipe={FindSwipe} />
       <div className={styles.message}>
         <div className={styles.message_logo} />
         <p className={styles.message_title}>지금 시작해보세요</p>

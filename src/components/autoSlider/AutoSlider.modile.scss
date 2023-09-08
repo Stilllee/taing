@@ -1,0 +1,37 @@
+.scroll_section_3 {
+    width: 100%;
+    @include mobile {
+      height: 337px;
+    padding-top: 48px;
+      }
+      @include tablet {
+        height: 410px;
+        padding-top: 80px;
+      }
+      @include desktop {
+        height: 1020px;
+        padding-top: 160px;
+      }
+      & .swipe_2 {
+        background-color: greenyellow;
+        display: flex;
+        @include mobile {
+          height: 102px;
+          margin-top: 26px;
+          }
+          @include desktop {
+            height: 264px;
+          }
+            & img {
+              @include mobile {
+                height: 102px;
+                width: 181.33px;
+                }
+                @include desktop {
+                  height: 264.38px;
+                  width: 470px;
+                }
+          }
+      }
+    }
+  
