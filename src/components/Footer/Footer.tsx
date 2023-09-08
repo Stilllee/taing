@@ -37,6 +37,7 @@ const Footer = () => {
   const location = useLocation();
   const hideInfo = [
     '/onboarding',
+    '/login-selection',
     '/signup',
     '/login',
     '/findId',

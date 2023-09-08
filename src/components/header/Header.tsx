@@ -25,6 +25,7 @@ const Header = () => {
       className={`${styles.header} ${
         [
           '/onboarding',
+          '/login-selection',
           '/findId',
           '/findPassword',
           '/login',
