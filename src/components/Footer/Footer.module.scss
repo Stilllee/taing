@@ -1,14 +1,7 @@
 .footer {
   color: $gray-500;
   @include paragraph-small;
-  @include mobile {
-    min-width: 319px;
-  }
-  @include tablet {
-    min-width: 768px;
-  }
   @include desktop {
-    min-width: 1920px;
     @include paragraph-large;
   }
 }
