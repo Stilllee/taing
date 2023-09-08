@@ -1,0 +1,11 @@
+.mainContent {
+  @include mobile {
+    padding-top: 38px;
+  }
+  @include tablet {
+    padding-top: 56px;
+  }
+  @include desktop {
+    padding-top: 100px;
+  }
+}
