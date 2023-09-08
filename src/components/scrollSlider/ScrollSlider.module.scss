@@ -1,0 +1,52 @@
+.scroll_section_2 {
+    width: 100%;
+  
+    @include mobile {
+      height: 542px;
+    padding-top: 48px;
+      }
+      @include tablet {
+        height: 558px;
+        padding-top: 40px;
+      }
+      @include desktop {
+        height: 919px;
+        padding-top: 160px;
+       
+      }
+  
+      & .swipe_1 {
+        background-color: aqua;
+        display: flex;
+      
+        @include mobile {
+          height: 400px;
+        margin-top: 20px;
+          }
+          @include tablet {
+            padding-top: 32px;
+          }
+          @include desktop {
+            height: 510px;
+            padding-top: 51px;
+          }
+  
+          & div {
+            display:  flex;
+          }
+          & .small {
+            @include tablet {
+              display: none;
+            }
+          }
+          & .large {
+            @include mobile {
+              display: none;
+            }
+            @include tablet {
+              display: flex;
+            }
+          }
+      }
+  }
+  
