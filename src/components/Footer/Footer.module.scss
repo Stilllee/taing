@@ -1,15 +1,14 @@
 .footer {
-  margin: 0 auto;
   color: $gray-500;
   @include paragraph-small;
   @include mobile {
-    width: 319px;
+    min-width: 319px;
   }
   @include tablet {
-    width: 768px;
+    min-width: 768px;
   }
   @include desktop {
-    width: 1920px;
+    min-width: 1920px;
     @include paragraph-large;
   }
 }
