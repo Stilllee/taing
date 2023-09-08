@@ -89,6 +89,7 @@
   @include mobile {
     gap: 4px;
     flex-direction: column;
+    padding-top: 8px;
   }
   @include tablet {
     flex-direction: row;
