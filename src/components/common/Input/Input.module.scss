@@ -1,5 +1,8 @@
 .inputWrapper {
   position: relative;
+}
+
+.inputWrapper input {
   @include mobile {
     width: 288px;
   }
@@ -9,9 +12,6 @@
   @include desktop {
     width: 732px;
   }
-}
-
-input {
   border: none;
   border-radius: 4px;
   color: $white;
