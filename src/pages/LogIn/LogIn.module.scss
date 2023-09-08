@@ -3,6 +3,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 28px;
+  @include tablet {
+    margin-top: 40px;
+  }
+  @include desktop {
+    margin-top: 70px;
+  }
 }
 
 .title {
@@ -22,6 +29,9 @@
 .loginForm {
   & Input {
     margin: 4px 0;
+    @include desktop {
+      margin: 11px 0;
+    }
   }
 }
 
@@ -31,6 +41,9 @@
   display: flex;
   padding: 0;
   margin: 9px 0 15px;
+  @include desktop {
+    margin: 15px 0 29px;
+  }
   & span {
     @include label-small;
     @include desktop {
