@@ -1,11 +1,24 @@
 import ScrollTitle from '@components/scrollTitle/ScrollTitle';
 import styles from './OnBoarding.module.scss';
 import TaingButton from '@components/taingButton/TaingButton';
+import { useEffect } from 'react';
+import { useReadData } from '../../../src/hooks/useReadData';
 
 const OnBoarding = () => {
+  const { readData, data, isLoading } = useReadData('images');
+
+  useEffect(() => {
+    readData();
+  }, [readData]);
+
+  if (isLoading) {
+    return <div>loading</div>;
+  }
+
   return (
     <main>
       <div className={styles.scroll_section_1}>
+        <img src={data[0]?.onBoarding.background} />
         <p className={styles.title}>
           티빙 오리지널 콘텐츠, <br /> 방송 영화, 해외시리즈까지! <br />
           재미를 플레이해보세요.
