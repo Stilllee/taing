@@ -7,6 +7,7 @@ import { IImageData } from 'src/type';
 import { useEffect, useState } from 'react';
 import ScrollSlider from '@components/scrollSlider/ScrollSlider';
 import AutoSlider from '@components/autoSlider/AutoSlider';
+import Intro from '@components/intro/Intro';
 
 const OnBoarding = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
@@ -26,17 +27,7 @@ const OnBoarding = () => {
 
   return (
     <main>
-      <div className={styles.scroll_section_1}>
-        <img src={filterData[0]?.onBoarding?.background} />
-        <p className={styles.title}>
-          티빙 오리지널 콘텐츠, <br /> 방송 영화, 해외시리즈까지! <br />
-          재미를 플레이해보세요.
-        </p>
-        <p className={styles.text}>
-          간편하게 가입하고, 원하실 때 해지할 수 있어요.
-        </p>
-        <TaingButton />
-      </div>
+      <Intro background={filterData[0]?.onBoarding?.background} />
       <ScrollSlider
         onlySwipeSmall={onlySwipeSmall}
         onlySwipeLarge={onlySwipeLarge}
