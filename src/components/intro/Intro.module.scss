@@ -1,0 +1,59 @@
+.scroll_section_1 {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    @include mobile {
+    height: 382px;
+    }
+    @include tablet {
+      height: 536px;
+    }
+    @include desktop {
+      min-height: 100vh; 
+    }
+    
+    & img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    
+    .title {
+      z-index: 10;
+      color: white;
+    
+      @include mobile {
+        @include heading-medium;
+    }
+    @include tablet {
+      @include heading-large;
+    }
+    @include desktop {
+      @include heading-xxxl;
+    }
+    }
+    
+    .text {
+      z-index: 10;
+      color: $gray-400;
+      @include mobile {
+        @include  paragraph-small;
+        margin-bottom: 16px;
+    }
+    @include tablet {
+      @include  paragraph-small;
+      margin-top: 8px;
+      margin-bottom: 28px;
+    }
+    @include desktop {
+      @include label-xl;
+      margin-top: 20px;
+      margin-bottom: 79px;
+    }
+    }
+    }
+    

@@ -9,9 +9,9 @@ interface IScrollTitle {
 const ScrollTitle = ({ title, subtitle, paragraph }: IScrollTitle) => {
   return (
     <div className={styles.scroll_title}>
-      <h2>{title}</h2>
-      <p className={styles.sub}>{subtitle}</p>
-      <p className={styles.paragraph}>{paragraph}</p>
+      <h2 className="intro">{title}</h2>
+      <p className={`${styles.sub} intro`}>{subtitle}</p>
+      <p className={`${styles.paragraph} intro`}>{paragraph}</p>
     </div>
   );
 };
