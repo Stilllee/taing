@@ -7,6 +7,15 @@
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+a {
+  text-decoration: none;
+}
+
 body {
   background-color: $black;
   color: $white;
