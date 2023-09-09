@@ -1,85 +1,76 @@
 button {
-    border-radius: 4px;
+  border-radius: 4px;
 }
 
 .submit {
-  
-    @include mobile {
-        height: 42px;
-        width: 288px;
-        @include label-small;
-    }
-    @include tablet {
-        height: 50px;
-        width: 416px;
-        @include label-medium;
-    }
-    @include desktop {
-        height: 86px;
-        width: 1032px;
-        @include label-xl;
-    }
-    
+  @include mobile {
+    height: 42px;
+    width: 288px;
+    @include label-small;
+  }
+  @include tablet {
+    height: 50px;
+    width: 416px;
+    @include label-medium;
+  }
+  @include desktop {
+    height: 86px;
+    width: 732px;
+    @include label-xl;
+  }
 }
 
-.submit.login   {
-    background-color: $red-1;
-    color: $white;
-    &:hover {
-        background-color: #CC1030;
-    }
+.submit.login {
+  background-color: $red-1;
+  color: $white;
+  &:hover {
+    background-color: #cc1030;
+  }
 }
-.submit.default  {
-    background-color: $gray-700;
-    color: $gray-400;
+.submit.default {
+  background-color: $gray-700;
+  color: $gray-400;
 }
 .submit.active {
-    background-color: $gray-100;
-    color: $black;
-    &:hover {
-        background-color: $white;
-    }
+  background-color: $gray-100;
+  color: $black;
+  &:hover {
+    background-color: $white;
+  }
 }
 
-
-
 .button {
-    background-color:  transparent;
-    @include mobile {
-        height: 42px;
-        width: 135px;
-        @include label-small;
-    }
-    @include tablet {
-        height: 50px;
-        width: 156px;
-        @include label-small;
-    }
-    @include desktop {
-        height: 86px;
-        width: 272px;
-        @include label-xl;
-    }
-    
-    
+  background-color: transparent;
+  @include mobile {
+    height: 42px;
+    width: 135px;
+    @include label-small;
+  }
+  @include tablet {
+    height: 50px;
+    width: 156px;
+    @include label-small;
+  }
+  @include desktop {
+    height: 86px;
+    width: 272px;
+    @include label-xl;
+  }
 }
 
 .button.default {
-    color: $gray-300;
-    border: 1px solid $gray-400;
+  color: $gray-300;
+  border: 1px solid $gray-400;
 
-    &:hover {
-        color : $white;
-        border: 1px solid $white;
-    }
+  &:hover {
+    color: $white;
+    border: 1px solid $white;
+  }
 }
 .button.active {
-    background-color: $gray-100;
-    color: $black;
-    &:hover {
-        background-color: $white;
-    }
+  background-color: $gray-100;
+  color: $black;
+  &:hover {
+    background-color: $white;
+  }
 }
-
-
-
