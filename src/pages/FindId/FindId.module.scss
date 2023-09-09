@@ -13,15 +13,6 @@
 }
 
 .FindWrapper {
-  @include mobile {
-    max-width: $mobile;
-  }
-  @include tablet {
-    max-width: $tablet;
-  }
-  @include desktop {
-    max-width: $desktop;
-  }
   & p {
     color: $gray-400;
     @include desktop {
