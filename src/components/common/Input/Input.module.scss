@@ -42,12 +42,9 @@
 }
 
 .buttonBase {
-  border: none;
-  background-color: transparent;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
 }
 
 .clearButton,
