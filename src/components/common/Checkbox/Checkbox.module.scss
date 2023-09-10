@@ -1,3 +1,4 @@
+// 공통 스타일
 .checkList {
   color: $gray-500;
   list-style-type: none;
@@ -12,6 +13,11 @@
   }
 }
 
+.checkbox {
+  display: none;
+}
+
+//  체크박스 이미지 기본 스타일
 .checkImage {
   background-image: url($sprite-image);
   width: 16px;
@@ -26,16 +32,35 @@
   }
 }
 
-.checkbox {
-  display: none;
-}
-
+// 선택된 체크박스 스타일
 .checked {
+  color: $white;
   .checkImage {
     background-position: -649px -654px;
     @include desktop {
       background-position: -644px -694px;
     }
   }
-  color: $white;
+}
+
+// agreeList 타입에 대한 추가 스타일
+.agreeList .checkImage {
+  background-position: -697px -657px;
+  width: 13px;
+  height: 9px;
+  @include desktop {
+    background-position: -693px -699px;
+    width: 21px;
+    height: 14px;
+  }
+}
+
+//  선택된 상태에서의 agreeList 스타일
+.agreeList {
+  .checked .checkImage {
+    background-position: -743px -657px;
+    @include desktop {
+      background-position: -739px -699px;
+    }
+  }
 }
