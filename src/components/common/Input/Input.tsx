@@ -25,7 +25,7 @@ const Input = ({
     type === 'password' ? (isPasswordVisible ? 'text' : 'password') : type;
 
   return (
-    <>
+    <div>
       <div
         className={`${styles.inputWrapper} ${
           type === 'password' ? styles.passwordType : ''
@@ -57,7 +57,7 @@ const Input = ({
         )}
       </div>
       <div className={styles.hint}>{errorMessage || hintMessage}</div>
-    </>
+    </div>
   );
 };
 export default Input;
