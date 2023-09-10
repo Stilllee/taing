@@ -4,15 +4,23 @@ import { useState } from 'react';
 interface ICheckboxProps {
   id: string;
   label: string;
+  additionalClass?: string;
+  listType?: string;
 }
 
-const Checkbox = ({ id, label }: ICheckboxProps) => {
+const Checkbox = ({ id, label, additionalClass, listType }: ICheckboxProps) => {
   const [isChecked, setIsChecked] = useState(false);
+
   const toggleCheck = () => {
     setIsChecked(!isChecked);
   };
+
   return (
-    <li className={styles.checkList}>
+    <li
+      className={`${styles.checkList} ${additionalClass} ${
+        listType === 'agreeList' ? styles.agreeList : ''
+      }`}
+    >
       <input
         className={styles.checkbox}
         type="checkbox"
