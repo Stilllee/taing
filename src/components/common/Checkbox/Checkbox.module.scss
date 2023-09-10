@@ -1,0 +1,41 @@
+.checkList {
+  color: $gray-500;
+  list-style-type: none;
+  & label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    @include label-small;
+    @include desktop {
+      @include label-large;
+    }
+  }
+}
+
+.checkImage {
+  background-image: url($sprite-image);
+  width: 16px;
+  height: 16px;
+  background-position: -603px -654px;
+  margin-right: 4px;
+  @include desktop {
+    width: 26px;
+    height: 26px;
+    background-position: -598px -694px;
+    margin-right: 12px;
+  }
+}
+
+.checkbox {
+  display: none;
+}
+
+.checked {
+  .checkImage {
+    background-position: -649px -654px;
+    @include desktop {
+      background-position: -644px -694px;
+    }
+  }
+  color: $white;
+}
