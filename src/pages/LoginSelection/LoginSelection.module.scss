@@ -1,0 +1,128 @@
+.LoginSelection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  @include tablet {
+    margin-top: 40px;
+  }
+  @include desktop {
+    margin-top: 70px;
+  }
+}
+
+.title {
+  text-align: center;
+  @include mobile {
+    @include heading-medium;
+  }
+  @include tablet {
+    @include heading-xl;
+  }
+  @include desktop {
+    @include heading-xxl;
+  }
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+  @include tablet {
+    gap: 12px;
+    margin: 24px 0;
+  }
+  @include desktop {
+    gap: 20px;
+    margin: 56px 0;
+  }
+  & button {
+    position: relative;
+    color: $gray-400;
+    border: 1px solid $gray-400;
+    &:hover {
+      color: $white;
+      border: 1px solid $white;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+      width: 18px;
+      height: 18px;
+
+      @include tablet {
+        left: 14px;
+        width: 24px;
+        height: 24px;
+      }
+
+      @include desktop {
+        left: 24px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+    @include mobile {
+      height: 42px;
+      width: 288px;
+      @include label-small;
+    }
+    @include tablet {
+      height: 50px;
+      width: 416px;
+      @include label-medium;
+    }
+    @include desktop {
+      height: 86px;
+      width: 732px;
+      @include label-xl;
+    }
+  }
+}
+
+.startTaing::before {
+  background-image: url($sprite-image);
+  background-position: -1362px -864px;
+  @include tablet {
+    background-position: -1362px -902px;
+  }
+  @include desktop {
+    background-position: -1362px -946px;
+  }
+}
+
+.startGoogle::before {
+  background-image: url('/src/assets/images/google_logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px;
+  @include tablet {
+    background-size: 24px;
+  }
+  @include desktop {
+    background-size: 40px;
+  }
+}
+
+.findIdBox {
+  text-align: center;
+  & a {
+    color: $gray-300;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.findIdInfo {
+  color: $gray-500;
+  margin-right: 10px;
+  @include desktop {
+    margin-right: 20px;
+  }
+}
