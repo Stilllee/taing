@@ -24,6 +24,9 @@
   height: 16px;
   background-position: -603px -654px;
   margin-right: 4px;
+  @include tablet {
+    margin-right: 8px;
+  }
   @include desktop {
     width: 26px;
     height: 26px;
@@ -48,6 +51,8 @@
   background-position: -697px -657px;
   width: 13px;
   height: 9px;
+  @include tablet {
+  }
   @include desktop {
     background-position: -693px -699px;
     width: 21px;
