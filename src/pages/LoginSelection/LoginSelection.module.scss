@@ -11,9 +11,51 @@
     margin-top: 70px;
   }
 }
+.background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 200px;
+}
+.background img{
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  @include mobile {
+    height: 150px;
+  }
+
+  @include tablet{
+    height: 200px;
+  }
+  @include desktop {
+    height: 350px;
+  }
+
+}
+.shadow {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  z-index: 0;
+  filter: drop-shadow(0px -30px 20px black);
+  @include mobile {
+    top:152px;
+  }
+  @include tablet {
+    top:202px;
+  }
+  @include desktop {
+    top:352px
+  }
+
+}
 
 .title {
+  z-index: 100;
   text-align: center;
+  color: $gray-200;
   @include mobile {
     @include heading-medium;
   }
