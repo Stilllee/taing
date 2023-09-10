@@ -1,6 +1,6 @@
 // 공통 스타일
 .checkList {
-  color: $gray-500;
+  color: $gray-300;
   list-style-type: none;
   & label {
     cursor: pointer;
@@ -62,10 +62,14 @@
 
 //  선택된 상태에서의 agreeList 스타일
 .agreeList {
-  .checked .checkImage {
-    background-position: -743px -657px;
-    @include desktop {
-      background-position: -739px -699px;
+  color: $gray-500;
+  .checked {
+    color: $gray-300;
+    & .checkImage {
+      background-position: -743px -657px;
+      @include desktop {
+        background-position: -739px -699px;
+      }
     }
   }
 }
