@@ -1,0 +1,107 @@
+.LogIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  @include tablet {
+    margin-top: 40px;
+  }
+  @include desktop {
+    margin-top: 70px;
+  }
+}
+
+.title {
+  margin-bottom: 24px;
+  @include mobile {
+    @include heading-medium;
+  }
+  @include tablet {
+    @include heading-xl;
+  }
+  @include desktop {
+    @include heading-xxl;
+    margin-bottom: 56px;
+  }
+}
+
+.loginForm {
+  & Input {
+    margin: 4px 0;
+    @include desktop {
+      margin: 11px 0;
+    }
+  }
+  & li {
+    margin: 9px 0 15px;
+    @include desktop {
+      margin: 15px 0 29px;
+    }
+  }
+}
+
+.pageLink {
+  @include mobile {
+    @include paragraph-small;
+  }
+  @include tablet {
+    @include paragraph-medium;
+  }
+  @include desktop {
+    @include paragraph-large;
+  }
+  & a {
+    color: $gray-300;
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.findBox {
+  & a {
+    display: inline-block;
+    @include mobile {
+      margin: 20px;
+    }
+    @include tablet {
+      margin: 25px;
+    }
+    @include desktop {
+      margin: 48px;
+    }
+    position: relative;
+    &::after {
+      content: '|';
+      position: absolute;
+      color: $gray-800;
+      @include mobile {
+        right: -22px;
+      }
+      @include tablet {
+        right: -27px;
+      }
+      @include desktop {
+        right: -50px;
+      }
+    }
+    &:last-child {
+      &::after {
+        content: '';
+      }
+    }
+  }
+}
+
+.signupBox {
+  text-align: center;
+}
+
+.signupInfo {
+  color: $gray-500;
+  margin-right: 10px;
+  @include desktop {
+    margin-right: 20px;
+  }
+}

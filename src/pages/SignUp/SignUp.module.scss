@@ -1,0 +1,89 @@
+.SignUp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  @include tablet {
+    margin-top: 40px;
+  }
+  @include desktop {
+    margin-top: 70px;
+  }
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  @include desktop {
+    margin-bottom: 56px;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  @include mobile {
+    @include heading-medium;
+  }
+  @include tablet {
+    @include heading-xl;
+  }
+  @include desktop {
+    @include heading-xxl;
+    margin-bottom: 28px;
+  }
+}
+
+.info {
+  color: $gray-400;
+  @include tablet {
+    @include label-medium;
+  }
+  @include desktop {
+    @include label-xl;
+  }
+}
+
+.formBox {
+  & > button {
+    margin-top: 13px;
+    @include desktop {
+      margin-top: 18px;
+    }
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  @include desktop {
+    gap: 34px;
+  }
+}
+
+.allAgree {
+  margin: 16px 0 12px;
+  @include desktop {
+    margin: 28px 0;
+  }
+}
+
+.agreeBox {
+  & li {
+    margin-bottom: 8px;
+    @include desktop {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.subAgree {
+  margin-left: 20px;
+  @include desktop {
+    margin-left: 40px;
+  }
+}
