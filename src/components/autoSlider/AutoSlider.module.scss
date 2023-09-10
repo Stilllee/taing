@@ -1,8 +1,26 @@
+@keyframes rollingleft1 { 
+  0%, 100% {
+    transform: translateX(0);
+}
+  50% {
+    transform: translateX(-100%);
+}
+  50.01% {
+    transform: translateX(100%);
+}}
+@keyframes rollingleft2 { 
+  0% {
+        transform: translateX(0);
+    }
+  100% {
+        transform: translateX(-200%);
+    }
+}
 .scroll_section_3 {
-    width: 100%;
+  width: 100%;
     @include mobile {
       height: 337px;
-    padding-top: 48px;
+      padding-top: 48px;
       }
       @include tablet {
         height: 410px;
@@ -12,17 +30,33 @@
         height: 1020px;
         padding-top: 160px;
       }
-      & .swipe_2 {
-        background-color: greenyellow;
-        display: flex;
+      & .swipe_outer {
         @include mobile {
-          height: 102px;
-          margin-top: 26px;
+          height: 214px;
+          margin-top: 25px;
+          }
+          @include tablet {
+            height: 216px;
+            margin-top: 32px;
           }
           @include desktop {
+            height: 543px;
+            margin-top: 70px;
+          }
+      }
+      & .swipe_2 {
+        display: flex;
+        overflow: hidden;
+        @include mobile {
+          height: 102px;
+          margin-bottom: 12px;
+          }
+        @include desktop {
             height: 264px;
+            margin-bottom: 16px;
           }
             & img {
+              border-radius: 5px;
               @include mobile {
                 height: 102px;
                 width: 181.33px;
@@ -34,4 +68,21 @@
           }
       }
     }
+  .origin, .copy {
+      display: flex;
+    }
+  .origin{
+      animation: 45s linear 0s infinite normal forwards running rollingleft1;
+  }
+  .copy{
+      animation: 45s linear 0s infinite normal none running rollingleft2;
+  }
   
+  .swipe_2:nth-child(2) {
+    .origin{
+      animation: 36s linear 0s infinite normal forwards running rollingleft1;
+    }
+    .copy{
+      animation: 36s linear 0s infinite normal none running rollingleft2;
+    }
+  }
