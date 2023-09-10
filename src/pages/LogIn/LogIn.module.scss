@@ -33,48 +33,12 @@
       margin: 11px 0;
     }
   }
-}
-
-.autoLoginWrapper {
-  color: $gray-500;
-  cursor: pointer;
-  display: flex;
-  padding: 0;
-  margin: 9px 0 15px;
-  @include desktop {
-    margin: 15px 0 29px;
-  }
-  & span {
-    @include label-small;
+  & li {
+    margin: 9px 0 15px;
     @include desktop {
-      @include label-large;
+      margin: 15px 0 29px;
     }
   }
-}
-
-.autoLogin {
-  background: url($sprite-image);
-  width: 16px;
-  height: 16px;
-  background-position: -603px -654px;
-  margin-right: 4px;
-  @include desktop {
-    width: 26px;
-    height: 26px;
-    background-position: -598px -694px;
-    margin-right: 12px;
-  }
-}
-
-.autoLoginChecked {
-  background-position: -649px -654px;
-  @include desktop {
-    background-position: -644px -694px;
-  }
-}
-
-.labelChecked {
-  color: $white;
 }
 
 .pageLink {
