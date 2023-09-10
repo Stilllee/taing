@@ -1,0 +1,8 @@
+.single_slide {
+  @include mobile {
+      width: 192px;
+  }
+  @include desktop {
+    width: 490px;
+}
+}

@@ -1,0 +1,64 @@
+.button {
+    display: flex;
+    position: relative;  
+    color: white;
+    background-color: $red-2;
+    border-radius: 4px;
+    @include mobile {
+        height: 34px;
+        width: 188px;
+        @include label-small;
+    }
+    @include tablet {
+        height: 48px;
+        width: 283px;
+        @include label-medium;
+    }
+    @include desktop {
+        height: 79px;
+        width: 504px;
+        @include label-xl;
+      
+    }
+}
+
+.icon {
+    position: absolute;
+    background-image: url($sprite-image); 
+    left: 10px;
+    @include mobile {
+        background-position: -1004px -411px;
+        width: 23px;
+        height: 26px;
+    }
+    @include tablet {
+        background-position:-1004px -467px;
+        width: 32px;
+        height: 36px;
+    }
+    @include desktop {
+        left: 18px;
+        background-position: -1006px -542px;
+        width: 55px;
+        height: 63px;
+    }
+
+}
+
+.title {
+position: absolute;
+    @include mobile {
+    left: 40px;
+    top:9px;
+}
+@include tablet {
+    left: 64px;
+    top: 13px;
+}
+@include desktop {
+    left: 119px;
+    top: 20px;
+  
+}
+
+}
