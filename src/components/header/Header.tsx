@@ -28,7 +28,7 @@ const Header = () => {
           '/loginSelection',
           '/findId',
           '/findPassword',
-          '/login',
+          '/logIn',
           '/signup',
         ].includes(pathname)
           ? styles.simple
