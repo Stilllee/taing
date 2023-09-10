@@ -1,17 +1,16 @@
 import ScrollTitle from '@components/scrollTitle/ScrollTitle';
-import styles from './ScrollSlider.module.scss';
+import './ScrollSlider.scss';
 import { IImageData } from 'src/type';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Keyboard, Mousewheel } from 'swiper/modules';
 interface IScrollSlider {
   onlySwipeSmall: IImageData[];
   onlySwipeLarge: IImageData[];
 }
 const ScrollSlider = ({ onlySwipeSmall, onlySwipeLarge }: IScrollSlider) => {
-  const sliderRef = useRef<HTMLDivElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,34 +29,55 @@ const ScrollSlider = ({ onlySwipeSmall, onlySwipeLarge }: IScrollSlider) => {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    const slider = sliderRef.current;
-    // ScrollTrigger 설정
-    gsap.to(slider, { opacity: 1 });
-  }, []);
-
   return (
-    <div className={styles.scroll_section_2} ref={introRef}>
+    <div className="scroll_section_2" ref={introRef}>
       <ScrollTitle
         title="티빙에만 있는 재미"
         subtitle="오리지널 콘텐츠를 만나보세요!"
         paragraph="차별화된 웰메이드 오리지널 콘텐츠"
       />
-      <div className={`${styles.swipe_1} intro`} ref={sliderRef}>
-        <div className={styles.small}>
-          {onlySwipeSmall.map(item => (
-            <div className="single_slide" key={item.id}>
-              <img src={item?.onBoarding?.small} alt={item?.name} />
-            </div>
+      <div className="intro">
+        {/* 모바일 / 테블릿 슬라이드 */}
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={10}
+          centeredSlides
+          mousewheel={{ releaseOnEdges: true }}
+          keyboard={{
+            enabled: true,
+          }}
+          modules={[Mousewheel, Keyboard]}
+          freeMode={true}
+        >
+          {onlySwipeSmall.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="img_wrapper" key={item.id}>
+                <img src={item?.onBoarding?.small} alt={item?.name} />
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
-        <div className={styles.large}>
-          {onlySwipeLarge.map(item => (
-            <div key={item.id}>
-              <img src={item?.onBoarding?.large} alt={item?.name} />
-            </div>
+        </Swiper>
+
+        {/* 데스크탑 슬라이드 */}
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={24}
+          centeredSlides
+          mousewheel={{ releaseOnEdges: true, sensitivity: 10 }}
+          keyboard={{
+            enabled: true,
+          }}
+          modules={[Mousewheel, Keyboard]}
+          freeMode={true}
+        >
+          {onlySwipeLarge.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div key={item.id}>
+                <img src={item?.onBoarding?.large} alt={item?.name} />
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </div>
   );
