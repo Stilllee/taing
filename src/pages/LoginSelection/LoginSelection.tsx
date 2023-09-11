@@ -30,7 +30,7 @@ const LoginSelection = () => {
       </div>
       <div className={styles.findIdBox}>
         <span className={styles.findIdInfo}>아이디를 잊으셨나요?</span>
-        <Link to={'/findId'}>아이디 찾기</Link>
+        <Link to={'/find-id'}>아이디 찾기</Link>
       </div>
     </main>
   );

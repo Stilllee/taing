@@ -25,10 +25,10 @@ const Header = () => {
       className={`${styles.header} ${
         [
           '/onboarding',
-          '/loginSelection',
-          '/findId',
-          '/findPassword',
-          '/logIn',
+          '/login-selection',
+          '/find-id',
+          '/find-password',
+          '/login',
           '/signup',
         ].includes(pathname)
           ? styles.simple
