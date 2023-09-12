@@ -1,6 +1,23 @@
+import { useEffect } from 'react';
 import styles from './ProfileModal.module.scss';
+interface IProfileModal {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  mouseInModal: boolean;
+}
+const ProfileModal = ({
+  onMouseEnter,
+  onMouseLeave,
+  mouseInModal,
+}: IProfileModal) => {
+  useEffect(() => {
+    if (mouseInModal) {
+      onMouseEnter();
+    } else {
+      onMouseLeave();
+    }
+  }, [mouseInModal, onMouseEnter, onMouseLeave]);
 
-const ProfileModal = () => {
   return (
     <div className={styles.profileModal}>
       <div className={styles.profileTab}>
