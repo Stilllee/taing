@@ -37,11 +37,11 @@ const Footer = () => {
   const location = useLocation();
   const hideInfo = [
     '/onboarding',
-    '/loginSelection',
+    '/login-selection',
     '/signup',
     '/login',
-    '/findId',
-    '/findPassword',
+    '/find-id',
+    '/find-password',
   ].includes(location.pathname);
 
   return (

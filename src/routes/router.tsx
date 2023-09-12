@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: 'loginSelection',
+        path: 'login-selection',
         element: <LoginSelection />,
       },
       {
@@ -61,11 +61,11 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: 'findId',
+        path: 'find-id',
         element: <FindId />,
       },
       {
-        path: 'findPassword',
+        path: 'find-password',
         element: <FindPassword />,
       },
     ],

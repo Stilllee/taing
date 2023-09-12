@@ -16,10 +16,10 @@ const LogIn = () => {
       </form>
       <div className={styles.pageLink}>
         <div className={styles.findBox}>
-          <Link to={'/findId'}>
+          <Link to={'/find-id'}>
             <span>아이디 찾기</span>
           </Link>
-          <Link to={'/findPassword'}>비밀번호 찾기</Link>
+          <Link to={'/find-password'}>비밀번호 찾기</Link>
         </div>
         <div className={styles.signupBox}>
           <span className={styles.signupInfo}>아직 계정이 없으신가요?</span>
