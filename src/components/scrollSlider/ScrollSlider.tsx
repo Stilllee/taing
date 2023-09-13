@@ -1,4 +1,4 @@
-import ScrollTitle from '@components/scrollTitle/ScrollTitle';
+import ScrollTitle from '@components/ScrollTitle/ScrollTitle';
 import './ScrollSlider.scss';
 import { IImageData } from 'src/type';
 import { useEffect, useRef } from 'react';

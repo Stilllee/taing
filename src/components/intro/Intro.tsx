@@ -1,4 +1,4 @@
-import TaingButton from '@components/taingButton/TaingButton';
+import TaingButton from '@components/TaingButton/TaingButton';
 import styles from './Intro.module.scss';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';

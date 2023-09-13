@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ProfileModal from '@components/profileModal/ProfileModal';
+import ProfileModal from '@components/ProfileModal/ProfileModal';
 const Header = () => {
   const { scrollY } = useScroll();
   const { pathname } = useLocation();

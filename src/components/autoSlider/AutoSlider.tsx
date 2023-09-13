@@ -1,9 +1,9 @@
-import ScrollTitle from '@components/scrollTitle/ScrollTitle';
+import ScrollTitle from '@components/ScrollTitle/ScrollTitle';
 import styles from './AutoSlider.module.scss';
 import { IImageData } from 'src/type';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import AutoSingleSlide from '@components/autoSingleSlide/AutoSingleSlide';
+import AutoSingleSlide from '@components/AutoSingleSlide/AutoSingleSlide';
 
 interface AutoSliderProps {
   findSwipe: IImageData[];

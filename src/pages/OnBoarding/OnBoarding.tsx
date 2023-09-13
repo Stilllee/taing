@@ -1,13 +1,13 @@
 import styles from './OnBoarding.module.scss';
-import TaingButton from '@components/taingButton/TaingButton';
+import TaingButton from '@components/TaingButton/TaingButton';
 import useFilterData, {
   filterDataByPage,
 } from '../../../src/hooks/useFilterData';
 import { IImageData } from 'src/type';
 import { useEffect, useState } from 'react';
-import ScrollSlider from '@components/scrollSlider/ScrollSlider';
-import AutoSlider from '@components/autoSlider/AutoSlider';
-import Intro from '@components/intro/Intro';
+import ScrollSlider from '@components/ScrollSlider/ScrollSlider';
+import AutoSlider from '@components/AutoSlider/AutoSlider';
+import Intro from '@components/Intro/Intro';
 
 const OnBoarding = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
