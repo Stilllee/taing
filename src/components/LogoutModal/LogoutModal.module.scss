@@ -23,7 +23,6 @@
   display: flex;
   justify-content: center;
   & button {
-    border-radius: 0;
     color: $gray-300;
     @include paragraph-small;
     margin: 10.5px 0;
