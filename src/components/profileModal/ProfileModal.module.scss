@@ -2,6 +2,7 @@
     position: absolute;
     border: 1px solid $gray-700;
     background-color:  $dark-bg-1;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
     border-radius: 2px;
     color: $gray-400;
     @include mobile {
@@ -22,6 +23,17 @@
         right: 55px;
         top: 100px;
     }
+}
+
+.profileModal::before {
+    content: '';
+    position: absolute;
+    top: -1em;
+    left: -1em;
+    right: -1em;
+    bottom: -1em;
+    background-color: transparent;
+    z-index: -1;
 }
 
 .profileTab {

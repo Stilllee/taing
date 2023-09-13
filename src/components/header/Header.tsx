@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ProfileModal from '@components/profileModal/ProfileModal';
+import ProfileModal from '@components/ProfileModal/ProfileModal';
 const Header = () => {
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
@@ -14,19 +14,12 @@ const Header = () => {
   );
   const [openSearchModal, setOpenSerchModal] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
-  const [mouseInModal, setMouseInModal] = useState(false);
   const onOpenSearchModal = () => setOpenSerchModal(true);
   const onCloseSearchModal = () => setOpenSerchModal(false);
 
-  const onShowProfile = () => {
-    setOpenProfile(true);
+  const toggleProfile = () => {
+    setOpenProfile(prevOpenProfile => !prevOpenProfile);
   };
-  const onCloseProfile = () => {
-    if (openProfile && !mouseInModal) {
-      setOpenProfile(false);
-    }
-  };
-
   return (
     <motion.div
       style={{ backgroundColor }}
@@ -84,8 +77,8 @@ const Header = () => {
 
         <li>
           <button
-            onMouseEnter={onShowProfile}
-            onMouseLeave={onCloseProfile}
+            onMouseEnter={toggleProfile}
+            onMouseLeave={toggleProfile}
             className={styles.profile}
           ></button>
         </li>
@@ -93,9 +86,9 @@ const Header = () => {
 
       {openProfile && (
         <ProfileModal
-          mouseInModal={mouseInModal}
-          onMouseEnter={() => setMouseInModal(true)}
-          onMouseLeave={() => setMouseInModal(false)}
+          show={openProfile}
+          onMouseEnter={toggleProfile}
+          onMouseLeave={toggleProfile}
         />
       )}
     </motion.div>
