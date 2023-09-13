@@ -20,7 +20,6 @@ const Header = () => {
   const toggleProfile = () => {
     setOpenProfile(prevOpenProfile => !prevOpenProfile);
   };
-
   return (
     <motion.div
       style={{ backgroundColor }}
