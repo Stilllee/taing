@@ -6,7 +6,6 @@ interface IProfileModal {
 }
 const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
   const profileClass = `${styles.profileModal} ${show ? '' : styles.hidden}`;
-
   return (
     <div
       onMouseEnter={onMouseEnter}
