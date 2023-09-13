@@ -1,4 +1,7 @@
+import Modal from '@components/common/Modal/Modal';
 import styles from './ProfileModal.module.scss';
+import LogoutModal from '@components/LogoutModal/LogoutModal';
+import { useState } from 'react';
 interface IProfileModal {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -6,6 +9,11 @@ interface IProfileModal {
 }
 const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
   const profileClass = `${styles.profileModal} ${show ? '' : styles.hidden}`;
+
+  const [logoutVisible, setLogoutVisible] = useState(false);
+  const closeLogout = () => setLogoutVisible(false);
+  const openLogout = () => setLogoutVisible(true);
+
   return (
     <div
       onMouseEnter={onMouseEnter}
@@ -36,9 +44,16 @@ const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
           <button>고객센터</button>
         </li>
         <li>
-          <button className={styles.logoutBtn}>로그아웃</button>
+          <button onClick={openLogout} className={styles.logoutBtn}>
+            로그아웃
+          </button>
         </li>
       </ul>
+      {logoutVisible && (
+        <Modal>
+          <LogoutModal closeLogout={closeLogout} />
+        </Modal>
+      )}
     </div>
   );
 };
