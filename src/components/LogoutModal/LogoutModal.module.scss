@@ -1,0 +1,48 @@
+.LogoutModal {
+  background-color: $dark-bg-2;
+  min-width: 196px;
+  & p {
+    @include paragraph-small;
+    text-align: center;
+    margin: 0 41.5px;
+    padding: 20px 0 12px;
+    @include tablet {
+      @include paragraph-medium;
+      margin: 0 91px;
+      padding: 28px 0 16px;
+    }
+    @include desktop {
+      @include paragraph-large;
+      margin: 0 163px;
+      padding: 38px 0 30px;
+    }
+  }
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
+  & button {
+    border-radius: 0;
+    color: $gray-300;
+    @include paragraph-small;
+    margin: 10.5px 0;
+    padding: 0 26px;
+    @include tablet {
+      @include paragraph-medium;
+      margin: 14px 0;
+      padding: 0 34.5px;
+    }
+    @include desktop {
+      @include paragraph-large;
+      margin: 24px 0;
+      padding: 0 68px;
+    }
+    &:hover {
+      color: $white;
+    }
+  }
+  & button:first-child {
+    border-right: 1px solid $gray-700;
+  }
+}

@@ -1,0 +1,44 @@
+.PopupModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 252px;
+  @include tablet {
+    width: 328px;
+  }
+  @include desktop {
+    width: 588px;
+  }
+}
+
+.popupImage {
+  width: 100%;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  @include paragraph-small;
+  padding: 0 8px;
+  & button {
+    border-radius: 0;
+    color: $white;
+    margin: 8.5px 0;
+    padding: 0 22.5px;
+    @include tablet {
+      @include paragraph-medium;
+      margin: 12px 0;
+      padding: 0 29.5px;
+    }
+    @include desktop {
+      @include paragraph-large;
+      margin: 16px 0;
+      padding: 0 76.5px;
+    }
+  }
+  & button:first-child {
+    border-right: 1px solid;
+  }
+}
