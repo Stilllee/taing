@@ -14,17 +14,11 @@ const Header = () => {
   );
   const [openSearchModal, setOpenSerchModal] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
-  const [mouseInModal, setMouseInModal] = useState(false);
   const onOpenSearchModal = () => setOpenSerchModal(true);
   const onCloseSearchModal = () => setOpenSerchModal(false);
 
-  const onShowProfile = () => {
-    setOpenProfile(true);
-  };
-  const onCloseProfile = () => {
-    if (openProfile && !mouseInModal) {
-      setOpenProfile(false);
-    }
+  const toggleProfile = () => {
+    setOpenProfile(prevOpenProfile => !prevOpenProfile);
   };
 
   return (
@@ -84,8 +78,8 @@ const Header = () => {
 
         <li>
           <button
-            onMouseEnter={onShowProfile}
-            onMouseLeave={onCloseProfile}
+            onMouseEnter={toggleProfile}
+            onMouseLeave={toggleProfile}
             className={styles.profile}
           ></button>
         </li>
@@ -93,9 +87,9 @@ const Header = () => {
 
       {openProfile && (
         <ProfileModal
-          mouseInModal={mouseInModal}
-          onMouseEnter={() => setMouseInModal(true)}
-          onMouseLeave={() => setMouseInModal(false)}
+          show={openProfile}
+          onMouseEnter={toggleProfile}
+          onMouseLeave={toggleProfile}
         />
       )}
     </motion.div>
