@@ -1,0 +1,157 @@
+.profileModal {
+    position: absolute;
+    border: 1px solid $gray-700;
+    background-color:  $dark-bg-1;
+    border-radius: 2px;
+    color: $gray-400;
+    @include mobile {
+        width: 176px;
+        height: 207px;
+        right: 20px;
+        top: 35px;
+    }
+    @include tablet {
+        width: 240px;
+        height: 300px;
+        right: 35px;
+        top: 55px;
+    }
+    @include desktop {
+        width: 350px;
+        height: 407px;
+        right: 55px;
+        top: 100px;
+    }
+}
+
+.profileTab {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid $gray-700;
+    @include mobile {
+        padding: 10px;
+        height: 62px;
+    }
+    @include tablet {
+        padding: 20px;
+        height: 77px;
+    }
+    @include desktop {
+        height: 103px;
+        padding: 27px;
+    }
+}
+
+.profileImage {
+    background-image: url($sprite-image);
+    background-position-x:  -1362px;
+    border-radius: 5px;
+    @include mobile {
+        background-position-y:-946px;
+        width: 40px;
+        height: 40px;  
+    }
+    @include tablet {
+        width: 40px;
+        height: 40px;  
+
+    }
+}
+
+.profile {
+    position: absolute;
+    top: 15px;
+    left: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3px;
+    font-size: 10px;
+    @include tablet {
+        top: 20px;
+        left: 75px;
+    }
+    @include desktop {
+        top:  22px;
+        left: 85px;
+    }
+    & span {
+        color: $white;
+        font-weight: 400;
+        @include tablet {
+             font-size: 16px;
+        }
+        @include desktop {
+             font-size: 22px;
+             margin-bottom: 2px;
+            }
+        }
+    & button {
+        padding: 0;
+        text-align: left;
+        padding-left: 0;
+        color: $gray-400;
+        font-size: 10px;
+        @include tablet {
+            font-size: 14px;
+       }
+       @include desktop {
+        font-size: 18px;
+       }
+    }
+    .arrowIcon {
+        display: inline-block;
+        background: url($sprite-image) no-repeat -696px -297px;
+        @include mobile {
+            margin-top: 7px;
+            margin-left: 5px;
+            width: 8px;
+            height: 8px;
+        }
+        @include tablet {
+            margin-top: 8px;
+            margin-left: 5px;
+            width: 10px;
+            height: 10px;
+        }
+        @include desktop {
+            margin-top: 10px;
+            margin-left: 8px;
+        }
+    }
+}
+
+.profileMenu {
+    width: 100%;
+    margin: 15px 0;
+    @include tablet {
+        margin: 20px 0; 
+    }
+    & button {
+        width: 100%;
+        display: block;
+        color: $gray-400;
+        text-align: start;
+        @include mobile {
+        padding-left: 15px;
+        height: 23px;
+        font-size: 10px;
+}
+        @include tablet {
+        padding-left: 20px;
+        font-size: 16px;
+        height: 35px;
+}
+        @include desktop {
+            padding-left: 30px;
+        font-size: 22px;
+        height: 50px;
+}
+
+}
+& li {
+    :hover {
+        background-color: $gray-700;
+        color: $white;
+    }
+}}

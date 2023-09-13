@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ProfileModal from '@components/profileModal/ProfileModal';
 const Header = () => {
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
@@ -11,13 +12,20 @@ const Header = () => {
     [0, 80],
     ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'],
   );
-  const [openModal, setOpenModal] = useState(false);
+  const [openSearchModal, setOpenSerchModal] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const [mouseInModal, setMouseInModal] = useState(false);
+  const onOpenSearchModal = () => setOpenSerchModal(true);
+  const onCloseSearchModal = () => setOpenSerchModal(false);
 
-  const onOpenModal = () => setOpenModal(true);
-  const onCloseModal = () => setOpenModal(false);
-  const onShowProfile = () => setOpenProfile(true);
-  const onCloseProfile = () => setOpenProfile(false);
+  const onShowProfile = () => {
+    setOpenProfile(true);
+  };
+  const onCloseProfile = () => {
+    if (openProfile && !mouseInModal) {
+      setOpenProfile(false);
+    }
+  };
 
   return (
     <motion.div
@@ -61,10 +69,16 @@ const Header = () => {
       </ul>
       <ul className={styles.aside}>
         <li>
-          {openModal ? (
-            <button onClick={onCloseModal} className={styles.close}></button>
+          {openSearchModal ? (
+            <button
+              onClick={onCloseSearchModal}
+              className={styles.close}
+            ></button>
           ) : (
-            <button onClick={onOpenModal} className={styles.search}></button>
+            <button
+              onClick={onOpenSearchModal}
+              className={styles.search}
+            ></button>
           )}
         </li>
 
@@ -76,8 +90,14 @@ const Header = () => {
           ></button>
         </li>
       </ul>
-      {/* 임시 프로필 */}
-      {openProfile && <div>프로필</div>}
+
+      {openProfile && (
+        <ProfileModal
+          mouseInModal={mouseInModal}
+          onMouseEnter={() => setMouseInModal(true)}
+          onMouseLeave={() => setMouseInModal(false)}
+        />
+      )}
     </motion.div>
   );
 };
