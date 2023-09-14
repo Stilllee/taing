@@ -1,38 +1,53 @@
 .scroll_section_1 {
-    position: relative;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     @include mobile {
-    height: 382px;
+    height: 379px;
+    margin-bottom: 45px;
     }
     @include tablet {
-      height: 536px;
+      height: 540px;
+      margin-bottom: 50px;
     }
     @include desktop {
-      min-height: 100vh; 
+     height: 950px; 
+     margin-bottom: 160px;
     }
     
     & img {
       width: 100%;
-      height: 100%;
+      object-fit: cover;
       position: absolute;
+      top: 0;
+      @include mobile {
+        height: 382px;
+        }
+        @include tablet {
+          height: 536px;
+        }
+        @include desktop {
+          height: 1079px; 
+        }
     }
     
     .title {
+      position: absolute;
       z-index: 10;
       color: white;
-    
       @include mobile {
+        top: 118px;
         @include heading-medium;
     }
-    @include tablet {
+      @include tablet {
+      top: 155px;
       @include heading-large;
     }
-    @include desktop {
+      @include desktop {
+      top: 260px;
       @include heading-xxxl;
     }
     }
@@ -46,14 +61,32 @@
     }
     @include tablet {
       @include  paragraph-small;
-      margin-top: 8px;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
     @include desktop {
       @include label-xl;
       margin-top: 20px;
-      margin-bottom: 79px;
+      margin-bottom: 60px;
     }
     }
     }
-    
+  
+    .shadow{
+      position: absolute;
+      top: 0;
+      background-color: black;
+      width: 100%;
+      height: 100px;
+      z-index: 0;
+      filter: drop-shadow(0px -30px 20px black);
+      @include mobile {
+        top:380px;
+      }
+      @include tablet {
+        top:540px;
+      }
+      @include desktop {
+        top: 1000px;
+      }
+  
+  }
