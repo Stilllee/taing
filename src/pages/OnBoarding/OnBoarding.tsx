@@ -26,19 +26,21 @@ const OnBoarding = () => {
   }
 
   return (
-    <main>
+    <>
       <Intro background={filterData[0]?.onBoarding?.background} />
-      <ScrollSlider
-        onlySwipeSmall={onlySwipeSmall}
-        onlySwipeLarge={onlySwipeLarge}
-      />
-      <AutoSlider findSwipe={FindSwipe} />
-      <div className={styles.message}>
-        <div className={styles.message_logo} />
-        <p className={styles.message_title}>지금 시작해보세요</p>
-        <TaingButton />
-      </div>
-    </main>
+      <main>
+        <ScrollSlider
+          onlySwipeSmall={onlySwipeSmall}
+          onlySwipeLarge={onlySwipeLarge}
+        />
+        <AutoSlider findSwipe={FindSwipe} />
+        <div className={styles.message}>
+          <div className={styles.message_logo} />
+          <p className={styles.message_title}>지금 시작해보세요</p>
+          <TaingButton />
+        </div>
+      </main>
+    </>
   );
 };
 
