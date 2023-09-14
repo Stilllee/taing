@@ -25,7 +25,7 @@
     }
 }
 .profileModal::before {
-    content: '';
+    content: ' ';
     position: absolute;
     left: -1em;
     right: -1em;
@@ -40,17 +40,6 @@
     @include desktop {
         top: -2em;
     }
-}
-
-.profileModal::before {
-    content: '';
-    position: absolute;
-    top: -1em;
-    left: -1em;
-    right: -1em;
-    bottom: -1em;
-    background-color: transparent;
-    z-index: -1;
 }
 
 .profileTab {
