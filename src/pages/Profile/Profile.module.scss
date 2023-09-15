@@ -1,0 +1,98 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 548px;
+    @include tablet{
+    margin-top: 0px;
+    height: 548px;
+    }
+    @include desktop{
+    height: 888px;
+    }
+
+}
+
+.profileContainer {
+    color: $gray-300;
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    gap: 24px;
+    text-align: center;
+    width: 252px;
+    height: 314px;
+    margin-bottom: 32px;
+    @include paragraph-small;
+    @include tablet{
+        width: 624px;
+        height: 163px;
+        margin-bottom: 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+        @include desktop{
+            @include paragraph-xl;
+            width: 1092px;
+            height: 295px;
+            margin-bottom: 55px;
+        }
+    
+}
+.profilePhoto {
+    width: 114px;
+    height: 114px;
+    background-image: url($sprite-image);
+    border-radius: 4px;
+    margin-bottom: 12px;
+    @include tablet{
+        width: 132px;
+        height: 132px;
+        }
+        @include desktop{
+            margin-bottom: 16px;
+            width: 234px;
+            height: 234px;
+        }
+}
+
+.photoFirst{
+    background-position: -272px -910px;
+    @include tablet{
+        background-position:  -1182px -699px;
+    }
+    @include desktop{
+            background-position:  -20px -271px;;
+    }
+    
+}
+.photoSecond{
+    background-position: -540px -910px;
+    @include tablet{
+        background-position:  -20px -1044px;
+    }
+    @include desktop{
+            background-position:  -554px -20px;
+    }
+    
+}
+.photoThird{
+    background-position: -406px -910px;
+    @include tablet{
+        background-position: -1182px -851px;
+    }
+    @include desktop{
+            background-position:  -300px -20px;
+    }
+    
+}
+.photoFourth{
+    background-position: -674px -910px;
+    @include tablet{
+        background-position:  -172px -1044px;
+    }
+    @include desktop{
+            background-position:  -20px -525px;
+    }
+}
