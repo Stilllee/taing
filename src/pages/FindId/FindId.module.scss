@@ -118,6 +118,7 @@
     }
     @include desktop {
       margin-top: 36px;
+      @include label-large;
     }
   }
 }
