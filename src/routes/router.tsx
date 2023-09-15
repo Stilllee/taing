@@ -13,6 +13,7 @@ import Profile from '@pages/Profile/Profile.tsx';
 import Detail from '@pages/Detail/Detail.tsx';
 import FindId from '@pages/FindId/FindId.tsx';
 import FindPassword from '@pages/FindPassword/FindPassword.tsx';
+import ProfileEdit from '@pages/ProfileEdit/ProfileEdit.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />,
+      },
+      {
+        path: 'profile-edit',
+        element: <ProfileEdit />,
       },
       {
         path: 'find-id',
