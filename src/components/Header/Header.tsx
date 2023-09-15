@@ -31,6 +31,8 @@ const Header = () => {
           '/find-password',
           '/login',
           '/signup',
+          '/profile',
+          '/profile-edit',
         ].includes(pathname)
           ? styles.simple
           : ' '
