@@ -9,6 +9,7 @@
     /* Base URL and Paths */
     "baseUrl": "./", // 프로젝트 루트를 기준으로
     "paths": {
+      "@/*": ["src/*"],
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"]
     },
