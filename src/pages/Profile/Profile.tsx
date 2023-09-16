@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { useState } from 'react';
 const Profile = () => {
   const navigate = useNavigate();
-  const [activeButtonIndex, setActiveButtonIndex] = useState(-1);
+  const [activeButtonIndex, setActiveButtonIndex] = useState(3);
   const onMoveEdit = () => {
     navigate('/profile-edit');
   };
