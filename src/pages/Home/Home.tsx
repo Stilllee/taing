@@ -1,36 +1,48 @@
 import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
 import styles from './Home.module.scss';
 import Modal from '@components/common/Modal/Modal';
 import PopupModal from '@components/PopupModal/PopupModal';
-import useFilterData from '../../hooks/useFilterData';
-import { IImageData } from '../../type.ts';
+import SwiperContent from '@components/common/SwiperContent/SwiperContent.tsx';
+
+enum FilterTypes {
+  MUST = 'must',
+  QUICK = 'quick',
+  POPULAR = 'popular',
+  LIVE = 'live',
+  ONLY = 'only',
+  SPORTS = 'sports',
+  EVENT = 'event',
+}
+
+export interface ISwiperContentProps {
+  title: string;
+  filterType: FilterTypes;
+}
+
+const contentConfig: ISwiperContentProps[] = [
+  { title: '티빙에서 꼭 봐야하는 콘텐츠', filterType: FilterTypes.MUST },
+  { title: 'Quick VOD', filterType: FilterTypes.QUICK },
+  { title: '실시간 인기 프로그램', filterType: FilterTypes.POPULAR },
+  { title: '인기 LIVE 채널', filterType: FilterTypes.LIVE },
+  { title: '오직 타잉에만 있어요', filterType: FilterTypes.ONLY },
+  { title: '', filterType: FilterTypes.SPORTS },
+  { title: '이벤트', filterType: FilterTypes.EVENT },
+];
 
 const Home = () => {
-  const [popupVisible, setPopupVisible] = useState(true);
-
-  const { filterData, isLoading } = useFilterData('main', 'must');
-
+  // 팝업이 처음에 보이도록 상태값을 설정
+  const [popupVisible, setPopupVisible] = useState<boolean>(true);
   const closePopup = () => setPopupVisible(false);
-
-  if (isLoading) {
-    return <div>로딩중...</div>;
-  }
 
   return (
     <div className={styles.Home}>
-      <div className={styles.must}>
-        <h2 className={styles.title}>티빙에서 꼭 봐야하는 콘텐츠</h2>
-        <Swiper className={styles.swiperContainer} slidesPerView={'auto'}>
-          {filterData.map((item: IImageData) => (
-            <SwiperSlide className={styles.slideWrapper} key={item.id}>
-              <img src={item.main?.must} alt={item.name} />
-              <p>{item.name}</p>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      {contentConfig.map((config, index) => (
+        <SwiperContent
+          key={index}
+          title={config.title}
+          filterType={config.filterType}
+        />
+      ))}
       {popupVisible && (
         <Modal>
           <PopupModal closePopup={closePopup} />
