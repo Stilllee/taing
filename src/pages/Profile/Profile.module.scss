@@ -15,7 +15,6 @@
 }
 
 .profileContainer {
-    color: $gray-300;
     display: grid;
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
     gap: 24px;
@@ -23,7 +22,6 @@
     width: 252px;
     height: 314px;
     margin-bottom: 32px;
-    @include paragraph-small;
     @include tablet{
         width: 624px;
         height: 163px;
@@ -38,6 +36,7 @@
             height: 295px;
             margin-bottom: 55px;
         }
+      
     
 }
 .profilePhoto {
@@ -46,15 +45,72 @@
     background-image: url($sprite-image);
     border-radius: 4px;
     margin-bottom: 12px;
-    @include tablet{
-        width: 132px;
-        height: 132px;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+        @include tablet{
+            width: 132px;
+            height: 132px;
         }
         @include desktop{
             margin-bottom: 16px;
             width: 234px;
             height: 234px;
         }
+        &:hover {
+            transform: translateY(-12px);
+        }
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+
+        }
+     &::before {
+        z-index: 100;
+        top: 35%;
+        left: 40%;
+        background-image: url($sprite-image);
+        background-position:  -1013px -47px;
+        width: 28px;
+        height: 33px;
+        @include tablet{
+            left: 42%;
+        }
+        @include desktop{
+            background-position:  -1015px -119px;
+            width: 33px;
+            height: 39px;
+            top: 40%;
+            left: 45%;
+        }
+    }
+    &::after {
+        width: 114px;
+        height: 114px;
+        z-index: 10;
+        border-radius: 4px;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.4); 
+        @include tablet{
+            width: 132px;
+            height: 132px;
+        }
+        @include desktop{
+            margin-bottom: 16px;
+            width: 234px;
+            height: 234px;
+        }
+
+    }
+    &.active {
+        border: 4px solid white;
+        &::before,
+        &::after {
+        background: none;
+        }
+}
+
 }
 
 .photoFirst{
@@ -88,11 +144,20 @@
     
 }
 .photoFourth{
-    background-position: -674px -910px;
+    background-position: -677px -915px;
     @include tablet{
-        background-position:  -172px -1044px;
+        background-position:  -175px -1048px;
     }
     @include desktop{
-            background-position:  -20px -525px;
+            background-position:  -25px -530px;
     }
+}
+
+.profileName {
+    color: $gray-300;
+    @include paragraph-small;
+    @include desktop{
+        @include paragraph-xl;
+    }
+
 }
