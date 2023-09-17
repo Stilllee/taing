@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ProfileModal from '@components/ProfileModal/ProfileModal';
+import SearchModal from '../SearchModal/SearchModal';
 const Header = () => {
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
@@ -83,7 +84,7 @@ const Header = () => {
           ></button>
         </li>
       </ul>
-
+      {openSearchModal && <SearchModal />}
       {openProfile && (
         <ProfileModal
           show={openProfile}
