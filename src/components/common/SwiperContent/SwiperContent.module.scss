@@ -6,6 +6,87 @@
   @include desktop {
     margin-bottom: 36px;
   }
+
+  // 페이지네이션
+  .pagination {
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+    justify-content: end;
+    .bullet {
+      background-color: $white;
+      width: 3px;
+      height: 3px;
+      margin-left: 4px;
+      @include tablet {
+        width: 4px;
+        height: 4px;
+        margin-right: 6px;
+      }
+      @include desktop {
+        width: 5px;
+        height: 5px;
+        margin-right: 8px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  // 슬라이드 버튼
+  .hideButton {
+    display: none;
+  }
+  .sliderButton {
+    & .prevButton,
+    .nextButton {
+      opacity: 0.2;
+      height: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      &:hover {
+        opacity: 1;
+      }
+      @include tablet {
+        width: 30px;
+      }
+      @include desktop {
+        width: 50px;
+      }
+      &::after {
+        font-size: 12px !important;
+        @include tablet {
+          font-size: 40px !important;
+        }
+        @include desktop {
+          font-size: 60px !important;
+        }
+        color: $white;
+      }
+    }
+    & .prevButton {
+      left: 0;
+      &:hover {
+        background: radial-gradient(
+          106.25% 50% at 0% 50%,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(0, 0, 0, 0.6) 52.6%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+    }
+    & .nextButton {
+      right: 0;
+      &:hover {
+        background: radial-gradient(
+          106.25% 50% at 106.25% 50%,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(0, 0, 0, 0.6) 52.6%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+    }
+  }
 }
 
 .title {
