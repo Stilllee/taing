@@ -1,17 +1,45 @@
 import styles from './ProfileList.module.scss';
 
 interface IProfileList {
-  profile: ProfileType;
+  photo: string;
+  name: string;
+  page: 'profile' | 'profileEdit';
+  id: number;
+  active?: number;
+  onClick?: (index: number) => void;
 }
-type ProfileType = { profileClassName: string; name: string };
+interface IProfileClassNames {
+  [key: string]: string;
+}
 
-const ProfileList = ({ profile }: IProfileList) => {
+const ProfileList = ({
+  name,
+  photo,
+  page,
+  id,
+  active,
+  onClick,
+}: IProfileList) => {
+  const classNames: IProfileClassNames = {
+    photoFirst: styles.photoFirst,
+    photoSecond: styles.photoSecond,
+    photoThird: styles.photoThird,
+    photoFourth: styles.photoFourth,
+  };
+
   return (
     <div>
-      <button
-        className={`${styles.profilePhoto} ${profile.profileClassName}`}
-      />
-      <p className={styles.profileName}>{profile.name}</p>
+      {page === 'profile' ? (
+        <button
+          onClick={() => onClick && onClick(id)}
+          className={`${styles.profilePhoto} ${classNames[photo]} ${
+            id === active ? styles.active : ''
+          }`}
+        />
+      ) : (
+        <button className={`${styles.profilePhotoEdit} ${classNames[photo]}`} />
+      )}
+      <p className={styles.profileName}>{name}</p>
     </div>
   );
 };

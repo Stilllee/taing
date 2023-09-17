@@ -2,40 +2,40 @@ import Button from '@components/common/Button/Button';
 import styles from './Profile.module.scss';
 import ProfileTitle from '@components/ProfileTitle/ProfileTitle';
 import { useNavigate } from 'react-router';
+import ProfileList from '@components/ProfileList/ProfileList';
 import { useState } from 'react';
 const Profile = () => {
+  const [activeButtonIndex, setActiveButtonIndex] = useState(4);
+  const handleButtonClick = (index: number) => {
+    setActiveButtonIndex(index);
+  };
   const navigate = useNavigate();
-  const [activeButtonIndex, setActiveButtonIndex] = useState(3);
   const onMoveEdit = () => {
     navigate('/profile-edit');
   };
 
   const profileLists = [
     {
-      profileClassName: ` ${styles.photoFirst}`,
+      id: 1,
+      profileClassName: `photoFirst`,
       name: '닉네임 1',
-      isActive: false,
     },
     {
-      profileClassName: ` ${styles.photoSecond}`,
+      id: 2,
+      profileClassName: `photoSecond`,
       name: '닉네임 2',
-      isActive: false,
     },
     {
-      profileClassName: `${styles.photoThird}`,
+      id: 3,
+      profileClassName: `photoThird`,
       name: '닉네임 3',
-      isActive: false,
     },
     {
-      profileClassName: `${styles.photoFourth}`,
+      id: 4,
+      profileClassName: `photoFourth`,
       name: '닉네임 4',
-      isActive: false,
     },
   ];
-
-  const handleButtonClick = (index: number) => {
-    setActiveButtonIndex(index);
-  };
 
   return (
     <div className={styles.profile}>
@@ -46,15 +46,15 @@ const Profile = () => {
       <div>
         <div className={styles.profileContainer}>
           {profileLists.map((profile, index) => (
-            <div key={index}>
-              <button
-                onClick={() => handleButtonClick(index)}
-                className={`${styles.profilePhoto} ${
-                  profile.profileClassName
-                } ${index === activeButtonIndex ? styles.active : ' '}`}
-              />
-              <p className={styles.profileName}>{profile.name}</p>
-            </div>
+            <ProfileList
+              key={index}
+              name={profile.name}
+              photo={profile.profileClassName}
+              id={profile.id}
+              onClick={handleButtonClick}
+              active={activeButtonIndex}
+              page={'profile'}
+            />
           ))}
         </div>
       </div>

@@ -1,5 +1,4 @@
-.profilePhoto {
-    background-color: red;
+.profilePhoto, .profilePhotoEdit {
     width: 114px;
     height: 114px;
     background-image: url($sprite-image);
@@ -25,25 +24,6 @@
             position: absolute;
 
         }
-     &::before {
-        z-index: 100;
-        top: 35%;
-        left: 40%;
-        background-image: url($sprite-image);
-        background-position: -1089px -47px;;
-        width: 36px;
-        height: 36px;
-        @include tablet{
-            left: 42%;
-        }
-        @include desktop{
-            background-position:  -1015px -119px;
-            width: 33px;
-            height: 39px;
-            top: 40%;
-            left: 45%;
-        }
-    }
     &::after {
         width: 114px;
         height: 114px;
@@ -61,9 +41,57 @@
             width: 234px;
             height: 234px;
         }
-
     }
 
+}
+.profilePhoto {
+    &::before {
+        z-index: 100;
+        top: 35%;
+        left: 40%;
+        background-image: url($sprite-image);
+        background-position:  -1013px -47px;
+        width: 28px;
+        height: 33px;
+        @include tablet{
+            left: 42%;
+        }
+        @include desktop{
+            background-position:  -1015px -119px;
+            width: 33px;
+            height: 39px;
+            top: 40%;
+            left: 45%;
+        }
+    }
+    &.active {
+        border: 4px solid white;
+        &::before,
+        &::after {
+        background: none;
+        }
+}
+}
+.profilePhotoEdit {
+    &::before {
+        z-index: 100;
+        top: 35%;
+        left: 40%;
+        background-image: url($sprite-image);
+        background-position: -1089px -47px;;
+        width: 36px;
+        height: 36px;
+        @include tablet{
+            left: 42%;
+        }
+        @include desktop{
+            background-position: -1091px -119px;
+            width: 43px;
+            height: 42px;
+            top: 40%;
+            left: 45%;
+        }
+    }
 }
 
 .photoFirst{
