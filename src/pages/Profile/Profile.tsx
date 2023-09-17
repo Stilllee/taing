@@ -10,22 +10,26 @@ const Profile = () => {
     navigate('/profile-edit');
   };
 
-  const profileList = [
+  const profileLists = [
     {
-      profileClassName: `${styles.profilePhoto} ${styles.photoFirst}`,
+      profileClassName: ` ${styles.photoFirst}`,
       name: '닉네임 1',
+      isActive: false,
     },
     {
-      profileClassName: `${styles.profilePhoto} ${styles.photoSecond}`,
+      profileClassName: ` ${styles.photoSecond}`,
       name: '닉네임 2',
+      isActive: false,
     },
     {
-      profileClassName: `${styles.profilePhoto} ${styles.photoThird}`,
+      profileClassName: `${styles.photoThird}`,
       name: '닉네임 3',
+      isActive: false,
     },
     {
-      profileClassName: `${styles.profilePhoto} ${styles.photoFourth}`,
+      profileClassName: `${styles.photoFourth}`,
       name: '닉네임 4',
+      isActive: false,
     },
   ];
 
@@ -41,13 +45,13 @@ const Profile = () => {
       />
       <div>
         <div className={styles.profileContainer}>
-          {profileList.map((profile, index) => (
+          {profileLists.map((profile, index) => (
             <div key={index}>
               <button
                 onClick={() => handleButtonClick(index)}
-                className={`${profile.profileClassName} ${
-                  index === activeButtonIndex ? styles.active : ' '
-                }`}
+                className={`${styles.profilePhoto} ${
+                  profile.profileClassName
+                } ${index === activeButtonIndex ? styles.active : ' '}`}
               />
               <p className={styles.profileName}>{profile.name}</p>
             </div>
