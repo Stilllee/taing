@@ -1,0 +1,279 @@
+.SwiperContent {
+  margin-bottom: 16px;
+  @include tablet {
+    margin-bottom: 28px;
+  }
+  @include desktop {
+    margin-bottom: 36px;
+  }
+
+  // 페이지네이션
+  .pagination {
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+    justify-content: end;
+    .bullet {
+      background-color: $white;
+      width: 3px;
+      height: 3px;
+      margin-left: 4px;
+      @include tablet {
+        width: 4px;
+        height: 4px;
+        margin-right: 6px;
+      }
+      @include desktop {
+        width: 5px;
+        height: 5px;
+        margin-right: 8px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  // 슬라이드 버튼
+  .hideButton {
+    display: none;
+  }
+  .sliderButton {
+    & .prevButton,
+    .nextButton {
+      opacity: 0.2;
+      height: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      &:hover {
+        opacity: 1;
+      }
+      @include tablet {
+        width: 30px;
+      }
+      @include desktop {
+        width: 50px;
+      }
+      &::after {
+        font-size: 12px !important;
+        @include tablet {
+          font-size: 40px !important;
+        }
+        @include desktop {
+          font-size: 60px !important;
+        }
+        color: $white;
+      }
+    }
+    & .prevButton {
+      left: 0;
+      &:hover {
+        background: radial-gradient(
+          106.25% 50% at 0% 50%,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(0, 0, 0, 0.6) 52.6%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+    }
+    & .nextButton {
+      right: 0;
+      &:hover {
+        background: radial-gradient(
+          106.25% 50% at 106.25% 50%,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(0, 0, 0, 0.6) 52.6%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+    }
+  }
+}
+
+.title {
+  @include label-small;
+  margin-bottom: 4px;
+  @include tablet {
+    @include heading-large;
+    margin-bottom: 8px;
+  }
+  @include desktop {
+    @include heading-xl;
+    margin-bottom: 12px;
+  }
+}
+
+// 공용 스와이퍼
+.swiperContainer {
+  overflow: hidden;
+  // 기본 스타일
+  & .slideWrapper {
+    @include mobile {
+      width: 92px;
+      margin-right: 8px;
+    }
+    @media (min-width: $mobile) {
+      width: calc(92px + (100vw - $mobile) * ((130 - 92) / 320));
+    }
+    @include tablet {
+      width: 130px;
+    }
+    @include desktop {
+      width: 240px;
+      margin-right: 16px;
+    }
+    @media (min-width: $tablet) {
+      width: calc(130px + (100vw - $tablet) * ((240 - 130) / 768));
+    }
+    & img {
+      width: 100%;
+      border-radius: 4px;
+      @include tablet {
+        border-radius: 5px;
+      }
+      @include desktop {
+        border-radius: 7px;
+      }
+    }
+    & span {
+      display: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: $gray-200;
+      @include tablet {
+        display: block;
+        margin-top: 4px;
+        @include paragraph-medium;
+      }
+      @include desktop {
+        margin-top: 8px;
+        @include label-large;
+      }
+    }
+  }
+
+  // 가로이미지 스타일
+  & .slideWrapperHorizontal {
+    @include mobile {
+      width: 145px;
+    }
+    @media (min-width: $mobile) {
+      width: calc(145px + (100vw - $mobile) * ((224 - 145) / 320));
+    }
+    @include tablet {
+      width: 224px;
+    }
+    @include desktop {
+      width: 345px;
+    }
+    @media (min-width: $tablet) {
+      width: calc(224px + (100vw - $tablet) * ((345 - 224) / 768));
+    }
+  }
+
+  // 오직 타잉에만 있어요
+  .only {
+    @include mobile {
+      width: 139px;
+    }
+    @media (min-width: $mobile) {
+      width: calc(139px + (100vw - $mobile) * ((168 - 139) / 320));
+    }
+    @include tablet {
+      width: 168px;
+    }
+    @include desktop {
+      width: 285px;
+    }
+    @media (min-width: $tablet) {
+      width: calc(168px + (100vw - $tablet) * ((285 - 168) / 768));
+    }
+    & span {
+      display: none;
+    }
+  }
+}
+
+// 실시간 인기 프로그램, 인기 LIVE 채널
+.popular,
+.live {
+  position: relative;
+  & span {
+    display: block !important;
+    @include paragraph-small;
+    margin-left: 28px;
+    @include tablet {
+      margin-left: 38px;
+    }
+    @include desktop {
+      margin-left: 60px;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      font-size: 34px;
+      line-height: 160%;
+      font-weight: bold;
+      color: $white;
+      transform: skewX(-10deg);
+      @include tablet {
+        font-size: 46px;
+        bottom: -15px;
+      }
+      @include desktop {
+        font-size: 70px;
+        bottom: -25px;
+      }
+    }
+  }
+  & span[data-index]::before {
+    content: attr(data-index);
+  }
+}
+
+.redCircle {
+  display: inline-block;
+  background-color: $red-2;
+  vertical-align: text-top;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: 4px;
+  @include tablet {
+    width: 6px;
+    height: 6px;
+  }
+  @include desktop {
+    width: 8px;
+    height: 8px;
+    margin-left: 8px;
+  }
+}
+
+// 스포츠 배너
+.sports {
+  width: 100% !important;
+  margin: 16px 0 -4px;
+  @include tablet {
+    margin: 28px 0 -7px;
+  }
+  @include desktop {
+    margin: 36px 0 -11px;
+  }
+}
+
+// 이벤트 배너
+.event {
+  width: 145px;
+  @include tablet {
+    width: 214px;
+  }
+  @include desktop {
+    width: 348px;
+  }
+  & span {
+    display: none !important;
+  }
+}

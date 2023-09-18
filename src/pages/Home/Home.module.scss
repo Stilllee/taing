@@ -1,3 +1,172 @@
-.btn {
-  background-color: white;
+.mainBanner {
+  position: relative;
+  & img {
+    width: 100%;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.9) 90%,
+        rgba(0, 0, 0, 1) 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0) 5%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0) 95%,
+        rgba(0, 0, 0, 1) 100%
+      );
+    pointer-events: none;
+  }
+  & button {
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+    @include tablet {
+      bottom: 100px;
+      right: 80px;
+    }
+    @include desktop {
+      bottom: 150px;
+      right: 130px;
+    }
+  }
+  & p {
+    @include label-small;
+    position: absolute;
+    bottom: 25%;
+    left: 4%;
+    @include tablet {
+      @include label-large;
+    }
+    @include desktop {
+      @include label-xxl;
+    }
+  }
+  .pageBox {
+    position: absolute;
+    bottom: 20%;
+    left: 4%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    @include tablet {
+      gap: 8px;
+    }
+    @include desktop {
+      gap: 22px;
+    }
+    & .playBox {
+      cursor: pointer;
+      display: flex;
+      gap: 2px;
+      @include desktop {
+        gap: 4px;
+      }
+      & .bar {
+        background-color: $white;
+        width: 2px;
+        height: 6px;
+        @include tablet {
+          width: 3px;
+          height: 10px;
+        }
+        @include desktop {
+          width: 5px;
+          height: 16px;
+        }
+      }
+      & .triangle {
+        width: 6px;
+        height: 6px;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        border-left: 6px solid white;
+        @include tablet {
+          width: 8px;
+          height: 10px;
+          border-top: 4px solid transparent;
+          border-bottom: 4px solid transparent;
+          border-left: 8px solid white;
+        }
+        @include desktop {
+          width: 14px;
+          height: 16px;
+          border-top: 7px solid transparent;
+          border-bottom: 7px solid transparent;
+          border-left: 14px solid white;
+        }
+      }
+    }
+    & .circleBox {
+      display: flex;
+      gap: 4px;
+      @include desktop {
+        gap: 12px;
+      }
+      & .circle {
+        background-color: $gray-400;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 6px;
+        height: 6px;
+        @include tablet {
+          width: 8px;
+          height: 8px;
+        }
+        @include desktop {
+          width: 12px;
+          height: 12px;
+        }
+      }
+      & .clickedCircle {
+        background-color: $white;
+      }
+    }
+  }
+  .prevBtn,
+  .nextBtn {
+    cursor: pointer;
+    background-image: url($sprite-image);
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 9px;
+    @include tablet {
+      width: 14px;
+      height: 24px;
+    }
+    @include desktop {
+      width: 22px;
+      height: 40px;
+    }
+  }
+  .prevBtn {
+    background-position: -606px -296px;
+    @include tablet {
+      background-position: -602px -336px;
+    }
+    @include desktop {
+      background-position: -598px -422px;
+    }
+  }
+  .nextBtn {
+    right: 0;
+    background-position: -696px -297px;
+    @include tablet {
+      background-position: -692px -336px;
+    }
+    @include desktop {
+      background-position: -692px -422px;
+    }
+  }
 }
