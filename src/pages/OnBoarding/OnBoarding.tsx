@@ -1,8 +1,6 @@
 import styles from './OnBoarding.module.scss';
 import TaingButton from '@components/TaingButton/TaingButton';
-import useFilterData, {
-  filterDataByPage,
-} from '../../../src/hooks/useFilterData';
+import useFilterData, { filterDataByPage } from '@/hooks/useFilterData';
 import { IImageData } from 'src/type';
 import { useEffect, useState } from 'react';
 import ScrollSlider from '@components/ScrollSlider/ScrollSlider';
