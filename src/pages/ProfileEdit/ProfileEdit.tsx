@@ -1,19 +1,12 @@
 import Button from '@components/common/Button/Button';
-import styles from './Profile.module.scss';
+import styles from './ProfileEdit.module.scss';
 import ProfileTitle from '@components/ProfileTitle/ProfileTitle';
 import { useNavigate } from 'react-router';
 import ProfileList from '@components/ProfileList/ProfileList';
-import { useState } from 'react';
-const Profile = () => {
-  const [activeButtonIndex, setActiveButtonIndex] = useState(4);
-  const handleButtonClick = (index: number) => {
-    setActiveButtonIndex(index);
-  };
-  const navigate = useNavigate();
-  const onMoveEdit = () => {
-    navigate('/profile-edit');
-  };
 
+const ProfileEdit = () => {
+  const navigate = useNavigate();
+  const onMoveProfile = () => navigate('/profile');
   const profileLists = [
     {
       id: 1,
@@ -40,31 +33,29 @@ const Profile = () => {
   return (
     <div className={styles.profile}>
       <ProfileTitle
-        title="프로필 선택"
-        paragraph="시청할 프로필을 선택해주세요"
+        title="프로필 편집"
+        paragraph="편집할 프로필을 선택해주세요"
       />
       <div>
         <div className={styles.profileContainer}>
           {profileLists.map((profile, index) => (
             <ProfileList
+              page="profileEdit"
+              id={profile.id}
               key={index}
               name={profile.name}
               photo={profile.profileClassName}
-              id={profile.id}
-              onClick={handleButtonClick}
-              active={activeButtonIndex}
-              page={'profile'}
             />
           ))}
         </div>
       </div>
       <Button
         type="button"
-        state="default"
-        title="프로필편집"
-        onClick={onMoveEdit}
+        state="active"
+        title="완료"
+        onClick={onMoveProfile}
       />
     </div>
   );
 };
-export default Profile;
+export default ProfileEdit;

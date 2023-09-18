@@ -2,17 +2,22 @@ import Modal from '@components/common/Modal/Modal';
 import styles from './ProfileModal.module.scss';
 import LogoutModal from '@components/LogoutModal/LogoutModal';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 interface IProfileModal {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   show: boolean;
 }
 const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
-  const profileClass = `${styles.profileModal} ${show ? '' : styles.hidden}`;
-
+  const navigate = useNavigate();
   const [logoutVisible, setLogoutVisible] = useState(false);
+  const profileClass = `${styles.profileModal} ${show ? '' : styles.hidden}`;
   const closeLogout = () => setLogoutVisible(false);
   const openLogout = () => setLogoutVisible(true);
+  const onMoveProfile = () => {
+    onMouseLeave();
+    navigate('/profile');
+  };
 
   return (
     <div
@@ -24,7 +29,7 @@ const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
         <div className={styles.profileImage} />
         <div className={styles.profile}>
           <span className={styles.name}>닉네임</span>
-          <button>
+          <button onClick={onMoveProfile}>
             프로필 전환
             <span className={styles.arrowIcon} />
           </button>
