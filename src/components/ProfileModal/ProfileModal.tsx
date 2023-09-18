@@ -56,7 +56,10 @@ const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
       </ul>
       {logoutVisible && (
         <Modal>
-          <LogoutModal closeLogout={closeLogout} />
+          <LogoutModal
+            closeLogout={closeLogout}
+            closeProfileModal={onMouseLeave}
+          />
         </Modal>
       )}
     </div>
