@@ -4,7 +4,10 @@ import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ProfileModal from '@components/ProfileModal/ProfileModal';
+import SearchModal from '../SearchModal/SearchModal';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 const Header = () => {
+  const { lockScroll, openScroll } = useBodyScrollLock();
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
   const backgroundColor = useTransform(
@@ -14,9 +17,14 @@ const Header = () => {
   );
   const [openSearchModal, setOpenSerchModal] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
-  const onOpenSearchModal = () => setOpenSerchModal(true);
-  const onCloseSearchModal = () => setOpenSerchModal(false);
-
+  const onOpenSearchModal = () => {
+    lockScroll();
+    setOpenSerchModal(true);
+  };
+  const onCloseSearchModal = () => {
+    openScroll();
+    setOpenSerchModal(false);
+  };
   const toggleProfile = () => {
     setOpenProfile(prevOpenProfile => !prevOpenProfile);
   };
@@ -83,7 +91,7 @@ const Header = () => {
           ></button>
         </li>
       </ul>
-
+      {openSearchModal && <SearchModal />}
       {openProfile && (
         <ProfileModal
           show={openProfile}
