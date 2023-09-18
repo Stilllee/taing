@@ -44,6 +44,7 @@ const SwiperContent = ({ title, filterType }: ISwiperContentProps) => {
         className={styles.swiperContainer}
         slidesPerView={SLIDES_PER_VIEW_AUTO}
         slidesPerGroup={3}
+        allowTouchMove={filterType !== 'sports'}
       >
         <div
           className={
