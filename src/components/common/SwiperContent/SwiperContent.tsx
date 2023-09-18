@@ -3,7 +3,7 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import styles from './SwiperContent.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { IImageData } from '@/type';
 import useFilterData from '@/hooks/useFilterData';
 import { ISwiperContentProps } from '@/pages/Home/Home';
@@ -29,7 +29,7 @@ const SwiperContent = ({ title, filterType }: ISwiperContentProps) => {
     <div className={styles.SwiperContent}>
       <h2 className={styles.title}>{title}</h2>
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         navigation={{
           prevEl: '.swiper-button-prev',
           nextEl: '.swiper-button-next',
@@ -44,7 +44,8 @@ const SwiperContent = ({ title, filterType }: ISwiperContentProps) => {
         className={styles.swiperContainer}
         slidesPerView={SLIDES_PER_VIEW_AUTO}
         slidesPerGroup={3}
-        allowTouchMove={filterType !== 'sports'}
+        allowTouchMove={!['sports', 'event'].includes(filterType)}
+        autoplay={filterType === 'event' ? { delay: 10000 } : false}
       >
         <div
           className={
