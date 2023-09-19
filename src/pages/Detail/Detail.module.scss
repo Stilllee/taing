@@ -39,27 +39,44 @@
     padding: 10px 20px 0 50px;
    }
     .title {
-        font-size: 50px;
+        font-size: 40px;
         font-weight: 900;
         margin: 20px 0;
         @include tablet {
-          font-size: 70px;
+          font-size: 50px;
         }
         @include desktop {
           font-size: 90px;
           margin: 60px 0;
   }
     }
-    & img {
+
+    
+    .imgContainer {
+      border-radius: 5px;
+      width: 230px;
+      height: 340px;
+      overflow: hidden;
       @include tablet {
         position: absolute;
         right: 5%;
       }
       @include desktop {
-        width: 345px;
+        width: 350px;
+        height: 480px;
         position: absolute;
         right: 5%;
       }
+
+      & img {
+        border-radius: 5px;
+        width: 230px;
+        object-fit: fill;
+        @include desktop {
+          width: 350px;
+        }
+      }
+
     }
 
     .watchBtn {

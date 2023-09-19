@@ -1,33 +1,53 @@
-import useFilterData, { filterDataByPage } from '@/hooks/useFilterData';
-import styles from './Detail.module.scss';
-import { useEffect, useState } from 'react';
-import { IImageData } from '@/type';
+import { useEffect, useState, SVGAttributes } from 'react';
+import { useParams } from 'react-router';
+import useFilterData from '@/hooks/useFilterData';
 import SwiperContent from '@/components/common/SwiperContent/SwiperContent';
-import { SVGAttributes } from 'react';
+import styles from './Detail.module.scss';
+import { IImageData } from '@/type';
 
 enum FilterTypes {
   MUST = 'must',
 }
 
 const Detail = () => {
-  const { filterData } = useFilterData('main');
-  const [onlySwipeSmall, setOnlySwipeSmall] = useState<IImageData[]>([]);
+  const { id } = useParams();
+  const { data } = useFilterData('main');
+  const [detailImg, setDetailImg] = useState('');
+  const [detailData, setDetailData] = useState<IImageData | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
-    setOnlySwipeSmall(filterDataByPage(filterData, 'main', 'large'));
-  }, [filterData]);
+    if (id) {
+      setDetailData(data[+id - 1]);
+    }
+  }, [data]);
 
   useEffect(() => {
-    console.log(filterData);
-  }, [filterData, onlySwipeSmall]);
+    if (
+      detailData?.main?.popular &&
+      detailData?.main?.must &&
+      detailData?.main?.only
+    ) {
+      setDetailImg(detailData?.main?.must);
+    } else if (detailData?.main?.popular) {
+      setDetailImg(detailData?.main?.popular);
+    } else if (detailData?.main?.must) {
+      setDetailImg(detailData?.main?.must);
+    } else if (detailData?.main?.only) {
+      setDetailImg(detailData?.main?.only);
+    }
+  }, [detailData]);
   return (
     <div className={styles.detail}>
       <div className={styles.background}>
-        <img src={filterData[2]?.main?.must} />
+        {detailImg && <img src={detailImg} />}
       </div>
       <div className={styles.detailInfo}>
-        <img src={filterData[2]?.main?.must} />
-        <h2 className={styles.title}>최강야구</h2>
+        <div className={styles.imgContainer}>
+          {detailImg && <img src={detailImg} />}
+        </div>
+        <h2 className={styles.title}>{detailData?.name}</h2>
         <button className={styles.watchBtn}>
           <PlayIcon /> 시청하기
         </button>

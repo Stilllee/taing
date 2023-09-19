@@ -34,5 +34,5 @@ export default function useFilterData(
     }
   }, [data, page, size]);
 
-  return { filterData, isLoading };
+  return { filterData, isLoading, data };
 }
