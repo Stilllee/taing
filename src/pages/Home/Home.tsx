@@ -4,6 +4,7 @@ import Modal from '@components/common/Modal/Modal';
 import PopupModal from '@components/PopupModal/PopupModal';
 import SwiperContent from '@components/common/SwiperContent/SwiperContent.tsx';
 import Button from '@/components/common/Button/Button';
+import { useNavigate } from 'react-router';
 
 enum FilterTypes {
   MUST = 'must',
@@ -35,6 +36,7 @@ const Home = () => {
   const [popupVisible, setPopupVisible] = useState<boolean>(true);
   const [clickedIndex, setClickedIndex] = useState<null | number>(null);
   const [isPlayBoxClicked, setIsPlayBoxClicked] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const closePopup = () => setPopupVisible(false);
   const handleClickCircle = (index: number) => {
@@ -44,12 +46,22 @@ const Home = () => {
     setIsPlayBoxClicked(!isPlayBoxClicked);
   };
 
+  const onMovePage = () => {
+    //재벌집 막내아들 Id 임시 입력
+    navigate('/detail/11');
+  };
+
   return (
     <div className={styles.Home}>
       <div className={styles.mainBanner}>
         <img src="/src/assets/images/main_banner.png" alt="재벌집 막내아들" />
         <p>인생 2회차를 사는 판타지 드라마</p>
-        <Button type={'button'} state={'default'} title={'자세히보기'} />
+        <Button
+          type={'button'}
+          state={'default'}
+          title={'자세히보기'}
+          onClick={onMovePage}
+        />
         <div className={styles.pageBox}>
           <div onClick={togglePlayBox} className={styles.playBox}>
             {isPlayBoxClicked ? (
