@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import ScrollSlider from '@components/ScrollSlider/ScrollSlider';
 import AutoSlider from '@components/AutoSlider/AutoSlider';
 import Intro from '@components/Intro/Intro';
+import Loader from '@/components/Loader/Loader';
 
 const OnBoarding = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
@@ -22,7 +23,7 @@ const OnBoarding = () => {
   }, [filterData]);
 
   if (isLoading) {
-    return <div>loading</div>;
+    return <Loader />;
   }
 
   return (
