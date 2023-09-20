@@ -3,8 +3,7 @@ import styles from './MainBanner.module.scss';
 import Button from '@components/common/Button/Button';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { IImageData } from '@/type';
-import { useState, useRef, useEffect } from 'react';
-import { delay } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 interface IMainBannerProps {
   filterData: IImageData[];
