@@ -1,9 +1,13 @@
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade } from 'swiper/modules';
+import { useState, useRef, useEffect } from 'react';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
+import 'swiper/css/effect-fade';
 import styles from './MainBanner.module.scss';
 import Button from '@components/common/Button/Button';
-import { Autoplay, EffectFade } from 'swiper/modules';
 import { IImageData } from '@/type';
-import { useState, useRef } from 'react';
 
 interface IMainBannerProps {
   filterData: IImageData[];
@@ -12,7 +16,9 @@ interface IMainBannerProps {
 
 const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
+  const slideCount = filterData.length;
 
   const toggleAutoplay = () => {
     const swiperInstance = swiperRef.current?.swiper;
@@ -24,6 +30,45 @@ const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
     }
   };
 
+  const nextSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      if (currentIndex === slideCount - 1) {
+        swiperRef.current.swiper.slideTo(0, 500);
+        setCurrentIndex(0);
+      } else {
+        swiperRef.current.swiper.slideNext();
+        setCurrentIndex(prevIndex => prevIndex + 1);
+      }
+    }
+  };
+
+  const prevSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      if (currentIndex === 0) {
+        swiperRef.current.swiper.slideTo(slideCount - 1, 500);
+        setCurrentIndex(slideCount - 1);
+      } else {
+        swiperRef.current.swiper.slidePrev();
+        setCurrentIndex(prevIndex => prevIndex - 1);
+      }
+    }
+  };
+
+  const changeSlide = (index: number) => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideTo(index, 500);
+      setCurrentIndex(index);
+    }
+  };
+
+  useEffect(() => {
+    const autoplayInterval = setInterval(() => {
+      if (isPlaying) nextSlide();
+    }, 5000);
+
+    return () => clearInterval(autoplayInterval);
+  }, [isPlaying, currentIndex]);
+
   return (
     <div className={styles.mainSwiperContent}>
       <Swiper
@@ -32,8 +77,6 @@ const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
         modules={[Autoplay, EffectFade]}
         slidesPerView={1}
         effect={'fade'}
-        autoplay={{ delay: 1000, disableOnInteraction: false }}
-        loop={true}
       >
         {filterData.map((item: IImageData) => (
           <SwiperSlide className={styles.mainSlide} key={item.id}>
@@ -52,7 +95,28 @@ const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
           }`}
           onClick={toggleAutoplay}
         />
+        <div className={styles.mainSwiperNavigation}>
+          <div
+            onClick={prevSlide}
+            className={`swiper-button-prev ${styles.prevButton}`}
+          />
+          <div
+            onClick={nextSlide}
+            className={`swiper-button-next ${styles.nextButton}`}
+          />
+        </div>
       </Swiper>
+      <div className={styles.pageButton}>
+        {Array.from({ length: slideCount }).map((_, index) => (
+          <span
+            onClick={() => changeSlide(index)}
+            key={index}
+            className={`${styles.default} ${
+              index === currentIndex ? styles.active : ''
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

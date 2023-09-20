@@ -2,6 +2,7 @@
 .mainSwiperContent {
   margin-right: -16px;
   margin-left: -16px;
+
   @include tablet {
     margin-right: -40px;
     margin-left: -40px;
@@ -10,6 +11,7 @@
     margin-right: -68px;
     margin-left: -68px;
   }
+
   .mainSwiperContainer {
     width: 100%;
     & .mainSlide {
@@ -46,7 +48,9 @@
         right: 68px;
       }
     }
-    .autoplayButton {
+
+    // autoplay 버튼
+    & .autoplayButton {
       position: absolute;
       background-image: url($sprite-image);
       left: 16px;
@@ -57,15 +61,42 @@
         left: 68px;
       }
     }
-    .pause {
+    & .pause {
       width: 14px;
       height: 16px;
       background-position: -748px -546px;
     }
-    .play {
+    & .play {
       width: 13px;
       height: 15px;
       background-position: -706px -547px;
+    }
+
+    // 네비게이션 버튼
+    & .mainSwiperNavigation {
+      & .prevButton,
+      .nextButton {
+        color: $gray-200;
+        opacity: 0.5;
+        height: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: opacity 0.2s;
+        &:hover {
+          opacity: 1;
+          color: $white;
+        }
+        &::after {
+          font-size: 12px !important;
+          @include tablet {
+            font-size: 40px !important;
+          }
+          @include desktop {
+            font-size: 60px !important;
+          }
+          color: $white;
+        }
+      }
     }
   }
 }

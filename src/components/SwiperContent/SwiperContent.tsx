@@ -4,7 +4,6 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
-import 'swiper/css/effect-fade';
 import styles from './SwiperContent.module.scss';
 import useFilterData from '@/hooks/useFilterData';
 import MainBanner from '@/components/MainBanner/MainBanner';
