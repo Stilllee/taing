@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Home.module.scss';
 import Modal from '@components/common/Modal/Modal';
 import PopupModal from '@components/PopupModal/PopupModal';
-import SwiperContent from '@components/common/SwiperContent/SwiperContent.tsx';
+import SwiperContent from '@/components/SwiperContent/SwiperContent';
 
 enum FilterTypes {
   BANNER = 'banner',
