@@ -71,13 +71,18 @@ const SwiperContent = ({ title, filterType }: ISwiperContentProps) => {
             </div>
             {filterData.map((item: IImageData, index: number) => (
               <SwiperSlide className={classNames} key={item.id}>
-                <img src={item.main?.[filterType]} alt={item.name} />
-                <span data-index={index + 1}>
-                  {item.name}
-                  {filterType === 'popular' && (
-                    <div className={styles.redCircle}></div>
-                  )}
-                </span>
+                <div
+                  className={styles.programWrapper}
+                  onClick={() => moveDetailPage(item.id)}
+                >
+                  <img src={item.main?.[filterType]} alt={item.name} />
+                  <span data-index={index + 1}>
+                    {item.name}
+                    {filterType === 'popular' && (
+                      <div className={styles.redCircle}></div>
+                    )}
+                  </span>
+                </div>
               </SwiperSlide>
             ))}
             <div
