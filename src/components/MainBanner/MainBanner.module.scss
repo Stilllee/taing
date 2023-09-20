@@ -1,0 +1,71 @@
+// 메인 배너
+.mainSwiperContent {
+  margin-right: -16px;
+  margin-left: -16px;
+  @include tablet {
+    margin-right: -40px;
+    margin-left: -40px;
+  }
+  @include desktop {
+    margin-right: -68px;
+    margin-left: -68px;
+  }
+  .mainSwiperContainer {
+    width: 100%;
+    & .mainSlide {
+      width: 100%;
+      position: relative;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        padding-bottom: 15.833rem;
+        background-image: linear-gradient(
+          to top,
+          rgb(0, 0, 0),
+          rgba(0, 0, 0, 0)
+        );
+      }
+    }
+    & img {
+      width: 100%;
+      object-fit: cover;
+    }
+    & button {
+      z-index: 1;
+      position: absolute;
+      bottom: 15%;
+      color: $white !important;
+      right: 16px;
+      @include tablet {
+        right: 40px;
+      }
+      @include desktop {
+        right: 68px;
+      }
+    }
+    .autoplayButton {
+      position: absolute;
+      background-image: url($sprite-image);
+      left: 16px;
+      @include tablet {
+        left: 40px;
+      }
+      @include desktop {
+        left: 68px;
+      }
+    }
+    .pause {
+      width: 14px;
+      height: 16px;
+      background-position: -748px -546px;
+    }
+    .play {
+      width: 13px;
+      height: 15px;
+      background-position: -706px -547px;
+    }
+  }
+}
