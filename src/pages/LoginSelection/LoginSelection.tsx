@@ -27,15 +27,15 @@ const LoginSelection = () => {
           onClick={() => navigate('/login')}
           type={'button'}
         >
-          TAING ID로 시작하기
+          TAING으로 시작하기
         </button>
         <button className={styles.startGoogle} type={'button'}>
           구글로 시작하기
         </button>
       </div>
       <div className={styles.findIdBox}>
-        <span className={styles.findIdInfo}>아이디를 잊으셨나요?</span>
-        <Link to={'/find-id'}>아이디 찾기</Link>
+        <span className={styles.findIdInfo}>계정을 잊으셨나요?</span>
+        <Link to={'/find-id'}>계정 찾기</Link>
       </div>
     </main>
   );

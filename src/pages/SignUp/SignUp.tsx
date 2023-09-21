@@ -8,24 +8,17 @@ const SignUp = () => {
     <main className={styles.SignUp}>
       <div className={styles.titleBox}>
         <h1 className={styles.title}>타잉 회원가입</h1>
-        <h4 className={styles.info}>
-          아이디와 이메일로 간편하게 티빙을 시작하세요!
-        </h4>
+        <h4 className={styles.info}>이메일로 간편하게 티빙을 시작하세요!</h4>
       </div>
       <form className={styles.formBox}>
         <div className={styles.inputWrapper}>
-          <Input
-            type={'text'}
-            placeholderText={'아이디'}
-            hintMessage={'영문 또는 영문, 숫자 조합 6~12자리'}
-          />
+          <Input type={'email'} placeholderText={'이메일'} />
           <Input
             type={'password'}
             placeholderText={'비밀번호'}
             hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
           />
           <Input type={'password'} placeholderText={'비밀번호 확인'} />
-          <Input type={'email'} placeholderText={'이메일'} />
         </div>
         <div className={styles.agreeWrapper}>
           <ul className={styles.allAgree}>
