@@ -1,7 +1,7 @@
 import { useEffect, useState, SVGAttributes } from 'react';
 import { useParams } from 'react-router';
 import useFilterData from '@/hooks/useFilterData';
-import SwiperContent from '@/components/common/SwiperContent/SwiperContent';
+import SwiperContent from '@/components/SwiperContent/SwiperContent';
 import styles from './Detail.module.scss';
 import { IImageData } from '@/type';
 
