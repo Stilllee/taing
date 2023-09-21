@@ -8,6 +8,9 @@
   }
 
   // 페이지네이션
+  .hidePagination {
+    display: none;
+  }
   .pagination {
     width: 100%;
     padding-top: 10px;
@@ -148,6 +151,27 @@
       @include desktop {
         margin-top: 8px;
         @include label-large;
+      }
+    }
+  }
+
+  .programWrapper {
+    padding-top: 7px;
+    @include tablet {
+      padding-top: 10px;
+    }
+    @include desktop {
+      padding-top: 15px;
+    }
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: translateY(-7px);
+      @include tablet {
+        transform: translateY(-10px);
+      }
+      @include desktop {
+        transform: translateY(-15px);
       }
     }
   }
