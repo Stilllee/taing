@@ -34,7 +34,7 @@ const contentConfig: ISwiperContentProps[] = [
 const Home = () => {
   // 팝업이 처음에 보이도록 상태값을 설정
   const [popupVisible, setPopupVisible] = useState<boolean>(true);
-
+  
   const closePopup = () => setPopupVisible(false);
 
   return (

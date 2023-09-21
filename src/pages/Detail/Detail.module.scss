@@ -1,0 +1,168 @@
+.background {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+   & img{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    filter: blur(90px); 
+   }
+   @include tablet {
+    top: 0;
+    & img{
+      height: 500px;
+     }
+   }
+   @include desktop {
+    & img{
+      height: 700px;
+     }
+   }
+}
+
+.detailInfo {
+  position: relative;
+  width: 100%;
+  margin-top: 50px;
+  padding-left: 10px;
+  @include tablet {
+    height: 400px;
+    padding: 10px 10px 0 50px;
+    border-bottom: 1px solid $gray-500;
+    margin-bottom: 30px;
+   }
+   @include desktop {
+    height: 600px;
+    padding: 10px 20px 0 50px;
+   }
+    .title {
+        font-size: 40px;
+        font-weight: 900;
+        margin: 20px 0;
+        @include tablet {
+          font-size: 50px;
+        }
+        @include desktop {
+          font-size: 90px;
+          margin: 60px 0;
+  }
+    }
+
+    
+    .imgContainer {
+      border-radius: 5px;
+      width: 230px;
+      height: 340px;
+      overflow: hidden;
+      @include tablet {
+        position: absolute;
+        right: 5%;
+      }
+      @include desktop {
+        width: 350px;
+        height: 480px;
+        position: absolute;
+        right: 5%;
+      }
+
+      & img {
+        border-radius: 5px;
+        width: 230px;
+        object-fit: fill;
+        @include desktop {
+          width: 350px;
+        }
+      }
+
+    }
+
+    .watchBtn {
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        background-color: $white;
+        transition: all 0.2s;
+        @include mobile {
+          height: 48px;
+          width: 200px;
+          @include label-small;
+        }
+        @include tablet {
+          height: 50px;
+          width: 256px;
+          @include label-medium;
+        }
+        @include desktop {
+          gap: 10px;
+          height: 86px;
+          width: 272px;
+          @include label-xl;
+        }
+      }
+      & svg {
+        color: $black;
+        width: 15px;
+        @include desktop {
+          width: 20px;
+        }
+        @include desktop {
+          width: 25px;
+        }
+      }
+      .watchBtn:hover {
+        transform: scale(1.05);
+        transition: all 0.2s;
+      }
+}
+
+.icons {
+    position: relative;
+    left : 220px;
+    bottom: 48px;
+    display: flex;
+    width: 110px;
+    @include tablet {
+      left : 270px;
+    }
+    @include desktop {
+      bottom: 80px;
+      left : 300px;
+    }
+  }
+  
+  .iconBtn {
+  @include paragraph-small;
+  color: $gray-100;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  @include desktop {
+    width: 86px;
+    height: 86px;
+    @include paragraph-large;
+  }
+  & svg {
+    color: $gray-100;
+    width: 30px;
+    position: absolute;
+    top: 0;
+    left: 20%;
+    @include desktop {
+      width: 50px;
+    }
+  }
+
+}
+
+.iconBtn:hover {
+  color: $white;
+}
