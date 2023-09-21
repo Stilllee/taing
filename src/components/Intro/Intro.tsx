@@ -19,7 +19,7 @@ const Intro = ({ background }: IIntro) => {
           opacity: 0,
           y: 100,
         },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.1 },
+        { opacity: 1, y: 0, duration: 1, stagger: 0.1, delay: 0.4 },
       );
     }, introRef);
 

@@ -1,3 +1,4 @@
+import Loader from '@/components/Loader/Loader';
 import useFilterData from '../../hooks/useFilterData';
 import styles from './LoginSelection.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
@@ -5,6 +6,10 @@ import { Link, useNavigate } from 'react-router-dom';
 const LoginSelection = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <main className={styles.LoginSelection}>
