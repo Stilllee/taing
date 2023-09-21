@@ -151,7 +151,15 @@
 }
 
 .findIdBox {
+  z-index: 1;
   text-align: center;
+  @include label-small;
+  @include tablet {
+    @include label-medium;
+  }
+  @include desktop {
+    @include label-large;
+  }
   & a {
     color: $gray-300;
     &:hover {
