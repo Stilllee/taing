@@ -5,7 +5,7 @@ import Button from '@components/common/Button/Button';
 const FindId = () => {
   return (
     <main className={styles.FindId}>
-      <h1 className={styles.title}>아이디 찾기</h1>
+      <h1 className={styles.title}>계정 찾기</h1>
       <div className={styles.FindWrapper}>
         <form className={styles.emailBox}>
           <h4>이메일로 찾기</h4>

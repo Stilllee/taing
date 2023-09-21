@@ -14,18 +14,13 @@ const SignUp = () => {
       </div>
       <form className={styles.formBox}>
         <div className={styles.inputWrapper}>
-          <Input
-            type={'text'}
-            placeholderText={'아이디'}
-            hintMessage={'영문 또는 영문, 숫자 조합 6~12자리'}
-          />
+          <Input type={'email'} placeholderText={'이메일'} />
           <Input
             type={'password'}
             placeholderText={'비밀번호'}
             hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
           />
           <Input type={'password'} placeholderText={'비밀번호 확인'} />
-          <Input type={'email'} placeholderText={'이메일'} />
         </div>
         <div className={styles.agreeWrapper}>
           <ul className={styles.allAgree}>
