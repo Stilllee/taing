@@ -21,7 +21,7 @@ const Detail = () => {
     if (id) {
       setDetailData(data[+id - 1]);
     }
-  }, [data]);
+  }, [data, id]);
 
   useEffect(() => {
     if (
