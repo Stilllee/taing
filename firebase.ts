@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from '@firebase/firestore';
+
 const {
   VITE_API_KEY,
   VITE_AUTH_DOMAIN,
@@ -21,8 +21,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-export default db;
+export default firebaseApp;

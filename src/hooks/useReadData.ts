@@ -1,9 +1,16 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+} from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
-import db from '../../firebase';
 import { IImageData } from 'src/type';
+import firebaseApp from '../../firebase';
 
 export function useReadData(collectionKey: string) {
+  const db = getFirestore(firebaseApp);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | Error>(null);
   const [data, setData] = useState<IImageData[]>([]);
