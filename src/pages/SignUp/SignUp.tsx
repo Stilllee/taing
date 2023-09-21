@@ -8,9 +8,7 @@ const SignUp = () => {
     <main className={styles.SignUp}>
       <div className={styles.titleBox}>
         <h1 className={styles.title}>타잉 회원가입</h1>
-        <h4 className={styles.info}>
-          아이디와 이메일로 간편하게 티빙을 시작하세요!
-        </h4>
+        <h4 className={styles.info}>이메일로 간편하게 티빙을 시작하세요!</h4>
       </div>
       <form className={styles.formBox}>
         <div className={styles.inputWrapper}>
