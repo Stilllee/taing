@@ -2,8 +2,12 @@ import Input from '@components/common/Input/Input';
 import styles from './SignUp.module.scss';
 import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
+import { useState } from 'react';
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   return (
     <main className={styles.SignUp}>
       <div className={styles.titleBox}>
@@ -12,13 +16,25 @@ const SignUp = () => {
       </div>
       <form className={styles.formBox}>
         <div className={styles.inputWrapper}>
-          <Input type={'email'} placeholderText={'이메일'} />
+          <Input
+            type={'email'}
+            placeholderText={'이메일'}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
           <Input
             type={'password'}
             placeholderText={'비밀번호'}
             hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
-          <Input type={'password'} placeholderText={'비밀번호 확인'} />
+          <Input
+            type={'password'}
+            placeholderText={'비밀번호 확인'}
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+          />
         </div>
         <div className={styles.agreeWrapper}>
           <ul className={styles.allAgree}>
