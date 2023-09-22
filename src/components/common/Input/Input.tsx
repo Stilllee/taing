@@ -4,7 +4,7 @@ import styles from './Input.module.scss';
 interface IInputProps {
   placeholderText: string;
   hintMessage?: string;
-  errorMessage?: string;
+  errorMessage?: string | null;
   type: 'text' | 'password' | 'email';
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -69,7 +69,9 @@ const Input = ({
           ></button>
         )}
       </div>
-      <div className={styles.hint}>{errorMessage || hintMessage}</div>
+      <div className={`${styles.hint} ${errorMessage ? styles.error : ''}`}>
+        {errorMessage || hintMessage}
+      </div>
     </div>
   );
 };
