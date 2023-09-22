@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSignUp } from '@/hooks/auth/useSignUp';
 import { useCreateAuthUser } from '@/hooks/firestore/useCreateAuthUser';
+import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 import Input from '@components/common/Input/Input';
 import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
@@ -10,6 +11,8 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { navigateTo } = useCustomNavigate();
 
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
@@ -28,6 +31,7 @@ const SignUp = () => {
       };
       await createAuthUser(userAuth);
     }
+    navigateTo('/login');
   };
 
   return (
