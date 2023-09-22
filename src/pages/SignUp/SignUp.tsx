@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSignUp } from '@/hooks/auth/useSignUp';
 import { useCreateAuthUser } from '@/hooks/firestore/useCreateAuthUser';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
@@ -11,18 +11,31 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const { navigateTo } = useCustomNavigate();
 
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
 
+  useEffect(() => {
+    if (password && confirmPassword) {
+      if (password !== confirmPassword) {
+        setErrorMessage('일치하지 않습니다. 다시 입력해주세요.');
+      } else {
+        setErrorMessage(null);
+      }
+    }
+  }, [password, confirmPassword]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
+      console.log('회원가입 실패: 비밀번호 불일치');
       return;
     }
+
     const userCredential = await signUp(email, password);
     if (userCredential && userCredential.user && userCredential.user.email) {
       const userAuth = {
@@ -30,8 +43,9 @@ const SignUp = () => {
         email: userCredential.user.email,
       };
       await createAuthUser(userAuth);
+      setErrorMessage(null);
+      navigateTo('/login');
     }
-    navigateTo('/login');
   };
 
   return (
@@ -51,13 +65,14 @@ const SignUp = () => {
           <Input
             type={'password'}
             placeholderText={'비밀번호'}
-            hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
           <Input
             type={'password'}
             placeholderText={'비밀번호 확인'}
+            hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
+            errorMessage={errorMessage}
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
           />
