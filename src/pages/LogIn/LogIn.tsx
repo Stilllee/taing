@@ -3,16 +3,47 @@ import styles from './LogIn.module.scss';
 import Button from '@components/common/Button/Button';
 import Input from '@components/common/Input/Input';
 import { Link } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useSignIn } from '@/hooks/auth/useSignIn';
 
 const LogIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { isLoading, error, user, signIn } = useSignIn();
+
+  const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.currentTarget.value);
+  };
+  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value);
+  };
+
+  const onLogIn = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    signIn(email, password);
+  };
   return (
     <main className={styles.LogIn}>
       <h1 className={styles.title}>TAING 로그인</h1>
-      <form className={styles.loginForm}>
-        <Input type={'email'} placeholderText={'이메일'} />
-        <Input type={'password'} placeholderText={'비밀번호'} />
+      <form className={styles.loginForm} onSubmit={onLogIn}>
+        <Input
+          type={'email'}
+          placeholderText={'이메일'}
+          value={email}
+          onChange={onEmailChange}
+        />
+        <Input
+          type={'password'}
+          placeholderText={'비밀번호'}
+          value={password}
+          onChange={onPasswordChange}
+        />
         <Checkbox id={'auto'} label={'자동로그인'} />
-        <Button type={'submit'} title={'로그인하기'} state={'login'} />
+        <Button
+          type={'submit'}
+          title={`${isLoading ? '로그인 중...' : '로그인하기'}`}
+          state={'login'}
+        />
       </form>
       <div className={styles.pageLink}>
         <div className={styles.findBox}>
