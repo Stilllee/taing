@@ -6,6 +6,8 @@ interface IInputProps {
   hintMessage?: string;
   errorMessage?: string;
   type: 'text' | 'password' | 'email';
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -13,8 +15,9 @@ const Input = ({
   hintMessage,
   errorMessage,
   type,
+  value,
+  onChange,
 }: IInputProps) => {
-  const [inputValue, setInputValue] = useState('');
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
   const handlePasswordVisibilityToggle = () => {
@@ -23,6 +26,16 @@ const Input = ({
 
   const inputType =
     type === 'password' ? (isPasswordVisible ? 'text' : 'password') : type;
+
+  const clearInputValue = () => {
+    const event = {
+      target: {
+        value: '',
+      },
+    } as React.ChangeEvent<HTMLInputElement>;
+
+    onChange(event);
+  };
 
   return (
     <div>
@@ -34,14 +47,14 @@ const Input = ({
         <input
           type={inputType}
           placeholder={placeholderText}
-          value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
+          value={value}
+          onChange={onChange}
         />
-        {inputValue && (
+        {value && (
           <button
             type="button"
             className={styles.clearButton}
-            onClick={() => setInputValue('')}
+            onClick={clearInputValue}
             aria-label="입력 내용 지우기"
           ></button>
         )}
