@@ -11,19 +11,59 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [confirmPasswordError, setConfirmPasswordError] = useState<
+    string | null
+  >(null);
 
   const { navigateTo } = useCustomNavigate();
 
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
 
+  const validatePassword = (password: string) => {
+    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{8,15}$/;
+    if (!password.trim()) {
+      return '입력한 내용이 없어요.';
+    }
+    if (!regex.test(password)) {
+      return '영문, 숫자, 특수문자 (~!@#$%^&*) 조합 8~15자리로 입력해주세요.';
+    }
+    return null;
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    const validationMessage = validatePassword(newPassword);
+    setPasswordError(validationMessage);
+  };
+
+  const handleInputBlur = (inputName: string) => {
+    switch (inputName) {
+      case 'email':
+        if (!email.trim()) setEmailError('입력한 내용이 없어요.');
+        else setEmailError(null);
+        break;
+      case 'password':
+        break;
+      case 'confirmPassword':
+        if (!confirmPassword.trim())
+          setConfirmPasswordError('입력한 내용이 없어요.');
+        else setConfirmPasswordError(null);
+        break;
+      default:
+        break;
+    }
+  };
+
   useEffect(() => {
     if (password && confirmPassword) {
       if (password !== confirmPassword) {
-        setErrorMessage('일치하지 않습니다. 다시 입력해주세요.');
+        setConfirmPasswordError('일치하지 않습니다. 다시 입력해주세요.');
       } else {
-        setErrorMessage(null);
+        setConfirmPasswordError(null);
       }
     }
   }, [password, confirmPassword]);
@@ -43,7 +83,6 @@ const SignUp = () => {
         email: userCredential.user.email,
       };
       await createAuthUser(userAuth);
-      setErrorMessage(null);
       navigateTo('/login');
     }
   };
@@ -60,21 +99,26 @@ const SignUp = () => {
             type={'email'}
             placeholderText={'이메일'}
             value={email}
+            errorMessage={emailError}
             onChange={e => setEmail(e.target.value)}
+            onBlur={() => handleInputBlur('email')}
           />
           <Input
             type={'password'}
             placeholderText={'비밀번호'}
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            errorMessage={passwordError}
+            onChange={handlePasswordChange}
+            onBlur={() => handleInputBlur('password')}
           />
           <Input
             type={'password'}
             placeholderText={'비밀번호 확인'}
             hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
-            errorMessage={errorMessage}
             value={confirmPassword}
+            errorMessage={confirmPasswordError}
             onChange={e => setConfirmPassword(e.target.value)}
+            onBlur={() => handleInputBlur('confirmPassword')}
           />
         </div>
         <div className={styles.agreeWrapper}>

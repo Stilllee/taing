@@ -8,6 +8,7 @@ interface IInputProps {
   type: 'text' | 'password' | 'email';
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -17,6 +18,7 @@ const Input = ({
   type,
   value,
   onChange,
+  onBlur,
 }: IInputProps) => {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
@@ -49,6 +51,7 @@ const Input = ({
           placeholder={placeholderText}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
         />
         {value && (
           <button
