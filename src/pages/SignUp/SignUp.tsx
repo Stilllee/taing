@@ -21,43 +21,36 @@ const SignUp = () => {
   const [checkedItems, setCheckedItems] = useState<CheckedItemsType>({});
 
   const checkboxes = [
-    { id: 'agree1', label: '만 14세 이상입니다.', listType: 'agreeList' },
+    { id: 'agree1', label: '만 14세 이상입니다.' },
     {
       id: 'agree2',
       label: '[필수] 서비스 이용약관 동의',
-      listType: 'agreeList',
     },
     {
       id: 'agree3',
       label: '[필수] 개인전보 수집 및 서비스 활용 동의',
-      listType: 'agreeList',
     },
     {
       id: 'agree4',
       label: '[필수] 채널 홈페이지 개인정보 제 3자 제공동의',
-      listType: 'agreeList',
     },
     {
       id: 'agree5',
       label: '[선택] 개인정보 제 3자 제공동의',
-      listType: 'agreeList',
     },
     {
       id: 'agree6',
       label: '[선택] 개인정보 수집 및 서비스 활용 동의',
-      listType: 'agreeList',
     },
     {
       id: 'subAgree1',
       label: '[선택] 마케팅 정보 SMS 수신동의',
       additionalClass: styles.subAgree,
-      listType: 'agreeList',
     },
     {
       id: 'subAgree2',
       label: '[선택] 마케팅 정보 이메일 수신동의',
       additionalClass: styles.subAgree,
-      listType: 'agreeList',
     },
   ];
 
