@@ -119,9 +119,10 @@ const SignUp = () => {
     switch (inputName) {
       case 'email':
         if (!email.trim()) setEmailError('입력한 내용이 없어요.');
-        else setEmailError(null);
-        break;
-      case 'password':
+        else {
+          const validationMessage = validateEmail(email);
+          setEmailError(validationMessage);
+        }
         break;
       case 'confirmPassword':
         if (!confirmPassword.trim())
