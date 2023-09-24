@@ -11,7 +11,7 @@ const FindId = () => {
           <h4>이메일로 찾기</h4>
           <p>가입 시 등록한 이메일을 입력해주세요.</p>
           <Input type={'email'} placeholderText={'이메일'} />
-          <Button type={'submit'} title={'확인'} state={'default'} />
+          <Button type={'submit'} title={'확인'} state={'active'} />
         </form>
         <div className={styles.boundary}>
           <p>또는</p>

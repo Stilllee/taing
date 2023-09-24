@@ -13,7 +13,7 @@ const FindPassword = () => {
           완료해주세요.
         </p>
         <Input type={'email'} placeholderText={'이메일'} />
-        <Button type={'submit'} title={'확인'} state={'default'} />
+        <Button type={'submit'} title={'확인'} state={'active'} />
       </form>
     </main>
   );
