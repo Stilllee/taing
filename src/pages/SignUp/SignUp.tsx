@@ -50,13 +50,13 @@ const SignUp = () => {
     {
       id: 'subAgree1',
       label: '[선택] 마케팅 정보 SMS 수신동의',
-      additionalClass: 'subAgree',
+      additionalClass: styles.subAgree,
       listType: 'agreeList',
     },
     {
       id: 'subAgree2',
       label: '[선택] 마케팅 정보 이메일 수신동의',
-      additionalClass: 'subAgree',
+      additionalClass: styles.subAgree,
       listType: 'agreeList',
     },
   ];
