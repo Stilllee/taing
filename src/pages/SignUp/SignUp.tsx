@@ -158,6 +158,28 @@ const SignUp = () => {
       ...checkedItems,
       [id]: !checkedItems[id],
     };
+    // [선택] 개인정보 수집 및 서비스 활용 동의가 체크될 때
+    if (id === 'agree6' && !checkedItems[id]) {
+      newCheckedItems['subAgree1'] = true;
+      newCheckedItems['subAgree2'] = true;
+    } else if (id === 'agree6' && checkedItems[id]) {
+      // 해제될 때
+      newCheckedItems['subAgree1'] = false;
+      newCheckedItems['subAgree2'] = false;
+    }
+
+    // [선택] 마케팅 정보 SMS 수신동의나 [선택] 마케팅 정보 이메일 수신동의 중 하나라도 해제되면
+    if ((id === 'subAgree1' || id === 'subAgree2') && checkedItems[id]) {
+      newCheckedItems['agree6'] = false;
+    } else if (
+      (id === 'subAgree1' || id === 'subAgree2') &&
+      !checkedItems[id]
+    ) {
+      // 둘 다 체크되어있는 상태에서 하나가 체크될 때
+      if (newCheckedItems['subAgree1'] && newCheckedItems['subAgree2']) {
+        newCheckedItems['agree6'] = true;
+      }
+    }
     setCheckedItems(newCheckedItems);
   };
 
