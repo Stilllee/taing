@@ -94,6 +94,7 @@ const SignUp = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
+
     const validationMessage = validateEmail(newEmail);
     setEmailError(validationMessage);
   };
@@ -112,6 +113,7 @@ const SignUp = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
+
     const validationMessage = validatePassword(newPassword);
     setPasswordError(validationMessage);
   };
@@ -120,10 +122,6 @@ const SignUp = () => {
     switch (inputName) {
       case 'email':
         if (!email.trim()) setEmailError('입력한 내용이 없어요.');
-        else {
-          const validationMessage = validateEmail(email);
-          setEmailError(validationMessage);
-        }
         break;
       case 'confirmPassword':
         if (!confirmPassword.trim())
