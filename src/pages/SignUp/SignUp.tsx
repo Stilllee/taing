@@ -61,6 +61,13 @@ const SignUp = () => {
     },
   ];
 
+  // 체크박스 아이템들 중 [필수]로 시작하는 아이템이 모두 체크되었는지 확인하는 함수
+  const areRequiredCheckboxesChecked = () => {
+    return checkboxes
+      .filter(chk => chk.label.startsWith('[필수]'))
+      .every(chk => checkedItems[chk.id]);
+  };
+
   const { navigateTo } = useCustomNavigate();
 
   const { signUp } = useSignUp(true);
@@ -243,7 +250,17 @@ const SignUp = () => {
             ))}
           </ul>
         </div>
-        <Button type={'submit'} state={'login'} title={'가입하기'} />
+        <Button
+          type={'submit'}
+          state={'login'}
+          title={'가입하기'}
+          disabled={
+            !areRequiredCheckboxesChecked() ||
+            Boolean(emailError) ||
+            Boolean(passwordError) ||
+            Boolean(confirmPasswordError)
+          }
+        />
       </form>
     </main>
   );
