@@ -7,6 +7,8 @@ import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
 import styles from './SignUp.module.scss';
 
+type CheckedItemsType = { [key: string]: boolean };
+
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +18,48 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState<
     string | null
   >(null);
+  const [checkedItems, setCheckedItems] = useState<CheckedItemsType>({});
+
+  const checkboxes = [
+    { id: 'agree1', label: '만 14세 이상입니다.', listType: 'agreeList' },
+    {
+      id: 'agree2',
+      label: '[필수] 서비스 이용약관 동의',
+      listType: 'agreeList',
+    },
+    {
+      id: 'agree3',
+      label: '[필수] 개인전보 수집 및 서비스 활용 동의',
+      listType: 'agreeList',
+    },
+    {
+      id: 'agree4',
+      label: '[필수] 채널 홈페이지 개인정보 제 3자 제공동의',
+      listType: 'agreeList',
+    },
+    {
+      id: 'agree5',
+      label: '[선택] 개인정보 제 3자 제공동의',
+      listType: 'agreeList',
+    },
+    {
+      id: 'agree6',
+      label: '[선택] 개인정보 수집 및 서비스 활용 동의',
+      listType: 'agreeList',
+    },
+    {
+      id: 'subAgree1',
+      label: '[선택] 마케팅 정보 SMS 수신동의',
+      additionalClass: 'subAgree',
+      listType: 'agreeList',
+    },
+    {
+      id: 'subAgree2',
+      label: '[선택] 마케팅 정보 이메일 수신동의',
+      additionalClass: 'subAgree',
+      listType: 'agreeList',
+    },
+  ];
 
   const { navigateTo } = useCustomNavigate();
 
@@ -87,6 +131,39 @@ const SignUp = () => {
     }
   };
 
+  useEffect(() => {
+    // 체크박스 초기 상태 설정
+    const initialChecks: CheckedItemsType = {};
+    checkboxes.forEach(chk => {
+      initialChecks[chk.id] = false;
+    });
+    setCheckedItems(initialChecks);
+  }, []);
+
+  // '모두 동의합니다' 체크박스를 토글할 때의 핸들러
+  const handleAllCheckToggle = () => {
+    const shouldCheckAll = !checkboxes.every(chk => checkedItems[chk.id]);
+    const newCheckedItems: CheckedItemsType = {};
+
+    checkboxes.forEach(chk => {
+      newCheckedItems[chk.id] = shouldCheckAll;
+    });
+
+    setCheckedItems(newCheckedItems);
+  };
+
+  // 개별 체크박스를 토글할 때의 핸들러
+  const handleCheckboxChange = (id: string) => {
+    const newCheckedItems: CheckedItemsType = {
+      ...checkedItems,
+      [id]: !checkedItems[id],
+    };
+    setCheckedItems(newCheckedItems);
+  };
+
+  // 모든 체크박스가 체크되었는지 확인
+  const isAllChecked = checkboxes.every(chk => checkedItems[chk.id]);
+
   return (
     <main className={styles.SignUp}>
       <div className={styles.titleBox}>
@@ -123,54 +200,28 @@ const SignUp = () => {
         </div>
         <div className={styles.agreeWrapper}>
           <ul className={styles.allAgree}>
-            <Checkbox id={'allAgree'} label={'모두 동의합니다.'} />
+            <Checkbox
+              id={'allAgree'}
+              label={'모두 동의합니다.'}
+              checked={isAllChecked}
+              onChange={handleAllCheckToggle}
+            />
           </ul>
           <ul className={styles.agreeBox}>
-            <Checkbox
-              id={'agree1'}
-              label={'만 14세 이상입니다.'}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'agree2'}
-              label={'[필수] 서비스 이용약관 동의'}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'agree3'}
-              label={'[필수] 개인전보 수집 및 서비스 활용 동의'}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'agree4'}
-              label={'[필수] 채널 홈페이지 개인정보 제 3자 제공동의'}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'agree5'}
-              label={'[선택] 개인정보 제 3자 제공동의'}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'agree6'}
-              label={'[선택] 개인정보 수집 및 서비스 활용 동의'}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'subAgree1'}
-              label={'[선택] 마케팅 정보 SMS 수신동의'}
-              additionalClass={styles.subAgree}
-              listType={'agreeList'}
-            />
-            <Checkbox
-              id={'subAgree2'}
-              label={'[선택] 마케팅 정보 이메일 수신동의'}
-              additionalClass={styles.subAgree}
-              listType={'agreeList'}
-            />
+            {checkboxes.map(chk => (
+              <Checkbox
+                key={chk.id}
+                id={chk.id}
+                label={chk.label}
+                listType={chk.listType}
+                additionalClass={chk.additionalClass}
+                checked={checkedItems[chk.id] || false}
+                onChange={() => handleCheckboxChange(chk.id)}
+              />
+            ))}
           </ul>
         </div>
-        <Button type={'submit'} state={'default'} title={'가입하기'} />
+        <Button type={'submit'} state={'login'} title={'가입하기'} />
       </form>
     </main>
   );
