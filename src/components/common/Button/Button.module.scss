@@ -72,3 +72,7 @@
     background-color: $white;
   }
 }
+
+.submit:disabled, .button:disabled  {
+  pointer-events: none; 
+}
