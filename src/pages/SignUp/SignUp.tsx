@@ -18,7 +18,6 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState<
     string | null
   >(null);
-  const [checkedItems, setCheckedItems] = useState<CheckedItemsType>({});
 
   const checkboxes = [
     { id: 'agree1', label: '만 14세 이상입니다.' },
@@ -53,6 +52,15 @@ const SignUp = () => {
       additionalClass: styles.subAgree,
     },
   ];
+
+  // 체크박스 초기 상태 설정
+  const initialChecks = checkboxes.reduce((acc: CheckedItemsType, chk) => {
+    acc[chk.id] = false;
+    return acc;
+  }, {});
+
+  const [checkedItems, setCheckedItems] =
+    useState<CheckedItemsType>(initialChecks);
 
   // '가입하기' 버튼의 disabled 속성을 결정하는 함수
   const isSubmitDisabled = () => {
@@ -156,15 +164,6 @@ const SignUp = () => {
     }
   };
 
-  useEffect(() => {
-    // 체크박스 초기 상태 설정
-    const initialChecks: CheckedItemsType = {};
-    checkboxes.forEach(chk => {
-      initialChecks[chk.id] = false;
-    });
-    setCheckedItems(initialChecks);
-  }, []);
-
   // '모두 동의합니다' 체크박스를 토글할 때의 핸들러
   const handleAllCheckToggle = () => {
     const shouldCheckAll = !checkboxes.every(chk => checkedItems[chk.id]);
@@ -260,7 +259,6 @@ const SignUp = () => {
                 key={chk.id}
                 id={chk.id}
                 label={chk.label}
-                listType={chk.listType}
                 additionalClass={chk.additionalClass}
                 checked={checkedItems[chk.id] || false}
                 onChange={() => handleCheckboxChange(chk.id)}
