@@ -6,15 +6,18 @@ interface ICheckboxProps {
   label: string;
   additionalClass?: string;
   listType?: string;
+  checked?: boolean;
+  onChange?: () => void;
 }
 
-const Checkbox = ({ id, label, additionalClass, listType }: ICheckboxProps) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const toggleCheck = () => {
-    setIsChecked(!isChecked);
-  };
-
+const Checkbox = ({
+  id,
+  label,
+  additionalClass,
+  listType,
+  checked = false,
+  onChange,
+}: ICheckboxProps) => {
   return (
     <li
       className={`${styles.checkList} ${additionalClass} ${
@@ -25,10 +28,10 @@ const Checkbox = ({ id, label, additionalClass, listType }: ICheckboxProps) => {
         className={styles.checkbox}
         type="checkbox"
         id={id}
-        checked={isChecked}
-        onChange={toggleCheck}
+        checked={checked}
+        onChange={onChange}
       />
-      <label htmlFor={id} className={`${isChecked && styles.checked}`}>
+      <label htmlFor={id} className={`${checked && styles.checked}`}>
         <div className={styles.checkImage} />
         {label}
       </label>
