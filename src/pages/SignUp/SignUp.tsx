@@ -61,17 +61,41 @@ const SignUp = () => {
     },
   ];
 
-  // 체크박스 아이템들 중 [필수]로 시작하는 아이템이 모두 체크되었는지 확인하는 함수
-  const areRequiredCheckboxesChecked = () => {
-    return checkboxes
-      .filter(chk => chk.label.startsWith('[필수]'))
+  // '가입하기' 버튼의 disabled 속성을 결정하는 함수
+  const isSubmitDisabled = () => {
+    const areRequiredChecks = checkboxes
+      .filter(
+        chk =>
+          chk.label.startsWith('[필수]') || chk.label === '만 14세 이상입니다.',
+      )
       .every(chk => checkedItems[chk.id]);
+
+    return (
+      !areRequiredChecks ||
+      Boolean(emailError) ||
+      Boolean(passwordError) ||
+      Boolean(confirmPasswordError)
+    );
   };
 
   const { navigateTo } = useCustomNavigate();
 
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
+
+  // 올바른 이메일 양식 검증 함수
+  const validateEmail = (email: string) => {
+    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    if (!regex.test(email)) return '올바른 이메일 양식을 사용하세요.';
+    return null;
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    const validationMessage = validateEmail(newEmail);
+    setEmailError(validationMessage);
+  };
 
   const validatePassword = (password: string) => {
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{8,15}$/;
@@ -206,7 +230,7 @@ const SignUp = () => {
             placeholderText={'이메일'}
             value={email}
             errorMessage={emailError}
-            onChange={e => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             onBlur={() => handleInputBlur('email')}
           />
           <Input
@@ -254,12 +278,7 @@ const SignUp = () => {
           type={'submit'}
           state={'login'}
           title={'가입하기'}
-          disabled={
-            !areRequiredCheckboxesChecked() ||
-            Boolean(emailError) ||
-            Boolean(passwordError) ||
-            Boolean(confirmPasswordError)
-          }
+          disabled={isSubmitDisabled()}
         />
       </form>
     </main>
