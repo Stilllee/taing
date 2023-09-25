@@ -7,6 +7,7 @@ export * from './useSignIn';
 // export * from './useSignOut';
 // export * from './useAuthState';
 // export * from './useResetPassword';
+export * from './useSignInWithGoogle';
 
 export const auth = getAuth(firebaseApp);
 auth.useDeviceLanguage();

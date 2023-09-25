@@ -2,15 +2,24 @@ import Loader from '@/components/Loader/Loader';
 import useFilterData from '../../hooks/useFilterData';
 import styles from './LoginSelection.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSignInWithGoogle } from '@/hooks/auth';
+import { useEffect } from 'react';
 
 const LoginSelection = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
+  const { signInWithGoogle, user } = useSignInWithGoogle();
   const navigate = useNavigate();
+
+  const logInWithGoogle = () => {
+    signInWithGoogle();
+  };
+  useEffect(() => {
+    if (user) navigate('/');
+  }, [user]);
 
   if (isLoading) {
     return <Loader />;
   }
-
   return (
     <main className={styles.LoginSelection}>
       <div className={styles.background}>
@@ -29,7 +38,11 @@ const LoginSelection = () => {
         >
           TAING으로 시작하기
         </button>
-        <button className={styles.startGoogle} type={'button'}>
+        <button
+          className={styles.startGoogle}
+          type={'button'}
+          onClick={logInWithGoogle}
+        >
           구글로 시작하기
         </button>
       </div>
