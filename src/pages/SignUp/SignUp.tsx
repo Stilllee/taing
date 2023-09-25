@@ -4,22 +4,28 @@ import { useCreateAuthUser } from '@/hooks/firestore/useCreateAuthUser';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 import { useRecoilValue } from 'recoil';
 
-import { emailErrorState, emailState } from '@/state/signUpState';
+import {
+  emailState,
+  emailErrorState,
+  passwordState,
+  passwordErrorState,
+} from '@/state/signUpState';
 
 import Input from '@components/common/Input/Input';
 import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
 import styles from './SignUp.module.scss';
 import EmailInput from '@/components/EmailInput/EmailInput';
+import PasswordInput from '@/components/PasswordInput/PasswordInput';
 
 type CheckedItemsType = { [key: string]: boolean };
 
 const SignUp = () => {
   const email = useRecoilValue(emailState);
-  const [password, setPassword] = useState('');
+  const password = useRecoilValue(passwordState);
   const [confirmPassword, setConfirmPassword] = useState('');
   const emailError = useRecoilValue(emailErrorState);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const passwordError = useRecoilValue(passwordErrorState);
   const [confirmPasswordError, setConfirmPasswordError] = useState<
     string | null
   >(null);
@@ -88,25 +94,6 @@ const SignUp = () => {
 
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
-
-  const validatePassword = (password: string) => {
-    const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{8,15}$/;
-    if (!password.trim()) {
-      return '입력한 내용이 없어요.';
-    }
-    if (!regex.test(password)) {
-      return '영문, 숫자, 특수문자 (~!@#$%^&*) 조합 8~15자리로 입력해주세요.';
-    }
-    return null;
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-
-    const validationMessage = validatePassword(newPassword);
-    setPasswordError(validationMessage);
-  };
 
   const handleInputBlur = (inputName: string) => {
     switch (inputName) {
@@ -204,14 +191,7 @@ const SignUp = () => {
       <form className={styles.formBox} onSubmit={handleSubmit}>
         <div className={styles.inputWrapper}>
           <EmailInput />
-          <Input
-            type={'password'}
-            placeholderText={'비밀번호'}
-            value={password}
-            errorMessage={passwordError}
-            onChange={handlePasswordChange}
-            onBlur={() => handleInputBlur('password')}
-          />
+          <PasswordInput />
           <Input
             type={'password'}
             placeholderText={'비밀번호 확인'}
