@@ -29,7 +29,6 @@ const EmailInput = () => {
       type="email"
       placeholderText="이메일"
       value={email}
-      hintMessage={'이메일 주소를 입력하세요.'}
       errorMessage={emailError}
       onChange={handleEmailChange}
       onBlur={handleInputBlur}
