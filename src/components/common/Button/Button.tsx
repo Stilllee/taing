@@ -3,14 +3,14 @@ import styles from './Button.module.scss';
 interface IButton {
   title: string;
   type: 'submit' | 'button';
-  state: 'login' | 'active' | 'default';
+  state: 'login' | 'active';
+  disabled?: boolean;
   onClick?: () => void;
 }
 
-const Button = ({ title, state, type, onClick }: IButton) => {
+const Button = ({ title, state, type, disabled, onClick }: IButton) => {
   const classNames = {
     login: styles.login,
-    default: styles.default,
     active: styles.active,
     submit: styles.submit,
     button: styles.button,
@@ -20,17 +20,23 @@ const Button = ({ title, state, type, onClick }: IButton) => {
     <>
       {type === 'submit' && (
         <button
-          className={`${classNames[state]} ${classNames[type]}`}
+          className={`${classNames[state]} ${classNames[type]} ${
+            disabled ? styles.default : ''
+          }`}
           type={type}
+          disabled={disabled}
         >
           {title}
         </button>
       )}
       {type === 'button' && (
         <button
-          className={`${classNames[state]} ${classNames[type]}`}
+          className={`${classNames[state]} ${classNames[type]} ${
+            disabled ? styles.default : ''
+          }`}
           type={type}
           onClick={onClick}
+          disabled={disabled}
         >
           {title}
         </button>

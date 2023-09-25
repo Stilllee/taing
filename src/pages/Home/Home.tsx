@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Home.module.scss';
 import Modal from '@components/common/Modal/Modal';
 import PopupModal from '@components/PopupModal/PopupModal';
 import SwiperContent from '@/components/SwiperContent/SwiperContent';
+import { useNavigate } from 'react-router';
+import { useAuthState } from '@/hooks/auth';
 
 enum FilterTypes {
   BANNER = 'banner',
@@ -34,9 +36,14 @@ const contentConfig: ISwiperContentProps[] = [
 const Home = () => {
   // 팝업이 처음에 보이도록 상태값을 설정
   const [popupVisible, setPopupVisible] = useState<boolean>(true);
-  
+  const navigate = useNavigate();
+  const { user } = useAuthState();
   const closePopup = () => setPopupVisible(false);
-
+  useEffect(() => {
+    if (!user) {
+      navigate('/onboarding');
+    }
+  }, [user]);
   return (
     <div className={styles.Home}>
       {contentConfig.map((config, index) => (
