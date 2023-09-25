@@ -2,18 +2,23 @@ import { useEffect, useState } from 'react';
 import { useSignUp } from '@/hooks/auth/useSignUp';
 import { useCreateAuthUser } from '@/hooks/firestore/useCreateAuthUser';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
+import { useRecoilValue } from 'recoil';
+
+import { emailErrorState, emailState } from '@/state/signUpState';
+
 import Input from '@components/common/Input/Input';
 import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
 import styles from './SignUp.module.scss';
+import EmailInput from '@/components/EmailInput/EmailInput';
 
 type CheckedItemsType = { [key: string]: boolean };
 
 const SignUp = () => {
-  const [email, setEmail] = useState('');
+  const email = useRecoilValue(emailState);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [emailError, setEmailError] = useState<string | null>(null);
+  const emailError = useRecoilValue(emailErrorState);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [confirmPasswordError, setConfirmPasswordError] = useState<
     string | null
@@ -84,21 +89,6 @@ const SignUp = () => {
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
 
-  // 올바른 이메일 양식 검증 함수
-  const validateEmail = (email: string) => {
-    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (!regex.test(email)) return '올바른 이메일 양식을 사용하세요.';
-    return null;
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-
-    const validationMessage = validateEmail(newEmail);
-    setEmailError(validationMessage);
-  };
-
   const validatePassword = (password: string) => {
     const regex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{8,15}$/;
     if (!password.trim()) {
@@ -120,9 +110,6 @@ const SignUp = () => {
 
   const handleInputBlur = (inputName: string) => {
     switch (inputName) {
-      case 'email':
-        if (!email.trim()) setEmailError('입력한 내용이 없어요.');
-        break;
       case 'confirmPassword':
         if (!confirmPassword.trim())
           setConfirmPasswordError('입력한 내용이 없어요.');
@@ -216,14 +203,7 @@ const SignUp = () => {
       </div>
       <form className={styles.formBox} onSubmit={handleSubmit}>
         <div className={styles.inputWrapper}>
-          <Input
-            type={'email'}
-            placeholderText={'이메일'}
-            value={email}
-            errorMessage={emailError}
-            onChange={handleEmailChange}
-            onBlur={() => handleInputBlur('email')}
-          />
+          <EmailInput />
           <Input
             type={'password'}
             placeholderText={'비밀번호'}
