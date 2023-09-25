@@ -4,10 +4,11 @@ import styles from './Input.module.scss';
 interface IInputProps {
   placeholderText: string;
   hintMessage?: string;
-  errorMessage?: string;
+  errorMessage?: string | null;
   type: 'text' | 'password' | 'email';
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -17,6 +18,7 @@ const Input = ({
   type,
   value,
   onChange,
+  onBlur,
 }: IInputProps) => {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
 
@@ -49,6 +51,7 @@ const Input = ({
           placeholder={placeholderText}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
         />
         {value && (
           <button
@@ -69,7 +72,9 @@ const Input = ({
           ></button>
         )}
       </div>
-      <div className={styles.hint}>{errorMessage || hintMessage}</div>
+      <div className={`${styles.hint} ${errorMessage ? styles.error : ''}`}>
+        {errorMessage || hintMessage}
+      </div>
     </div>
   );
 };
