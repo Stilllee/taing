@@ -6,7 +6,7 @@ import { getAuth } from 'firebase/auth';
 // export * from './useSignIn';
 // export * from './useSignOut';
 // export * from './useAuthState';
-// export * from './useResetPassword';
+export * from './useResetPassword';
 
 export const auth = getAuth(firebaseApp);
 auth.useDeviceLanguage();
