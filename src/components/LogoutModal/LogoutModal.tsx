@@ -1,6 +1,5 @@
 import { useSignOut } from '@/hooks/auth';
 import styles from './LogoutModal.module.scss';
-
 interface ILogoutModalProps {
   closeLogout: () => void;
   closeProfileModal: () => void;
@@ -8,7 +7,6 @@ interface ILogoutModalProps {
 
 const LogoutModal = ({ closeLogout, closeProfileModal }: ILogoutModalProps) => {
   const { signOut } = useSignOut();
-
   const onLogOut = () => {
     signOut();
     closeLogoutModal();
@@ -18,6 +16,7 @@ const LogoutModal = ({ closeLogout, closeProfileModal }: ILogoutModalProps) => {
     closeProfileModal();
     closeLogout();
   };
+
   return (
     <div className={styles.LogoutModal}>
       <p>로그아웃 하시겠습니까?</p>
