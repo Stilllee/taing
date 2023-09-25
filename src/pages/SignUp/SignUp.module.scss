@@ -65,22 +65,6 @@
   }
 }
 
-.allAgree {
-  margin: 16px 0 12px;
-  @include desktop {
-    margin: 28px 0;
-  }
-}
-
-.agreeBox {
-  & li {
-    margin-bottom: 8px;
-    @include desktop {
-      margin-bottom: 12px;
-    }
-  }
-}
-
 .subAgree {
   margin-left: 20px;
   @include desktop {
