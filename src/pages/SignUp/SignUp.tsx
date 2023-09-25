@@ -70,6 +70,8 @@ const SignUp = () => {
     setCheckedItems(updatedCheckedItems);
   };
 
+  const { signUp: registerUser, error } = useSignUp(true);
+
   // 체크박스 초기 상태 설정
   const initialChecks = checkboxes.reduce((acc: CheckedItemsType, chk) => {
     acc[chk.id] = false;
@@ -111,10 +113,16 @@ const SignUp = () => {
     }
   }, [password, confirmPassword]);
 
+  useEffect(() => {
+    if (error) {
+      alert(error.message);
+    }
+  }, [error]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const userCredential = await signUp(email, password);
+    const userCredential = await registerUser(email, password);
     if (userCredential && userCredential.user && userCredential.user.email) {
       const userAuth = {
         uid: userCredential.user.uid,
