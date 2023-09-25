@@ -2,33 +2,35 @@ import { useEffect, useState } from 'react';
 import { useSignUp } from '@/hooks/auth/useSignUp';
 import { useCreateAuthUser } from '@/hooks/firestore/useCreateAuthUser';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import {
   emailState,
   emailErrorState,
   passwordState,
   passwordErrorState,
+  confirmPasswordState,
+  confirmPasswordErrorState,
 } from '@/state/signUpState';
 
-import Input from '@components/common/Input/Input';
 import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
 import styles from './SignUp.module.scss';
 import EmailInput from '@/components/EmailInput/EmailInput';
 import PasswordInput from '@/components/PasswordInput/PasswordInput';
+import ConfirmPasswordInput from '@/components/ConfirmPasswordInput/ConfirmPasswordInput';
 
 type CheckedItemsType = { [key: string]: boolean };
 
 const SignUp = () => {
   const email = useRecoilValue(emailState);
   const password = useRecoilValue(passwordState);
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const confirmPassword = useRecoilValue(confirmPasswordState);
   const emailError = useRecoilValue(emailErrorState);
   const passwordError = useRecoilValue(passwordErrorState);
-  const [confirmPasswordError, setConfirmPasswordError] = useState<
-    string | null
-  >(null);
+  const [confirmPasswordError, setConfirmPasswordError] = useRecoilState(
+    confirmPasswordErrorState,
+  );
 
   const checkboxes = [
     { id: 'agree1', label: '만 14세 이상입니다.' },
@@ -94,18 +96,6 @@ const SignUp = () => {
 
   const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
-
-  const handleInputBlur = (inputName: string) => {
-    switch (inputName) {
-      case 'confirmPassword':
-        if (!confirmPassword.trim())
-          setConfirmPasswordError('입력한 내용이 없어요.');
-        else setConfirmPasswordError(null);
-        break;
-      default:
-        break;
-    }
-  };
 
   useEffect(() => {
     if (password && confirmPassword) {
@@ -192,15 +182,7 @@ const SignUp = () => {
         <div className={styles.inputWrapper}>
           <EmailInput />
           <PasswordInput />
-          <Input
-            type={'password'}
-            placeholderText={'비밀번호 확인'}
-            hintMessage={'영문, 숫자, 특수문자(~!@#$%^&*) 조합 8~15자리'}
-            value={confirmPassword}
-            errorMessage={confirmPasswordError}
-            onChange={e => setConfirmPassword(e.target.value)}
-            onBlur={() => handleInputBlur('confirmPassword')}
-          />
+          <ConfirmPasswordInput />
         </div>
         <div className={styles.agreeWrapper}>
           <ul className={styles.allAgree}>
