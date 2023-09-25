@@ -24,16 +24,16 @@
     background-color: #cc1030;
   }
 }
-.submit.default {
-  background-color: $gray-700;
-  color: $gray-400;
-}
 .submit.active {
   background-color: $gray-100;
   color: $black;
   &:hover {
     background-color: $white;
   }
+}
+.submit.default {
+  background-color: $gray-700;
+  color: $gray-400;
 }
 
 .button {
@@ -56,6 +56,13 @@
   }
 }
 
+.button.active {
+  background-color: $gray-100;
+  color: $black;
+  &:hover {
+    background-color: $white;
+  }
+}
 .button.default {
   color: $gray-300;
   border: 1px solid $gray-400;
@@ -63,13 +70,6 @@
   &:hover {
     color: $white;
     border: 1px solid $white;
-  }
-}
-.button.active {
-  background-color: $gray-100;
-  color: $black;
-  &:hover {
-    background-color: $white;
   }
 }
 
