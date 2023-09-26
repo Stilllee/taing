@@ -2,9 +2,10 @@ import Checkbox from '@components/common/Checkbox/Checkbox';
 import styles from './LogIn.module.scss';
 import Button from '@components/common/Button/Button';
 import Input from '@components/common/Input/Input';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSignIn } from '@/hooks/auth/useSignIn';
+import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 
 const ERROR_MESSAGES = {
   LOGIN_FAILED: '일치하는 회원정보가 없습니다',
@@ -21,7 +22,7 @@ const LogIn = () => {
   const [isChecked, setIsChecked] = useState(false);
   const { isLoading, error, user, signIn } = useSignIn();
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
+  const { navigateTo } = useCustomNavigate();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { type, value } = e.target;
@@ -49,7 +50,7 @@ const LogIn = () => {
   }, [error]);
 
   useEffect(() => {
-    if (user) navigate('/');
+    if (user) navigateTo('/');
   }, [user]);
 
   return (

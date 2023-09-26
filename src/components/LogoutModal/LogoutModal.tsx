@@ -1,5 +1,6 @@
 import { useSignOut } from '@/hooks/auth';
 import styles from './LogoutModal.module.scss';
+import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 interface ILogoutModalProps {
   closeLogout: () => void;
   closeProfileModal: () => void;
@@ -7,8 +8,10 @@ interface ILogoutModalProps {
 
 const LogoutModal = ({ closeLogout, closeProfileModal }: ILogoutModalProps) => {
   const { signOut } = useSignOut();
+  const { navigateTo } = useCustomNavigate();
   const onLogOut = () => {
     signOut();
+    navigateTo('/onboarding');
     closeLogoutModal();
   };
 
