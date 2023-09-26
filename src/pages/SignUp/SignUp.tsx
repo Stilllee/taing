@@ -23,9 +23,10 @@ import { CheckboxesGroup } from '@/components/CheckboxGroup/CheckbocGroup';
 type CheckedItemsType = { [key: string]: boolean };
 
 const SignUp = () => {
-  const email = useRecoilValue(emailState);
-  const password = useRecoilValue(passwordState);
-  const confirmPassword = useRecoilValue(confirmPasswordState);
+  const [email, setEmail] = useRecoilState(emailState);
+  const [password, setPassword] = useRecoilState(passwordState);
+  const [confirmPassword, setConfirmPassword] =
+    useRecoilState(confirmPasswordState);
   const emailError = useRecoilValue(emailErrorState);
   const passwordError = useRecoilValue(passwordErrorState);
   const [confirmPasswordError, setConfirmPasswordError] = useRecoilState(
@@ -100,7 +101,6 @@ const SignUp = () => {
 
   const { navigateTo } = useCustomNavigate();
 
-  const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
 
   useEffect(() => {
