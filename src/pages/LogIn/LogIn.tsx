@@ -24,13 +24,12 @@ const LogIn = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const { navigateTo } = useCustomNavigate();
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { type, value } = e.target;
-    if (type === 'email') {
-      setEmail(value);
-    } else if (type === 'password') {
-      setPassword(value);
-    }
+  const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    setErrorMessage('');
+  };
+  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
     setErrorMessage('');
   };
 
@@ -61,13 +60,13 @@ const LogIn = () => {
           type={'email'}
           placeholderText={'이메일'}
           value={email}
-          onChange={handleInputChange}
+          onChange={onEmailChange}
         />
         <Input
           type={'password'}
           placeholderText={'비밀번호'}
           value={password}
-          onChange={handleInputChange}
+          onChange={onPasswordChange}
           errorMessage={errorMessage && errorMessage}
         />
         <Checkbox
