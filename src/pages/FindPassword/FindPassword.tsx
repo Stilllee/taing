@@ -9,6 +9,7 @@ const FindPassword = () => {
   const [email, setEmail] = useState('');
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [hintMessage, setHintMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onFindPassword = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,17 +17,18 @@ const FindPassword = () => {
   };
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setErrorMessage('');
+    setHintMessage('');
+    setIsSubmitEnabled(newEmail.length > 0);
   };
   useEffect(() => {
     if (error?.message) {
-      setHintMessage('이메일이 존재하지 않습니다');
+      setErrorMessage('이메일이 존재하지 않습니다');
     }
   }, [error?.message]);
 
-  useEffect(() => {
-    email.length > 0 ? setIsSubmitEnabled(true) : setIsSubmitEnabled(false);
-  }, [email]);
   return (
     <main className={styles.FindPassword}>
       <h1 className={styles.title}>비밀번호 찾기</h1>
@@ -42,6 +44,7 @@ const FindPassword = () => {
           value={email}
           onChange={onInputChange}
           hintMessage={hintMessage && hintMessage}
+          errorMessage={errorMessage && errorMessage}
         />
         <Button
           type={'submit'}
