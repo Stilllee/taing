@@ -34,7 +34,7 @@ const LoginSelection = () => {
       <div className={styles.buttonBox}>
         <button
           className={styles.startTaing}
-          onClick={() => navigate('/login')}
+          onClick={() => navigateTo('/login')}
           type={'button'}
         >
           TAING으로 시작하기
