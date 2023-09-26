@@ -15,7 +15,7 @@ const LoginSelection = () => {
     signInWithGoogle();
   };
   useEffect(() => {
-    if (user) navigateTo('/');
+    if (user) navigateTo('/', true);
   }, [user]);
 
   if (isLoading) {

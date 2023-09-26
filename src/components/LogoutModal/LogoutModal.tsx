@@ -11,7 +11,7 @@ const LogoutModal = ({ closeLogout, closeProfileModal }: ILogoutModalProps) => {
   const { navigateTo } = useCustomNavigate();
   const onLogOut = () => {
     signOut();
-    navigateTo('/onboarding');
+    navigateTo('/onboarding', true);
     closeLogoutModal();
   };
 

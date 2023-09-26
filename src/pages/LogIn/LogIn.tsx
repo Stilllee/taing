@@ -49,7 +49,7 @@ const LogIn = () => {
   }, [error]);
 
   useEffect(() => {
-    if (user) navigateTo('/');
+    if (user) navigateTo('/', true);
   }, [user]);
 
   return (
