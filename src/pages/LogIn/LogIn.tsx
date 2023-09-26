@@ -18,6 +18,7 @@ const BUTTON_TITLES = {
 const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const { isLoading, error, user, signIn } = useSignIn();
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -29,8 +30,12 @@ const LogIn = () => {
     } else if (type === 'password') {
       setPassword(value);
     }
+    setErrorMessage('');
   };
 
+  const checkChange = () => {
+    setIsChecked(current => !current);
+  };
   const onLogIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signIn(email, password);
@@ -64,7 +69,12 @@ const LogIn = () => {
           onChange={handleInputChange}
           errorMessage={errorMessage && errorMessage}
         />
-        <Checkbox id={'auto'} label={'자동로그인'} />
+        <Checkbox
+          id={'auto'}
+          label={'자동로그인'}
+          checked={isChecked}
+          onChange={checkChange}
+        />
         <Button
           type={'submit'}
           title={isLoading ? BUTTON_TITLES.LOADING : BUTTON_TITLES.LOGIN}
