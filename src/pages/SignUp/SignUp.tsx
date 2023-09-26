@@ -129,7 +129,7 @@ const SignUp = () => {
         email: userCredential.user.email,
       };
       await createAuthUser(userAuth);
-      navigateTo('/login');
+      navigateTo('/login', true);
 
       setEmail('');
       setPassword('');
