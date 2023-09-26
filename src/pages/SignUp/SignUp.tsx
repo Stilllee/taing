@@ -130,6 +130,10 @@ const SignUp = () => {
       };
       await createAuthUser(userAuth);
       navigateTo('/login');
+
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
     }
   };
 
