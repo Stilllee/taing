@@ -3,9 +3,6 @@ import App from '../App.tsx';
 import Home from '@pages/Home/Home.tsx';
 import OnBoarding from '@pages/OnBoarding/OnBoarding.tsx';
 import ErrorPage from '@pages/ErrorPage/ErrorPage.tsx';
-import Live from '@pages/Live/Live.tsx';
-import Tv from '@pages/Tv/Tv.tsx';
-import Movie from '@pages/Movie/Movie.tsx';
 import SignUp from '@pages/SignUp/SignUp.tsx';
 import LogIn from '@pages/LogIn/LogIn.tsx';
 import LoginSelection from '@pages/LoginSelection/LoginSelection.tsx';
@@ -32,18 +29,6 @@ export const router = createBrowserRouter([
       {
         path: 'onboarding',
         element: <OnBoarding />,
-      },
-      {
-        path: 'live',
-        element: <Live />,
-      },
-      {
-        path: 'tv',
-        element: <Tv />,
-      },
-      {
-        path: 'movie',
-        element: <Movie />,
       },
       {
         path: 'signup',

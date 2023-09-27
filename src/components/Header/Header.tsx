@@ -50,25 +50,13 @@ const Header = () => {
         <h1 className={styles.logo}></h1>
       </a>
       <ul className={styles.nav}>
-        <li>
-          <Link className={styles.live} to={'/live'}>
-            <span className={styles.liveIcon}></span>
-            <span>실시간</span>
-          </Link>
+        <li className={styles.live}>
+          <span className={styles.liveIcon}></span>
+          <span className={styles.liveText}>실시간</span>
         </li>
-        <li>
-          <Link className={styles.tv} to={'/tv'}>
-            TV 프로그램
-          </Link>
-        </li>
-        <li>
-          <Link className={styles.movie} to={'/movie'}>
-            영화
-          </Link>
-        </li>
-        <li>
-          <Link className={styles.paramount} to={'/movie'}></Link>
-        </li>
+        <li className={styles.tv}>TV 프로그램</li>
+        <li className={styles.movie}>영화</li>
+        <li className={styles.paramount}></li>
       </ul>
       <ul className={styles.aside}>
         <li>

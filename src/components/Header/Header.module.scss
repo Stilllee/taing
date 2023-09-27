@@ -22,7 +22,7 @@ z-index: 100;
     padding: 29px 70px;
 }
 
-& a {
+& li {
     color: $gray-200;
     &:hover {
         color: white;
@@ -80,6 +80,7 @@ z-index: 100;
 display: flex;
 align-items: center;
 
+
 &:hover {
     @include tablet {
     .liveIcon {
@@ -95,10 +96,11 @@ align-items: center;
         }}
 }}
 
-
 .liveIcon {
     background-image: url($sprite-image); 
     display: inline-block;
+    margin-top: 3px;
+    margin-right: 3px;
     @include tablet {
         background-position:  -341px -801px;
     	width: 20px;
@@ -126,7 +128,7 @@ align-items: center;
 .paramount {
     display: block;
     background-image: url($sprite-image); 
-
+    margin-top: 3px;
     @include tablet {
         background-position: -294px -656px;
         width: 65px;
