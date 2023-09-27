@@ -2,9 +2,10 @@ import Checkbox from '@components/common/Checkbox/Checkbox';
 import styles from './LogIn.module.scss';
 import Button from '@components/common/Button/Button';
 import Input from '@components/common/Input/Input';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSignIn } from '@/hooks/auth/useSignIn';
+import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 
 const ERROR_MESSAGES = {
   LOGIN_FAILED: '일치하는 회원정보가 없습니다',
@@ -18,19 +19,23 @@ const BUTTON_TITLES = {
 const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const { isLoading, error, user, signIn } = useSignIn();
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
+  const { navigateTo } = useCustomNavigate();
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { type, value } = e.target;
-    if (type === 'email') {
-      setEmail(value);
-    } else if (type === 'password') {
-      setPassword(value);
-    }
+  const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    setErrorMessage('');
+  };
+  const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    setErrorMessage('');
   };
 
+  const checkChange = () => {
+    setIsChecked(current => !current);
+  };
   const onLogIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signIn(email, password);
@@ -44,7 +49,7 @@ const LogIn = () => {
   }, [error]);
 
   useEffect(() => {
-    if (user) navigate('/');
+    if (user) navigateTo('/', true);
   }, [user]);
 
   return (
@@ -55,16 +60,21 @@ const LogIn = () => {
           type={'email'}
           placeholderText={'이메일'}
           value={email}
-          onChange={handleInputChange}
+          onChange={onEmailChange}
         />
         <Input
           type={'password'}
           placeholderText={'비밀번호'}
           value={password}
-          onChange={handleInputChange}
+          onChange={onPasswordChange}
           errorMessage={errorMessage && errorMessage}
         />
-        <Checkbox id={'auto'} label={'자동로그인'} />
+        <Checkbox
+          id={'auto'}
+          label={'자동로그인'}
+          checked={isChecked}
+          onChange={checkChange}
+        />
         <Button
           type={'submit'}
           title={isLoading ? BUTTON_TITLES.LOADING : BUTTON_TITLES.LOGIN}

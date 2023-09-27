@@ -1,20 +1,21 @@
 import Loader from '@/components/Loader/Loader';
 import useFilterData from '../../hooks/useFilterData';
 import styles from './LoginSelection.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSignInWithGoogle } from '@/hooks/auth';
 import { useEffect } from 'react';
+import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 
 const LoginSelection = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
   const { signInWithGoogle, user } = useSignInWithGoogle();
-  const navigate = useNavigate();
+  const { navigateTo } = useCustomNavigate();
 
   const logInWithGoogle = () => {
     signInWithGoogle();
   };
   useEffect(() => {
-    if (user) navigate('/');
+    if (user) navigateTo('/', true);
   }, [user]);
 
   if (isLoading) {
@@ -33,7 +34,7 @@ const LoginSelection = () => {
       <div className={styles.buttonBox}>
         <button
           className={styles.startTaing}
-          onClick={() => navigate('/login')}
+          onClick={() => navigateTo('/login')}
           type={'button'}
         >
           TAING으로 시작하기
