@@ -116,6 +116,10 @@ const SignUp = () => {
   useEffect(() => {
     if (error) {
       alert(error.message);
+      navigateTo('/login');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
     }
   }, [error]);
 
