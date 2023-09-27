@@ -2,7 +2,6 @@ import { useLocation } from 'react-router';
 import styles from './Header.module.scss';
 import { useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import ProfileModal from '@components/ProfileModal/ProfileModal';
 import SearchModal from '../SearchModal/SearchModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
@@ -10,6 +9,16 @@ const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
+  const isOnboarding = ['/onboarding'].includes(pathname);
+  const isAuthPage = [
+    '/profile',
+    '/profile-edit',
+    '/login-selection',
+    '/find-id',
+    '/find-password',
+    '/login',
+    '/signup',
+  ].includes(pathname);
   const backgroundColor = useTransform(
     scrollY,
     [0, 80],
@@ -17,6 +26,15 @@ const Header = () => {
   );
   const [openSearchModal, setOpenSerchModal] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+
+  const headerClassNames = [
+    styles.header,
+    isOnboarding && styles.simple,
+    isAuthPage && styles.auth,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   const onOpenSearchModal = () => {
     lockScroll();
     setOpenSerchModal(true);
@@ -29,23 +47,7 @@ const Header = () => {
     setOpenProfile(prevOpenProfile => !prevOpenProfile);
   };
   return (
-    <motion.div
-      style={{ backgroundColor }}
-      className={`${styles.header} ${
-        [
-          '/onboarding',
-          '/login-selection',
-          '/find-id',
-          '/find-password',
-          '/login',
-          '/signup',
-          '/profile',
-          '/profile-edit',
-        ].includes(pathname)
-          ? styles.simple
-          : ' '
-      }`}
-    >
+    <motion.div style={{ backgroundColor }} className={headerClassNames}>
       <a href="/">
         <h1 className={styles.logo}></h1>
       </a>

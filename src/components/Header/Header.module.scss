@@ -259,7 +259,13 @@ align-items: center;
 
 
 .simple>.aside,
-.simple>.nav {
+.simple>.nav,
+.auth>.aside,
+.auth>.nav  {
     display: none;
     
+}
+
+.auth {
+    position: absolute;
 }
