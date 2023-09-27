@@ -44,7 +44,14 @@ export function useSignUp(
         setUser(userCredentials);
         return userCredentials;
       } catch (error) {
-        setError(error as AuthError);
+        const firebaseError = error as AuthError;
+
+        // 에러 코드가 'auth/email-already-in-use'일 경우, setError로 메세지 설정
+        if (firebaseError.code === 'auth/email-already-in-use') {
+          setError(new Error('이미 가입된 이메일 주소입니다.'));
+        } else {
+          setError(firebaseError); // Firebase에서 제공하는 다른 에러 설정
+        }
       } finally {
         setIsLoading(false);
       }

@@ -13,19 +13,20 @@ import {
   confirmPasswordErrorState,
 } from '@/state/signUpState';
 
-import Checkbox from '@components/common/Checkbox/Checkbox';
 import Button from '@components/common/Button/Button';
 import styles from './SignUp.module.scss';
 import EmailInput from '@/components/EmailInput/EmailInput';
 import PasswordInput from '@/components/PasswordInput/PasswordInput';
 import ConfirmPasswordInput from '@/components/ConfirmPasswordInput/ConfirmPasswordInput';
+import { CheckboxesGroup } from '@/components/CheckboxGroup/CheckbocGroup';
 
 type CheckedItemsType = { [key: string]: boolean };
 
 const SignUp = () => {
-  const email = useRecoilValue(emailState);
-  const password = useRecoilValue(passwordState);
-  const confirmPassword = useRecoilValue(confirmPasswordState);
+  const [email, setEmail] = useRecoilState(emailState);
+  const [password, setPassword] = useRecoilState(passwordState);
+  const [confirmPassword, setConfirmPassword] =
+    useRecoilState(confirmPasswordState);
   const emailError = useRecoilValue(emailErrorState);
   const passwordError = useRecoilValue(passwordErrorState);
   const [confirmPasswordError, setConfirmPasswordError] = useRecoilState(
@@ -66,6 +67,12 @@ const SignUp = () => {
     },
   ];
 
+  const handleCheckedItemsChange = (updatedCheckedItems: CheckedItemsType) => {
+    setCheckedItems(updatedCheckedItems);
+  };
+
+  const { signUp: registerUser, error } = useSignUp(true);
+
   // 체크박스 초기 상태 설정
   const initialChecks = checkboxes.reduce((acc: CheckedItemsType, chk) => {
     acc[chk.id] = false;
@@ -94,7 +101,6 @@ const SignUp = () => {
 
   const { navigateTo } = useCustomNavigate();
 
-  const { signUp } = useSignUp(true);
   const { createAuthUser } = useCreateAuthUser();
 
   useEffect(() => {
@@ -107,70 +113,29 @@ const SignUp = () => {
     }
   }, [password, confirmPassword]);
 
+  useEffect(() => {
+    if (error) {
+      alert(error.message);
+    }
+  }, [error]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      console.log('회원가입 실패: 비밀번호 불일치');
-      return;
-    }
-
-    const userCredential = await signUp(email, password);
+    const userCredential = await registerUser(email, password);
     if (userCredential && userCredential.user && userCredential.user.email) {
       const userAuth = {
         uid: userCredential.user.uid,
         email: userCredential.user.email,
       };
       await createAuthUser(userAuth);
-      navigateTo('/login');
+      navigateTo('/login', true);
+
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
     }
   };
-
-  // '모두 동의합니다' 체크박스를 토글할 때의 핸들러
-  const handleAllCheckToggle = () => {
-    const shouldCheckAll = !checkboxes.every(chk => checkedItems[chk.id]);
-    const newCheckedItems: CheckedItemsType = {};
-
-    checkboxes.forEach(chk => {
-      newCheckedItems[chk.id] = shouldCheckAll;
-    });
-
-    setCheckedItems(newCheckedItems);
-  };
-
-  // 개별 체크박스를 토글할 때의 핸들러
-  const handleCheckboxChange = (id: string) => {
-    const newCheckedItems: CheckedItemsType = {
-      ...checkedItems,
-      [id]: !checkedItems[id],
-    };
-    // [선택] 개인정보 수집 및 서비스 활용 동의가 체크될 때
-    if (id === 'agree6' && !checkedItems[id]) {
-      newCheckedItems['subAgree1'] = true;
-      newCheckedItems['subAgree2'] = true;
-    } else if (id === 'agree6' && checkedItems[id]) {
-      // 해제될 때
-      newCheckedItems['subAgree1'] = false;
-      newCheckedItems['subAgree2'] = false;
-    }
-
-    // [선택] 마케팅 정보 SMS 수신동의나 [선택] 마케팅 정보 이메일 수신동의 중 하나라도 해제되면
-    if ((id === 'subAgree1' || id === 'subAgree2') && checkedItems[id]) {
-      newCheckedItems['agree6'] = false;
-    } else if (
-      (id === 'subAgree1' || id === 'subAgree2') &&
-      !checkedItems[id]
-    ) {
-      // 둘 다 체크되어있는 상태에서 하나가 체크될 때
-      if (newCheckedItems['subAgree1'] && newCheckedItems['subAgree2']) {
-        newCheckedItems['agree6'] = true;
-      }
-    }
-    setCheckedItems(newCheckedItems);
-  };
-
-  // 모든 체크박스가 체크되었는지 확인
-  const isAllChecked = checkboxes.every(chk => checkedItems[chk.id]);
 
   return (
     <main className={styles.SignUp}>
@@ -184,28 +149,10 @@ const SignUp = () => {
           <PasswordInput />
           <ConfirmPasswordInput />
         </div>
-        <div className={styles.agreeWrapper}>
-          <ul className={styles.allAgree}>
-            <Checkbox
-              id={'allAgree'}
-              label={'모두 동의합니다.'}
-              checked={isAllChecked}
-              onChange={handleAllCheckToggle}
-            />
-          </ul>
-          <ul className={styles.agreeBox}>
-            {checkboxes.map(chk => (
-              <Checkbox
-                key={chk.id}
-                id={chk.id}
-                label={chk.label}
-                additionalClass={chk.additionalClass}
-                checked={checkedItems[chk.id] || false}
-                onChange={() => handleCheckboxChange(chk.id)}
-              />
-            ))}
-          </ul>
-        </div>
+        <CheckboxesGroup
+          checkboxes={checkboxes}
+          onChange={handleCheckedItemsChange}
+        />
         <Button
           type={'submit'}
           state={'login'}
