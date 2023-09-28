@@ -55,7 +55,11 @@ const Footer = () => {
           <div className={styles.copyrightBox}>
             <p>
               <span>대표이사 : 최주희</span>
-              <a href="#">
+              <a
+                href="#"
+                onClick={e => e.preventDefault()}
+                aria-label="실제로 이동하지 않는 더미 링크"
+              >
                 <span>사업자정보확인</span>
               </a>
               <span>사업자등록번호 : 188-88-01893</span>
@@ -69,13 +73,25 @@ const Footer = () => {
               <span>호스팅사업자 : 씨제이올리브네트웍스(주)</span>
             </p>
             <p>
-              <a href="#">
+              <a
+                href="#"
+                onClick={e => e.preventDefault()}
+                aria-label="실제로 이동하지 않는 더미 링크"
+              >
                 <span>고객문의 바로가기</span>
               </a>
-              <a href="#">
+              <a
+                href="#"
+                onClick={e => e.preventDefault()}
+                aria-label="실제로 이동하지 않는 더미 링크"
+              >
                 <span>대표메일 : tving@cj.net</span>
               </a>
-              <a href="#">
+              <a
+                href="#"
+                onClick={e => e.preventDefault()}
+                aria-label="실제로 이동하지 않는 더미 링크"
+              >
                 <span>
                   고객센터 : 1670-1525 (평일/주말 09시~18시, 공휴일 휴무)
                 </span>
