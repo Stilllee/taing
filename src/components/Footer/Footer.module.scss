@@ -1,8 +1,14 @@
-.footer {
+.Footer {
   color: $gray-500;
   @include paragraph-small;
   @include desktop {
     @include paragraph-large;
+  }
+  & a {
+    color: $gray-200;
+    &:hover {
+      color: $white;
+    }
   }
 }
 
@@ -64,6 +70,7 @@
     @include desktop {
       margin-right: 60px;
     }
+
     &::after {
       content: '|';
       position: absolute;

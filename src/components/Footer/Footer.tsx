@@ -1,15 +1,38 @@
 import { useLocation } from 'react-router';
 import styles from './Footer.module.scss';
+import { Link } from 'react-router-dom';
 
 const FooterInfo = () => (
   <div className={styles.info}>
     <div className={styles.notice}>
       <span className={styles.title}>공지사항</span>
-      <p className={styles.message}>[안내] 합병보고 주주총회에 갈음하는 공고</p>
+      <Link
+        to={'/#'}
+        aria-label="실제로 이동하지 않는 더미 링크"
+        className={styles.message}
+      >
+        [안내] 합병보고 주주총회에 갈음하는 공고
+      </Link>
     </div>
     <div className={styles.brandLink}>
-      <div>브랜드 바로가기 +</div>
-      <div>그룹 계열사 바로가기 +</div>
+      <div>
+        <a
+          href="/#"
+          onClick={e => e.preventDefault()}
+          aria-label="실제로 이동하지 않는 더미 링크"
+        >
+          브랜드 바로가기 +
+        </a>
+      </div>
+      <div>
+        <a
+          href="/#"
+          onClick={e => e.preventDefault()}
+          aria-label="실제로 이동하지 않는 더미 링크"
+        >
+          그룹 계열사 바로가기 +
+        </a>
+      </div>
     </div>
   </div>
 );
@@ -27,7 +50,11 @@ const FooterList = () => {
   return (
     <ul className={styles.list}>
       {listItems.map(item => (
-        <li key={item}>{item}</li>
+        <li key={item}>
+          <Link to="/#" aria-label="실제로 이동하지 않는 더미 링크">
+            {item}
+          </Link>
+        </li>
       ))}
     </ul>
   );
@@ -45,7 +72,7 @@ const Footer = () => {
   ].includes(location.pathname);
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.Footer}>
       <div className={styles.wrapper}>
         {!hideInfo && <FooterInfo />}
         <nav>
