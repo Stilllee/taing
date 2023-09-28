@@ -75,6 +75,9 @@
     top: 29px;
     @include label-large;
   }
+  & a {
+    cursor: not-allowed;
+  }
 }
 .live {
   display: flex;

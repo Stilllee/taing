@@ -8,6 +8,7 @@
     color: $gray-200;
     &:hover {
       color: $white;
+      cursor: not-allowed;
     }
   }
 }
@@ -70,7 +71,6 @@
     @include desktop {
       margin-right: 60px;
     }
-
     &::after {
       content: '|';
       position: absolute;
@@ -146,6 +146,9 @@
   @include desktop {
     gap: 20px;
     margin: 24px 0;
+  }
+  & > a {
+    cursor: pointer !important;
   }
 }
 

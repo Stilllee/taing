@@ -1,37 +1,19 @@
 import { useLocation } from 'react-router';
 import styles from './Footer.module.scss';
-import { Link } from 'react-router-dom';
+import DummyLink from '../common/DummyLink/DummyLink';
 
 const FooterInfo = () => (
   <div className={styles.info}>
     <div className={styles.notice}>
       <span className={styles.title}>공지사항</span>
-      <Link
-        to={'/#'}
-        aria-label="실제로 이동하지 않는 더미 링크"
-        className={styles.message}
-      >
-        [안내] 합병보고 주주총회에 갈음하는 공고
-      </Link>
+      <DummyLink>[안내] 합병보고 주주총회에 갈음하는 공고</DummyLink>
     </div>
     <div className={styles.brandLink}>
       <div>
-        <a
-          href="/#"
-          onClick={e => e.preventDefault()}
-          aria-label="실제로 이동하지 않는 더미 링크"
-        >
-          브랜드 바로가기 +
-        </a>
+        <DummyLink>브랜드 바로가기 +</DummyLink>
       </div>
       <div>
-        <a
-          href="/#"
-          onClick={e => e.preventDefault()}
-          aria-label="실제로 이동하지 않는 더미 링크"
-        >
-          그룹 계열사 바로가기 +
-        </a>
+        <DummyLink>그룹 계열사 바로가기 +</DummyLink>
       </div>
     </div>
   </div>
@@ -51,9 +33,7 @@ const FooterList = () => {
     <ul className={styles.list}>
       {listItems.map(item => (
         <li key={item}>
-          <Link to="/#" aria-label="실제로 이동하지 않는 더미 링크">
-            {item}
-          </Link>
+          <DummyLink>{item}</DummyLink>
         </li>
       ))}
     </ul>
@@ -82,13 +62,9 @@ const Footer = () => {
           <div className={styles.copyrightBox}>
             <p>
               <span>대표이사 : 최주희</span>
-              <a
-                href="#"
-                onClick={e => e.preventDefault()}
-                aria-label="실제로 이동하지 않는 더미 링크"
-              >
+              <DummyLink>
                 <span>사업자정보확인</span>
-              </a>
+              </DummyLink>
               <span>사업자등록번호 : 188-88-01893</span>
               <span>통신판매신고번호 : 2020-서울마포-3641호</span>
             </p>
@@ -100,29 +76,17 @@ const Footer = () => {
               <span>호스팅사업자 : 씨제이올리브네트웍스(주)</span>
             </p>
             <p>
-              <a
-                href="#"
-                onClick={e => e.preventDefault()}
-                aria-label="실제로 이동하지 않는 더미 링크"
-              >
+              <DummyLink>
                 <span>고객문의 바로가기</span>
-              </a>
-              <a
-                href="#"
-                onClick={e => e.preventDefault()}
-                aria-label="실제로 이동하지 않는 더미 링크"
-              >
+              </DummyLink>
+              <DummyLink>
                 <span>대표메일 : tving@cj.net</span>
-              </a>
-              <a
-                href="#"
-                onClick={e => e.preventDefault()}
-                aria-label="실제로 이동하지 않는 더미 링크"
-              >
+              </DummyLink>
+              <DummyLink>
                 <span>
                   고객센터 : 1670-1525 (평일/주말 09시~18시, 공휴일 휴무)
                 </span>
-              </a>
+              </DummyLink>
             </p>
             <p>
               <span>
