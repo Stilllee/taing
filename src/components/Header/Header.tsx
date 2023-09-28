@@ -5,6 +5,7 @@ import { useScroll, motion, useTransform } from 'framer-motion';
 import ProfileModal from '@components/ProfileModal/ProfileModal';
 import SearchModal from '../SearchModal/SearchModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { Link } from 'react-router-dom';
 const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
   const { scrollY } = useScroll();
@@ -52,13 +53,41 @@ const Header = () => {
         <h1 className={styles.logo}></h1>
       </a>
       <ul className={styles.nav}>
-        <li className={styles.live}>
-          <span className={styles.liveIcon}></span>
-          <span className={styles.liveText}>실시간</span>
+        <li>
+          <Link
+            className={styles.live}
+            to={'/#'}
+            aria-label="실제로 이동하지 않는 더미 링크"
+          >
+            <span className={styles.liveIcon}></span>
+            <span>실시간</span>
+          </Link>
         </li>
-        <li className={styles.tv}>TV 프로그램</li>
-        <li className={styles.movie}>영화</li>
-        <li className={styles.paramount}></li>
+        <li>
+          <Link
+            className={styles.tv}
+            to={'/#'}
+            aria-label="실제로 이동하지 않는 더미 링크"
+          >
+            TV 프로그램
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={styles.movie}
+            to={'/#'}
+            aria-label="실제로 이동하지 않는 더미 링크"
+          >
+            영화
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={styles.paramount}
+            to={'/#'}
+            aria-label="실제로 이동하지 않는 더미 링크"
+          ></Link>
+        </li>
       </ul>
       <ul className={styles.aside}>
         <li>
