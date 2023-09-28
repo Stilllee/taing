@@ -5,6 +5,8 @@ import { useScroll, motion, useTransform } from 'framer-motion';
 import ProfileModal from '@components/ProfileModal/ProfileModal';
 import SearchModal from '../SearchModal/SearchModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
+import { Link } from 'react-router-dom';
+import DummyLink from '../common/DummyLink/DummyLink';
 const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
   const { scrollY } = useScroll();
@@ -52,13 +54,21 @@ const Header = () => {
         <h1 className={styles.logo}></h1>
       </a>
       <ul className={styles.nav}>
-        <li className={styles.live}>
-          <span className={styles.liveIcon}></span>
-          <span className={styles.liveText}>실시간</span>
+        <li>
+          <DummyLink className={styles.live}>
+            <span className={styles.liveIcon}></span>
+            <span>실시간</span>
+          </DummyLink>
         </li>
-        <li className={styles.tv}>TV 프로그램</li>
-        <li className={styles.movie}>영화</li>
-        <li className={styles.paramount}></li>
+        <li>
+          <DummyLink className={styles.tv}>TV 프로그램</DummyLink>
+        </li>
+        <li>
+          <DummyLink className={styles.movie}>영화</DummyLink>
+        </li>
+        <li>
+          <DummyLink className={styles.paramount}></DummyLink>
+        </li>
       </ul>
       <ul className={styles.aside}>
         <li>

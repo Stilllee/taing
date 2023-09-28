@@ -1,8 +1,15 @@
-.footer {
+.Footer {
   color: $gray-500;
   @include paragraph-small;
   @include desktop {
     @include paragraph-large;
+  }
+  & a {
+    color: $gray-200;
+    &:hover {
+      color: $white;
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -139,6 +146,9 @@
   @include desktop {
     gap: 20px;
     margin: 24px 0;
+  }
+  & > a {
+    cursor: pointer !important;
   }
 }
 

@@ -1,271 +1,274 @@
 .header {
-position: fixed;
-top: 0;
-left: 0;
-right:0;
-width: 100%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) , rgba(0,0,0,0) );
-z-index: 100;
-@include mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  z-index: 100;
+  @include mobile {
     height: 38px;
     padding: 10px 16px;
-}
-@include tablet {
+  }
+  @include tablet {
     height: 56px;
     padding: 14px 40px;
-}
-@include desktop {
+  }
+  @include desktop {
     height: 100px;
     padding: 29px 70px;
-}
+  }
 
-& li {
+  & a {
     color: $gray-200;
     &:hover {
-        color: white;
+      color: white;
     }
-}
+  }
 }
 
 .logo {
-    margin-top: 3px;
-    background-image: url($sprite-image); 
-    background-position-x: -1002px;
-    @include mobile {
-        background-position-y: -231px;
-        width: 46px;
-        height: 13px;
-    }
-    @include tablet {
-        background-position-y: -267px;
-        width: 75px;
-        height: 20px;
-    }
-    @include desktop {
-        background-position-y: -313px;
-        width: 132px;
-        height: 34px;
-    }
+  margin-top: 3px;
+  background-image: url($sprite-image);
+  background-position-x: -1002px;
+  @include mobile {
+    background-position-y: -231px;
+    width: 46px;
+    height: 13px;
+  }
+  @include tablet {
+    background-position-y: -267px;
+    width: 75px;
+    height: 20px;
+  }
+  @include desktop {
+    background-position-y: -313px;
+    width: 132px;
+    height: 34px;
+  }
 }
 
 .nav {
-    position: absolute;
-    @include mobile {
-       display: none;
-    }
-    @include tablet {
-        width: 283px;
-        height: 30px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        left: 145px;
-        top: 10px;
-        @include label-small;
-    }
+  position: absolute;
+  @include mobile {
+    display: none;
+  }
+  @include tablet {
+    width: 283px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    left: 145px;
+    top: 10px;
+    @include label-small;
+  }
 
-    @include desktop {
-        width: 506px;
-        height: 34px;
-        left: 254px;
-        top: 29px;
-        @include label-large;
-    }
+  @include desktop {
+    width: 506px;
+    height: 34px;
+    left: 254px;
+    top: 29px;
+    @include label-large;
+  }
+  & a {
+    cursor: not-allowed;
+  }
 }
-.live{
-display: flex;
-align-items: center;
+.live {
+  display: flex;
+  align-items: center;
 
-
-&:hover {
+  &:hover {
     @include tablet {
-    .liveIcon {
+      .liveIcon {
         background: url('../../assets/images/sprite_image.png') no-repeat -381px -801px;
         width: 20px;
-        height: 17px;  
-    }}
-    @include  desktop {
-        .liveIcon {
-            background: url('../../assets/images/sprite_image.png') no-repeat -394px -840px;
-            width: 34px;
-            height: 27px;
-        }}
-}}
-
-.liveIcon {
-    background-image: url($sprite-image); 
-    display: inline-block;
-    margin-top: 3px;
-    margin-right: 3px;
-    @include tablet {
-        background-position:  -341px -801px;
-    	width: 20px;
-	    height: 17px;
+        height: 17px;
+      }
     }
     @include desktop {
-        background-position: -340px -840px;
+      .liveIcon {
+        background: url('../../assets/images/sprite_image.png') no-repeat -394px -840px;
         width: 34px;
         height: 27px;
+      }
     }
+  }
 }
-.live>span{
-    padding-top: 5px;
-    @include tablet {
+
+.liveIcon {
+  background-image: url($sprite-image);
+  display: inline-block;
+  margin-top: 3px;
+  margin-right: 3px;
+  @include tablet {
+    background-position: -341px -801px;
+    width: 20px;
+    height: 17px;
+  }
+  @include desktop {
+    background-position: -340px -840px;
+    width: 34px;
+    height: 27px;
+  }
+}
+.live > span {
+  padding-top: 5px;
+  @include tablet {
     padding-left: 4px;
-    }
-    @include desktop {
-        padding-left: 10px;
-            }
+  }
+  @include desktop {
+    padding-left: 10px;
+  }
 }
-.tv,.movie {
-    display: block;
-    margin-top: 5px;
+.tv,
+.movie {
+  display: block;
+  margin-top: 5px;
 }
 .paramount {
-    display: block;
-    background-image: url($sprite-image); 
-    margin-top: 3px;
-    @include tablet {
-        background-position: -294px -656px;
-        width: 65px;
-        height: 16px;
-        &:hover  {
-            background-position: -379px -656px;
-            width: 65px;
-            height: 16px;
-        }
+  display: block;
+  background-image: url($sprite-image);
+  margin-top: 3px;
+  @include tablet {
+    background-position: -294px -656px;
+    width: 65px;
+    height: 16px;
+    &:hover {
+      background-position: -379px -656px;
+      width: 65px;
+      height: 16px;
     }
-    @include desktop {
-        background-position: -295px -694px;
-        width: 111px;
-        height: 26px;
-        &:hover  {
-            background-position:  -427px -694px;
-            width: 111px;
-            height: 26px;
-        }
+  }
+  @include desktop {
+    background-position: -295px -694px;
+    width: 111px;
+    height: 26px;
+    &:hover {
+      background-position: -427px -694px;
+      width: 111px;
+      height: 26px;
     }
+  }
 }
 
 .aside {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
 
-    @include mobile {
-        height: 18px;
-        width: 56px;
-    }
-    @include tablet {
-        height: 24px;
-        width: 72px;
-    }
-    @include desktop {
-        height: 40px;
-        width: 120px;
-    }
-
+  @include mobile {
+    height: 18px;
+    width: 56px;
+  }
+  @include tablet {
+    height: 24px;
+    width: 72px;
+  }
+  @include desktop {
+    height: 40px;
+    width: 120px;
+  }
 }
 
-.search{
-    background-image: url($sprite-image); 
-    @include mobile {
-        background-position: -1204px -42px;
-        width: 14px;
-        height: 15px;
-        &:hover {
-            background-position:-1242px -42px;
-            width: 14px;
-            height: 15px;
-        }
+.search {
+  background-image: url($sprite-image);
+  @include mobile {
+    background-position: -1204px -42px;
+    width: 14px;
+    height: 15px;
+    &:hover {
+      background-position: -1242px -42px;
+      width: 14px;
+      height: 15px;
     }
-    @include tablet {
-        background-position: -1205px -81px;
-        width: 18px;
-        height: 19px;
-        &:hover {
-            background-position: -1249px -81px;
-            width: 18px;
-            height: 19px;
-        }
+  }
+  @include tablet {
+    background-position: -1205px -81px;
+    width: 18px;
+    height: 19px;
+    &:hover {
+      background-position: -1249px -81px;
+      width: 18px;
+      height: 19px;
     }
-    @include desktop {
-        background-position:-1208px -128px;
-        width: 29px;
-        height: 30px;
-        &:hover {
-            background-position: -1268px -128px;
-            width: 29px;
-            height: 30px;
-        }
+  }
+  @include desktop {
+    background-position: -1208px -128px;
+    width: 29px;
+    height: 30px;
+    &:hover {
+      background-position: -1268px -128px;
+      width: 29px;
+      height: 30px;
     }
+  }
 }
 .close {
-    background-image: url($sprite-image); 
-    @include mobile {
-        background-position:-845px -498px;
-        width: 10px;
-        height: 10px;
-        &:hover {
-            background-position: -900px -498px;
-            width: 10px;
-            height: 10px;
-        }
+  background-image: url($sprite-image);
+  @include mobile {
+    background-position: -845px -498px;
+    width: 10px;
+    height: 10px;
+    &:hover {
+      background-position: -900px -498px;
+      width: 10px;
+      height: 10px;
     }
-    @include tablet {
-        background-position: -843px -540px;
-        width: 14px;
-        height: 14px;
-        &:hover {
-            background-position: -898px -540px;
-            width: 14px;
-            height: 14px;
-        }
+  }
+  @include tablet {
+    background-position: -843px -540px;
+    width: 14px;
+    height: 14px;
+    &:hover {
+      background-position: -898px -540px;
+      width: 14px;
+      height: 14px;
     }
-    @include desktop {
-        background-position: -838px -582px;
-        width: 24px;
-        height: 24px;
-        &:hover {
-            background-position: -893px -582px;
-            width: 24px;
-            height: 24px;
-        }
+  }
+  @include desktop {
+    background-position: -838px -582px;
+    width: 24px;
+    height: 24px;
+    &:hover {
+      background-position: -893px -582px;
+      width: 24px;
+      height: 24px;
     }
+  }
 }
-.profile{
-    background-image: url($sprite-image); 
-    @include mobile {
-        background-position:  -1362px -864px;
-        width: 18px;
-        height: 18px;
-    }
-    @include tablet {
-        background-position: -1362px -902px;
-        width: 24px;
-        height: 24px;
-    }
-    @include desktop {
-        background-position: -1362px -946px;
-        width: 40px;
-        height: 40px;
-    }
+.profile {
+  background-image: url($sprite-image);
+  @include mobile {
+    background-position: -1362px -864px;
+    width: 18px;
+    height: 18px;
+  }
+  @include tablet {
+    background-position: -1362px -902px;
+    width: 24px;
+    height: 24px;
+  }
+  @include desktop {
+    background-position: -1362px -946px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
-
-.simple>.aside,
-.simple>.nav,
-.auth>.aside,
-.auth>.nav  {
-    display: none;
-    
+.simple > .aside,
+.simple > .nav,
+.auth > .aside,
+.auth > .nav {
+  display: none;
 }
 
 .auth {
-    position: absolute;
+  position: absolute;
 }
