@@ -102,24 +102,28 @@ const Footer = () => {
             href="https://www.youtube.com/c/TVING_official"
             target="_blank"
             rel="noreferrer"
+            aria-label="TVING 공식 유튜브 채널로 이동"
           ></a>
           <a
             className={`${styles.instagram} ${styles.sns}`}
             href="https://www.instagram.com/tving.official/"
             target="_blank"
             rel="noreferrer"
+            aria-label="TVING 공식 인스타그램 채널로 이동"
           ></a>
           <a
             className={`${styles.twitter} ${styles.sns}`}
             href="https://twitter.com/tvingdotcom"
             target="_blank"
             rel="noreferrer"
+            aria-label="TVING 공식 트위터 채널로 이동"
           ></a>
           <a
             className={`${styles.facebook} ${styles.sns}`}
             href="https://www.facebook.com/CJTVING/"
             target="_blank"
             rel="noreferrer"
+            aria-label="TVING 공식 페이스북 채널로 이동"
           ></a>
         </section>
         <small>Copyright &copy; 주식회사 티빙 All right reserved.</small>
