@@ -1,0 +1,96 @@
+.ErrorPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @include mobile {
+    padding: 38px 16px 0;
+    padding-top: 38px;
+  }
+  @include tablet {
+    padding: 56px 40px 0;
+  }
+  @include desktop {
+    padding: 100px 68px 0;
+    padding-top: 100px;
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  @include tablet {
+    margin-top: 40px;
+  }
+  @include desktop {
+    margin-top: 70px;
+  }
+  & > img {
+    width: 35px;
+    @include tablet {
+      width: 75px;
+    }
+    @include desktop {
+      width: 150px;
+    }
+  }
+}
+
+.textWrapper {
+  text-align: center;
+  margin: 16px 0;
+  @include tablet {
+    margin: 24px 0;
+  }
+  @include desktop {
+    margin: 56px 0;
+  }
+  & > h1 {
+    @include heading-medium;
+    margin-bottom: 5px;
+    @include tablet {
+      @include heading-xl;
+      margin-bottom: 10px;
+    }
+    @include desktop {
+      @include heading-xxl;
+      margin-bottom: 18px;
+    }
+  }
+  & p {
+    color: $gray-200;
+    @include mobile {
+      @include paragraph-small;
+    }
+    @include tablet {
+      @include paragraph-large;
+    }
+    @include desktop {
+      @include paragraph-xl;
+    }
+  }
+}
+
+.homeButton {
+  width: 100%;
+  background-color: $white;
+  border-radius: 3px;
+  @include mobile {
+    height: 42px;
+    // width: 288px;
+    @include label-small;
+  }
+  @include tablet {
+    height: 50px;
+    // width: 416px;
+    @include label-medium;
+  }
+  @include desktop {
+    height: 86px;
+    // width: 732px;
+    @include label-xl;
+  }
+}
