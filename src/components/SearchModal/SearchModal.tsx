@@ -1,5 +1,7 @@
 import { currentTimes } from '@/utils/currentTimes';
 import styles from './SearchModal.module.scss';
+import { useReadData } from '@/hooks/useReadData';
+import { useState } from 'react';
 
 const SearchModal = () => {
   const popularSearches = [
@@ -15,13 +17,40 @@ const SearchModal = () => {
     '술꾼도시여자들',
   ];
 
+  const { data, readData } = useReadData('images');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchedImg, setSearchedImg] = useState('');
+
+  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    setSearchTerm(inputValue);
+
+    await readData();
+
+    const matchedData = data.find(d => d.name?.includes(inputValue));
+
+    if (matchedData) {
+      if (matchedData.main?.must) {
+        setSearchedImg(matchedData.main?.must);
+      } else if (matchedData.main?.popular) {
+        setSearchedImg(matchedData.main?.popular);
+      } else if (matchedData.main?.only) {
+        setSearchedImg(matchedData.main?.only);
+      }
+    }
+  };
+
   return (
     <>
       <div className={styles.searchModal}>
         <form className={styles.search}>
-          <input placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요" />
+          <input
+            onChange={handleInputChange}
+            placeholder="TV프로그램, 영화 제목으로 검색해보세요"
+          />
           <button className={styles.searchIcon} />
         </form>
+        {searchedImg && <img src={searchedImg} alt="검색 결과 이미지" />}
         <div className={styles.searchList}>
           <div className={styles.recentSearches}>
             <h2>최근 검색어</h2>
