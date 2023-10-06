@@ -25,6 +25,11 @@ const SearchModal = () => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
 
+    if (inputValue === '') {
+      setSearchedImg('');
+      return;
+    }
+
     await readData();
 
     const matchedData = data.find(d => d.name?.includes(inputValue));
@@ -50,27 +55,36 @@ const SearchModal = () => {
           />
           <button className={styles.searchIcon} />
         </form>
-        {searchedImg && <img src={searchedImg} alt="검색 결과 이미지" />}
-        <div className={styles.searchList}>
-          <div className={styles.recentSearches}>
-            <h2>최근 검색어</h2>
-            <ul>
-              <li>검색 내역이 없습니다.</li>
-            </ul>
+        {searchedImg ? (
+          <img
+            className={styles.searchImg}
+            src={searchedImg}
+            alt="검색 결과 이미지"
+          />
+        ) : (
+          <div className={styles.searchList}>
+            <div className={styles.recentSearches}>
+              <h2>최근 검색어</h2>
+              <ul>
+                <li>검색 내역이 없습니다.</li>
+              </ul>
+            </div>
+            <div className={styles.popularList}>
+              <h2>실시간 인기 검색어</h2>
+              <ul>
+                {popularSearches.map((search, index) => (
+                  <li key={index}>
+                    <span>{index + 1}</span>
+                    {search}
+                  </li>
+                ))}
+              </ul>
+              <div
+                className={styles.currentTime}
+              >{`${currentTimes()} 기준`}</div>
+            </div>
           </div>
-          <div className={styles.popularList}>
-            <h2>실시간 인기 검색어</h2>
-            <ul>
-              {popularSearches.map((search, index) => (
-                <li key={index}>
-                  <span>{index + 1}</span>
-                  {search}
-                </li>
-              ))}
-            </ul>
-            <div className={styles.currentTime}>{`${currentTimes()} 기준`}</div>
-          </div>
-        </div>
+        )}
       </div>
       <div className={styles.overlay} />
     </>
