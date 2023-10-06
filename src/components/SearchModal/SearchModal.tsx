@@ -19,30 +19,33 @@ const SearchModal = () => {
 
   const { data, readData } = useReadData('images');
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchedImg, setSearchedImg] = useState('');
+  const [searchedImgs, setSearchedImgs] = useState<(string | undefined)[]>([]);
 
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
 
     if (inputValue === '') {
-      setSearchedImg('');
+      setSearchedImgs([]);
       return;
     }
 
     await readData();
 
-    const matchedData = data.find(d => d.name?.includes(inputValue));
+    const matchedDataArray = data.filter(
+      d => d.name?.toLowerCase().includes(inputValue),
+    );
 
-    if (matchedData) {
-      if (matchedData.main?.must) {
-        setSearchedImg(matchedData.main?.must);
-      } else if (matchedData.main?.popular) {
-        setSearchedImg(matchedData.main?.popular);
-      } else if (matchedData.main?.only) {
-        setSearchedImg(matchedData.main?.only);
-      }
-    }
+    const resultImages = matchedDataArray
+      .map(matchedData => {
+        if (matchedData.main?.must) return matchedData.main?.must;
+        if (matchedData.main?.popular) return matchedData.main?.popular;
+        if (matchedData.main?.only) return matchedData.main?.only;
+        return undefined;
+      })
+      .filter(Boolean);
+
+    setSearchedImgs(resultImages);
   };
 
   return (
@@ -55,12 +58,15 @@ const SearchModal = () => {
           />
           <button className={styles.searchIcon} />
         </form>
-        {searchedImg ? (
-          <img
-            className={styles.searchImg}
-            src={searchedImg}
-            alt="검색 결과 이미지"
-          />
+        {searchedImgs.length > 0 ? (
+          searchedImgs.map((img, index) => (
+            <img
+              key={index}
+              className={styles.searchImg}
+              src={img}
+              alt={`검색 결과 이미지 ${index + 1}`}
+            />
+          ))
         ) : (
           <div className={styles.searchList}>
             <div className={styles.recentSearches}>
