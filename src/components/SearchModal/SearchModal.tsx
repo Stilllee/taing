@@ -54,6 +54,11 @@ const SearchModal = () => {
     setSearchedImgs(resultImages);
   };
 
+  const highlightSearchTerm = (text: string, term: string) => {
+    const regex = new RegExp(`(${term})`, 'gi');
+    return text.replace(regex, `<span class="${styles.highlighted}">$1</span>`);
+  };
+
   return (
     <>
       <div className={styles.searchModal}>
@@ -73,7 +78,12 @@ const SearchModal = () => {
                   src={imgData.url}
                   alt={`검색 결과 이미지 ${index + 1}`}
                 />
-                <span className={styles.imageName}>{imgData.name}</span>
+                <span
+                  className={styles.imageName}
+                  dangerouslySetInnerHTML={{
+                    __html: highlightSearchTerm(imgData.name || '', searchTerm),
+                  }}
+                ></span>
               </div>
             ))
           ) : (
