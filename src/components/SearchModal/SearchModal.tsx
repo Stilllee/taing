@@ -37,8 +37,11 @@ const SearchModal = () => {
 
     await readData();
 
+    const normalizedInput = inputValue.replace(/\s+/g, '');
     const matchedDataArray = data.filter(
-      d => d.name?.toLowerCase().includes(inputValue),
+      d =>
+        d.name &&
+        d.name.replace(/\s+/g, '').toLowerCase().includes(normalizedInput),
     );
 
     const resultImages = matchedDataArray
@@ -55,7 +58,9 @@ const SearchModal = () => {
   };
 
   const highlightSearchTerm = (text: string, term: string) => {
-    const regex = new RegExp(`(${term})`, 'gi');
+    const spacedTerm = term.split('').join('\\s*');
+    const regex = new RegExp(`(${spacedTerm})`, 'gi');
+
     return text.replace(regex, `<span class="${styles.highlighted}">$1</span>`);
   };
 
