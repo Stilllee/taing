@@ -2,13 +2,19 @@ import { currentTimes } from '@/utils/currentTimes';
 import styles from './SearchModal.module.scss';
 import { useReadData } from '@/hooks/useReadData';
 import { useState } from 'react';
+import { useCustomNavigate } from '@/hooks/useCustomNavigate';
+
+type SearchModalProps = {
+  onClose: () => void;
+};
 
 interface IImageResult {
   url: string | undefined;
   name: string | undefined;
+  id: string;
 }
 
-const SearchModal = () => {
+const SearchModal = ({ onClose }: SearchModalProps) => {
   const popularSearches = [
     '재벌집 막내아들',
     '미스터트롯2: 새로운 전설의 시작',
@@ -26,6 +32,15 @@ const SearchModal = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchedImgs, setSearchedImgs] = useState<IImageResult[]>([]);
 
+  const { navigateTo } = useCustomNavigate();
+
+  const handleContentClick = (id: string) => {
+    navigateTo(`/detail/${id}`);
+    setTimeout(() => {
+      onClose();
+    }, 100);
+  };
+
   const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
@@ -37,7 +52,10 @@ const SearchModal = () => {
 
     await readData();
 
+    // 검색어를 정규화 (띄어쓰기 제거)
     const normalizedInput = inputValue.replace(/\s+/g, '');
+
+    // 데이터에서 검색어와 일치하는 항목 필터링
     const matchedDataArray = data.filter(
       d =>
         d.name &&
@@ -50,17 +68,25 @@ const SearchModal = () => {
           matchedData.main?.must ||
           matchedData.main?.popular ||
           matchedData.main?.only;
-        return { url: imageUrl, name: matchedData.name };
+        return { id: matchedData.id, url: imageUrl, name: matchedData.name };
       })
       .filter(img => img.url);
 
     setSearchedImgs(resultImages);
   };
 
+  // 검색어 강조 함수: 검색어와 일치하는 부분을 highlighted 클래스로 강조
   const highlightSearchTerm = (text: string, term: string) => {
+    // 1. 검색어의 각 문자 사이에 정규식의 '\s*' 패턴(0개 이상의 띄어쓰기를 의미)을 추가한다.
+    // 예: '인생' -> '인\s*생'
     const spacedTerm = term.split('').join('\\s*');
+
+    // 2. 위에서 만든 패턴을 이용해 정규식 객체를 생성한다. 'gi' 플래그로 전체 문자열에서
+    // 모든 일치 항목을 찾으며 대소문자를 구분하지 않는다.
     const regex = new RegExp(`(${spacedTerm})`, 'gi');
 
+    // 3. 원본 문자열에서 정규식에 일치하는 부분을 찾아 styles.highlighted 클래스가 적용된 span 요소로 감싼다.
+    // 예: 원본 '인생에 한 번' + 검색어 '인생' -> '<span class="highlighted">인생</span>에 한 번'
     return text.replace(regex, `<span class="${styles.highlighted}">$1</span>`);
   };
 
@@ -77,7 +103,11 @@ const SearchModal = () => {
         <div className={searchedImgs.length > 0 ? styles.contentContainer : ''}>
           {searchedImgs.length > 0 ? (
             searchedImgs.map((imgData, index) => (
-              <div className={styles.content} key={index}>
+              <div
+                className={styles.content}
+                key={index}
+                onMouseDown={() => handleContentClick(imgData.id)}
+              >
                 <img
                   className={styles.searchImg}
                   src={imgData.url}

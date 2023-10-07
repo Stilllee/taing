@@ -149,6 +149,17 @@
 .content {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-7px);
+    @include tablet {
+      transform: translateY(-10px);
+    }
+    @include desktop {
+      transform: translateY(-15px);
+    }
+  }
   width: 102.5px;
   @include tablet {
     width: 220px;
