@@ -7,13 +7,18 @@ import ScrollSlider from '@components/ScrollSlider/ScrollSlider';
 import AutoSlider from '@components/AutoSlider/AutoSlider';
 import Intro from '@components/Intro/Intro';
 import Loader from '@/components/Loader/Loader';
+import useRedirect from '@/hooks/useRedirect';
 
 const OnBoarding = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
   const [onlySwipeSmall, setOnlySwipeSmall] = useState<IImageData[]>([]);
   const [onlySwipeLarge, setOnlySwipeLarge] = useState<IImageData[]>([]);
   const [FindSwipe, setFindSwipe] = useState<IImageData[]>([]);
+  const { userLoggedInCheck, user } = useRedirect();
 
+  useEffect(() => {
+    userLoggedInCheck();
+  }, [user]);
   useEffect(() => {
     setOnlySwipeSmall(filterDataByPage(filterData, 'onBoarding', 'small'));
     setOnlySwipeLarge(filterDataByPage(filterData, 'onBoarding', 'large'));

@@ -19,6 +19,7 @@ import EmailInput from '@/components/EmailInput/EmailInput';
 import PasswordInput from '@/components/PasswordInput/PasswordInput';
 import ConfirmPasswordInput from '@/components/ConfirmPasswordInput/ConfirmPasswordInput';
 import { CheckboxesGroup } from '@/components/CheckboxGroup/CheckbocGroup';
+import useRedirect from '@/hooks/useRedirect';
 
 type CheckedItemsType = { [key: string]: boolean };
 
@@ -72,7 +73,11 @@ const SignUp = () => {
   };
 
   const { signUp: registerUser, error } = useSignUp(true);
+  const { userLoggedInCheck, user } = useRedirect();
 
+  useEffect(() => {
+    userLoggedInCheck();
+  }, [user]);
   // 체크박스 초기 상태 설정
   const initialChecks = checkboxes.reduce((acc: CheckedItemsType, chk) => {
     acc[chk.id] = false;

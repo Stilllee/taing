@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSignIn } from '@/hooks/auth/useSignIn';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
+import useRedirect from '@/hooks/useRedirect';
 
 const ERROR_MESSAGES = {
   LOGIN_FAILED: '일치하는 회원정보가 없습니다',
@@ -20,10 +21,14 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  const { isLoading, error, user, signIn } = useSignIn();
+  const { isLoading, error, user: newUser, signIn } = useSignIn();
   const [errorMessage, setErrorMessage] = useState('');
   const { navigateTo } = useCustomNavigate();
+  const { userLoggedInCheck, user } = useRedirect();
 
+  useEffect(() => {
+    userLoggedInCheck();
+  }, [user]);
   const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     setErrorMessage('');
@@ -49,8 +54,8 @@ const LogIn = () => {
   }, [error]);
 
   useEffect(() => {
-    if (user) navigateTo('/', true);
-  }, [user]);
+    if (newUser) navigateTo('/', true);
+  }, [newUser]);
 
   return (
     <main className={styles.LogIn}>
