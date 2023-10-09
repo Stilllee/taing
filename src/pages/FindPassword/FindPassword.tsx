@@ -3,6 +3,7 @@ import Input from '@components/common/Input/Input';
 import Button from '@components/common/Button/Button';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useResetPassword } from '@/hooks/auth';
+import useRedirect from '@/hooks/useRedirect';
 
 const FindPassword = () => {
   const { isLoading, error, resetPassword } = useResetPassword();
@@ -10,6 +11,11 @@ const FindPassword = () => {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [hintMessage, setHintMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const { userLoggedInCheck, user } = useRedirect();
+
+  useEffect(() => {
+    userLoggedInCheck();
+  }, [user]);
 
   const onFindPassword = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

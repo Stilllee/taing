@@ -3,6 +3,7 @@ import styles from './FindId.module.scss';
 import Button from '@components/common/Button/Button';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSignIn } from '@/hooks/auth';
+import useRedirect from '@/hooks/useRedirect';
 
 const ERROR_MESSAGES = {
   EMAIL_NOT_FOUND: '일치하는 결과를 찾을 수 없습니다',
@@ -15,6 +16,11 @@ const FindId = () => {
   const [hintMessage, setHintMessage] = useState('');
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [email, setEmail] = useState('');
+  const { userLoggedInCheck, user } = useRedirect();
+
+  useEffect(() => {
+    userLoggedInCheck();
+  }, [user]);
   const onFindEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     emailCheck(email, '1'); //이메일 존재 여부 확인

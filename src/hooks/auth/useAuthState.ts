@@ -1,13 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './index';
-import { useCustomNavigate } from '../useCustomNavigate';
 
 export function useAuthState() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [user, setUser] = useState<User | null>(null);
-  const { navigateTo } = useCustomNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,8 +15,6 @@ export function useAuthState() {
         if (currentUser) {
           setUser(currentUser);
           setIsLoading(false);
-        } else {
-          navigateTo('/onboarding');
         }
       },
       error => {
