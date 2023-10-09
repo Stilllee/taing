@@ -1,144 +1,199 @@
 .searchModal {
-position: absolute;
-z-index: -1;
-top: 0;
-left: 0;
-padding: 38px 47px 20px 47px;
-background-color: $dark-bg-2;
-width: 100%;
-height: 507px;
-@include tablet {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  padding: 38px 47px 20px 47px;
+  background-color: $dark-bg-2;
+  width: 100%;
+  height: 507px;
+  @include tablet {
     height: 591px;
     padding: 84px 123px 52px 123px;
-}
-@include desktop {
+  }
+  @include desktop {
     height: 1045px;
     padding: 152px 220px 93px 220px;
-}
+  }
 }
 .search {
-    position: relative;
-    & input {
-        @include label-medium;
-        padding: 12.5px 0;
-        color: $white;
-        border: none;
-        outline: none;
-        border-bottom: 3px solid $white ;
-        background-color: transparent;
-        width: 100%;
-        margin: 20px 0 40px 0;
-        @include tablet {
-            @include label-large;
-            padding: 12px 0;
-            margin: 28px 0 48px 0;
-        }
-        @include desktop {
-            @include label-xxl;
-            padding: 16px 0;
-            margin: 52px 0 98px 0;
-        }
-    }
-}
-.searchIcon {
-    position: absolute;
-    top: 40px;
-    right: 0px;
-    width: 22px;
-    height: 22px;
-    background-image: url($sprite-image);
-    background-position: -1242px -42px;
+  position: relative;
+  & input {
+    @include label-medium;
+    padding: 12.5px 0;
+    color: $white;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid $white;
+    background-color: transparent;
+    width: 100%;
+    margin: 20px 0 40px 0;
     @include tablet {
-        background-position: -1249px -81px;
-        width: 29px;
-        height: 30px;
-        top: 50px;
+      @include label-large;
+      padding: 12px 0;
+      margin: 28px 0 48px 0;
     }
     @include desktop {
-        background-position: -1268px -128px;
-        width: 29px;
-        height: 30px;
-        top: 90px;
-        right: 10px;
+      @include label-xxl;
+      padding: 16px 0;
+      margin: 52px 0 98px 0;
     }
+  }
+}
+.searchIcon {
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  width: 22px;
+  height: 22px;
+  background-image: url($sprite-image);
+  background-position: -1242px -42px;
+  @include tablet {
+    background-position: -1249px -81px;
+    width: 29px;
+    height: 30px;
+    top: 50px;
+  }
+  @include desktop {
+    background-position: -1268px -128px;
+    width: 29px;
+    height: 30px;
+    top: 90px;
+    right: 10px;
+  }
 }
 .searchList {
-    display: grid;
-    width: 100%;
-    height: 351px;
-    grid-template-columns: 1fr 1fr; 
-    & h2{
-        color: $gray-200;
-        margin-bottom: 20px;
-        @include label-medium;
-        @include desktop {
-            @include label-xl;
-        }
+  display: grid;
+  width: 100%;
+  height: 351px;
+  grid-template-columns: 1fr 1fr;
+  & h2 {
+    color: $gray-200;
+    margin-bottom: 20px;
+    @include label-medium;
+    @include desktop {
+      @include label-xl;
     }
+  }
 }
 
 .recentSearches {
-
-    display: none;
-    height: 351px;
-    @include tablet {
-        display: block;
-    }
-    & li{
+  display: none;
+  height: 351px;
+  @include tablet {
+    display: block;
+  }
+  & li {
     color: $gray-300;
     @include paragraph-small;
-    @include desktop{
-        @include paragraph-large;
+    @include desktop {
+      @include paragraph-large;
     }
-    }
+  }
 }
 
 .popularList {
-    @include label-small;
-    
-    @include tablet {
-        padding-left: 40px;
-        border-left: 1px solid $gray-800;
-    }
-    & li{
+  @include label-small;
+
+  @include tablet {
+    padding-left: 40px;
+    border-left: 1px solid $gray-800;
+  }
+  & li {
     color: $gray-300;
     margin-bottom: 8px;
     @include desktop {
-        @include label-large;
-        margin-bottom: 16px;
-} 
+      @include label-large;
+      margin-bottom: 16px;
     }
-    & span{
-        color: $red-1;
-        margin-right: 12px
-    }
-
+  }
+  & span {
+    color: $red-1;
+    margin-right: 12px;
+  }
 }
 .currentTime {
-    color: $gray-500;
-    @include paragraph-small;
-    margin-top: 16px;
-    @include desktop {
-        @include paragraph-large;
-      
-    } 
+  color: $gray-500;
+  @include paragraph-small;
+  margin-top: 16px;
+  @include desktop {
+    @include paragraph-large;
+  }
 }
 
 .overlay {
-        position: fixed;
-        top: 507px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 100;
-        @include tablet{
-            top: 591px;
-        }
-        @include desktop{
-            top: 1045px;
-        }
+  position: fixed;
+  top: 507px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  @include tablet {
+    top: 591px;
+  }
+  @include desktop {
+    top: 1045px;
+  }
+}
+
+// 검색 이미지
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-7px);
+    @include tablet {
+      transform: translateY(-10px);
+    }
+    @include desktop {
+      transform: translateY(-15px);
+    }
+  }
+  width: 102.5px;
+  @include tablet {
+    width: 220px;
+  }
+  @include desktop {
+    width: 295px;
+  }
+}
+
+.searchImg {
+  margin-right: 6px;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center top;
+  height: 146px;
+  @include tablet {
+    height: 310px;
+    margin-right: 10px;
+  }
+  @include desktop {
+    height: 424.6px;
+    border-radius: 6px;
+    margin-right: 14px;
+  }
+}
+
+.imageName {
+  width: 100%;
+  margin-top: 7px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.highlighted {
+  color: $red-1;
 }

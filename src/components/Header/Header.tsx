@@ -93,7 +93,7 @@ const Header = () => {
           ></button>
         </li>
       </ul>
-      {openSearchModal && <SearchModal />}
+      {openSearchModal && <SearchModal onClose={onCloseSearchModal} />}
       {openProfile && (
         <ProfileModal
           show={openProfile}
