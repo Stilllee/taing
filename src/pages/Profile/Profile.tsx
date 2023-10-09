@@ -3,9 +3,13 @@ import styles from './Profile.module.scss';
 import ProfileTitle from '@components/ProfileTitle/ProfileTitle';
 import { useNavigate } from 'react-router';
 import ProfileList from '@components/ProfileList/ProfileList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useReadData } from '@/hooks/useReadData';
+import { useAuthState } from '@/hooks/auth';
 const Profile = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(4);
+  const { user } = useAuthState();
+  const { readData, data } = useReadData('users');
   const handleButtonClick = (index: number) => {
     setActiveButtonIndex(index);
   };
@@ -13,6 +17,12 @@ const Profile = () => {
   const onMoveEdit = () => {
     navigate('/profile-edit');
   };
+
+  useEffect(() => {
+    readData('HT6rZ56fnJMgjfb5C0TJodNiA1h2');
+
+    console.log(data[0]?.profile);
+  }, [user]);
 
   const profileLists = [
     {

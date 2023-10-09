@@ -36,9 +36,10 @@ const contentConfig: ISwiperContentProps[] = [
 const Home = () => {
   // 팝업이 처음에 보이도록 상태값을 설정
   const [popupVisible, setPopupVisible] = useState<boolean>(true);
-  const { isLoading } = useAuthState();
+  const { isLoading,user } = useAuthState();
   const closePopup = () => setPopupVisible(false);
 
+  console.log(user)
   if (isLoading) {
     return <Loader />;
   }

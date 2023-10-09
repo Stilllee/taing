@@ -20,6 +20,28 @@ interface IUseCreateAuthUserReturn {
   ) => Promise<void>;
 }
 
+const profileLists = [
+  {
+    id: 1,
+    profileClassName: `photoFirst`,
+    name: '닉네임 1',
+  },
+  {
+    id: 2,
+    profileClassName: `photoSecond`,
+    name: '닉네임 2',
+  },
+  {
+    id: 3,
+    profileClassName: `photoThird`,
+    name: '닉네임 3',
+  },
+  {
+    id: 4,
+    profileClassName: `photoFourth`,
+    name: '닉네임 4',
+  },
+];
 export function useCreateAuthUser(
   collectionKey: string = 'users',
 ): IUseCreateAuthUserReturn {
@@ -41,6 +63,7 @@ export function useCreateAuthUser(
           const userToSave = {
             email,
             createAt,
+            profile: profileLists,
             ...additionData,
             ...(displayName ? { displayName } : {}),
           };
