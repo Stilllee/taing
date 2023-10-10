@@ -47,7 +47,7 @@ const SearchModal = ({ onClose }: SearchModalProps) => {
   };
 
   // debounce를 위한 useRef
-  const typingTimeoutRef = useRef<any>(null);
+  const typingTimeoutRef = useRef<number | NodeJS.Timeout | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
