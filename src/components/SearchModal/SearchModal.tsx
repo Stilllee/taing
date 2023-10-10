@@ -1,7 +1,7 @@
 import { currentTimes } from '@/utils/currentTimes';
 import styles from './SearchModal.module.scss';
 import { useReadData } from '@/hooks/useReadData';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 
 type SearchModalProps = {
@@ -34,6 +34,11 @@ const SearchModal = ({ onClose }: SearchModalProps) => {
 
   const { navigateTo } = useCustomNavigate();
 
+  // 데이터를 최초 한 번만 불러옴
+  useEffect(() => {
+    readData();
+  }, []);
+
   const handleContentClick = (id: string) => {
     navigateTo(`/detail/${id}`);
     setTimeout(() => {
@@ -41,38 +46,46 @@ const SearchModal = ({ onClose }: SearchModalProps) => {
     }, 100);
   };
 
-  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  // debounce를 위한 useRef
+  const typingTimeoutRef = useRef<any>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
 
-    if (inputValue === '') {
-      setSearchedImgs([]);
-      return;
-    }
+    // 이미 대기 중인 타이핑 딜레이가 있다면 초기화
+    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
 
-    await readData();
+    typingTimeoutRef.current = setTimeout(() => {
+      if (inputValue === '') {
+        setSearchedImgs([]);
+      } else {
+        // 검색어를 정규화 (띄어쓰기 제거)
+        const normalizedInput = inputValue.replace(/\s+/g, '');
 
-    // 검색어를 정규화 (띄어쓰기 제거)
-    const normalizedInput = inputValue.replace(/\s+/g, '');
+        // 데이터에서 검색어와 일치하는 항목 필터링
+        const matchedDataArray = data.filter(
+          d =>
+            d.name &&
+            d.name.replace(/\s+/g, '').toLowerCase().includes(normalizedInput),
+        );
+        const resultImages = matchedDataArray
+          .map(matchedData => {
+            const imageUrl =
+              matchedData.main?.must ||
+              matchedData.main?.popular ||
+              matchedData.main?.only;
+            return {
+              id: matchedData.id,
+              url: imageUrl,
+              name: matchedData.name,
+            };
+          })
+          .filter(img => img.url);
 
-    // 데이터에서 검색어와 일치하는 항목 필터링
-    const matchedDataArray = data.filter(
-      d =>
-        d.name &&
-        d.name.replace(/\s+/g, '').toLowerCase().includes(normalizedInput),
-    );
-
-    const resultImages = matchedDataArray
-      .map(matchedData => {
-        const imageUrl =
-          matchedData.main?.must ||
-          matchedData.main?.popular ||
-          matchedData.main?.only;
-        return { id: matchedData.id, url: imageUrl, name: matchedData.name };
-      })
-      .filter(img => img.url);
-
-    setSearchedImgs(resultImages);
+        setSearchedImgs(resultImages);
+      }
+    }, 300); // 사용자가 타이핑을 멈춘 후 300ms 후에 검색 수행
   };
 
   // 검색어 강조 함수: 검색어와 일치하는 부분을 highlighted 클래스로 강조
@@ -106,7 +119,7 @@ const SearchModal = ({ onClose }: SearchModalProps) => {
               <div
                 className={styles.content}
                 key={index}
-                onMouseDown={() => handleContentClick(imgData.id)}
+                onClick={() => handleContentClick(imgData.id)}
               >
                 <img
                   className={styles.searchImg}
