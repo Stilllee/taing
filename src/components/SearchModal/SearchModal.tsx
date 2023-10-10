@@ -16,16 +16,16 @@ interface IImageResult {
 
 const SearchModal = ({ onClose }: SearchModalProps) => {
   const popularSearches = [
-    '재벌집 막내아들',
-    '미스터트롯2: 새로운 전설의 시작',
-    '유 퀴즈 온 더 블럭',
-    '대행사',
-    'SHOW ME THE MONEY 11',
-    '미씽:그들이 있었다2',
+    '러브캐처 인 발리',
     '술꾼도시여자들2',
+    '재벌집 막내아들',
+    '환혼: 빛과 그림자',
     '캐나다 체크인',
-    '미씽:그들이 있었다 - 그들을 다만나다',
-    '술꾼도시여자들',
+    '놀라운 토요일',
+    'SHOW ME THE MONEY 11',
+    '알쓸인잡',
+    '블랙독',
+    '환승연애2',
   ];
 
   const { data, readData } = useReadData('images');
