@@ -98,7 +98,7 @@ const SearchModal = ({ onClose }: SearchModalProps) => {
             onChange={handleInputChange}
             placeholder="TV프로그램, 영화 제목으로 검색해보세요"
           />
-          <button className={styles.searchIcon} />
+          <div className={styles.searchIcon}></div>
         </form>
         <div className={searchedImgs.length > 0 ? styles.contentContainer : ''}>
           {searchedImgs.length > 0 ? (
