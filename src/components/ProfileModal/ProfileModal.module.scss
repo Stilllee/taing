@@ -34,7 +34,7 @@
     z-index: -1;
     
     @include mobile {
-        top:-1em;
+        top:-1.5em;
     }
 
     @include desktop {
