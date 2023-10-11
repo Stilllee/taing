@@ -9,8 +9,8 @@ interface ILogoutModalProps {
 const LogoutModal = ({ closeLogout, closeProfileModal }: ILogoutModalProps) => {
   const { signOut } = useSignOut();
   const { navigateTo } = useCustomNavigate();
-  const onLogOut = () => {
-    signOut();
+  const onLogOut = async () => {
+    await signOut();
     navigateTo('/onboarding', true);
     closeLogoutModal();
   };
