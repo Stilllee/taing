@@ -5,7 +5,6 @@ import { auth } from './index';
 export function useSignOut() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-
   const signOut = useCallback(async () => {
     setIsLoading(true);
     try {

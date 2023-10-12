@@ -40,15 +40,17 @@ const Home = () => {
   const { isLoading, user } = useAuthState();
   const closePopup = () => setPopupVisible(false);
   const { navigateTo } = useCustomNavigate();
+
   useEffect(() => {
-    if (!user) navigateTo('/onboarding', true);
-  }, [user]);
+    if (isLoading && user === null) {
+      navigateTo('/onboarding', true);
+    }
+  }, [isLoading, user]);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  console.log(user);
   return (
     <div className={styles.Home}>
       {contentConfig.map((config, index) => (
