@@ -143,11 +143,14 @@
 
 // 검색 이미지
 .contentContainer {
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(100px, 220px));
+  gap: 10px;
 }
 
 .content {
+  aspect-ratio: 2/3;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -161,29 +164,23 @@
       transform: translateY(-15px);
     }
   }
-  width: 102.5px;
+  @include paragraph-small;
   @include tablet {
-    width: 220px;
+    @include paragraph-medium;
   }
   @include desktop {
-    width: 295px;
+    @include label-large;
   }
 }
 
 .searchImg {
-  margin-right: 6px;
+  width: 100%;
+  height: 100%;
   border-radius: 4px;
   object-fit: cover;
   object-position: center top;
-  height: 146px;
-  @include tablet {
-    height: 310px;
-    margin-right: 10px;
-  }
   @include desktop {
-    height: 424.6px;
     border-radius: 6px;
-    margin-right: 14px;
   }
 }
 
