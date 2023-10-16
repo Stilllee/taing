@@ -1,6 +1,7 @@
+import { IProfile } from '@/type';
 import { atom } from 'recoil';
 
-export const passwordState = atom({
+export const profileState = atom<IProfile[]>({
   key: 'profileState',
   default: [],
 });

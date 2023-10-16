@@ -6,9 +6,12 @@ import ProfileList from '@components/ProfileList/ProfileList';
 import { useEffect, useState } from 'react';
 import { useReadData } from '@/hooks/useReadData';
 import { useAuthState } from '@/hooks/auth';
+import { useRecoilState } from 'recoil';
+import { profileState } from '@/state/profileState';
 const Profile = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(4);
   const { user } = useAuthState();
+  const [profileLists, setProfileLists] = useRecoilState(profileState);
   const { readData, data } = useReadData('users');
   const handleButtonClick = (index: number) => {
     setActiveButtonIndex(index);
@@ -19,33 +22,23 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    readData('HT6rZ56fnJMgjfb5C0TJodNiA1h2');
+    readData(user?.uid);
 
-    console.log(data[0]?.profile);
+    if (data && data[0] && data[0].profile) {
+      setProfileLists(data[0].profile);
+    } else {
+      setProfileLists([]); // 또는 다른 적절한 초기값 설정
+    }
   }, [user]);
 
-  const profileLists = [
-    {
-      id: 1,
-      profileClassName: `photoFirst`,
-      name: '닉네임 1',
-    },
-    {
-      id: 2,
-      profileClassName: `photoSecond`,
-      name: '닉네임 2',
-    },
-    {
-      id: 3,
-      profileClassName: `photoThird`,
-      name: '닉네임 3',
-    },
-    {
-      id: 4,
-      profileClassName: `photoFourth`,
-      name: '닉네임 4',
-    },
-  ];
+  useEffect(() => {
+    console.log(data[0]);
+  },[data])
+
+  if (profileLists === undefined) {
+    // 데이터가 로딩 중인 동안 표시할 로딩 상태 또는 메시지를 추가할 수 있습니다.
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.profile}>
