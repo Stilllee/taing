@@ -2,6 +2,7 @@ import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import firebaseApp from '../../../firebase';
 import { getFirestore } from 'firebase/firestore';
+import { DEFAULT_PROFILE_LISTS } from '@/constants/constants';
 
 const db = getFirestore(firebaseApp);
 
@@ -20,28 +21,6 @@ interface IUseCreateAuthUserReturn {
   ) => Promise<void>;
 }
 
-const profileLists = [
-  {
-    id: 1,
-    profileClassName: `photoFirst`,
-    name: '닉네임 1',
-  },
-  {
-    id: 2,
-    profileClassName: `photoSecond`,
-    name: '닉네임 2',
-  },
-  {
-    id: 3,
-    profileClassName: `photoThird`,
-    name: '닉네임 3',
-  },
-  {
-    id: 4,
-    profileClassName: `photoFourth`,
-    name: '닉네임 4',
-  },
-];
 export function useCreateAuthUser(
   collectionKey: string = 'users',
 ): IUseCreateAuthUserReturn {
@@ -63,7 +42,7 @@ export function useCreateAuthUser(
           const userToSave = {
             email,
             createAt,
-            profile: profileLists,
+            profile: DEFAULT_PROFILE_LISTS,
             ...additionData,
             ...(displayName ? { displayName } : {}),
           };

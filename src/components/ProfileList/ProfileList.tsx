@@ -1,7 +1,7 @@
 import styles from './ProfileList.module.scss';
 
 interface IProfileList {
-  photo: string;
+  image: string;
   name: string;
   page: 'profile' | 'profileEdit';
   id: number;
@@ -14,17 +14,17 @@ interface IProfileClassNames {
 
 const ProfileList = ({
   name,
-  photo,
+  image,
   page,
   id,
   active,
   onClick,
 }: IProfileList) => {
   const classNames: IProfileClassNames = {
-    photoFirst: styles.photoFirst,
-    photoSecond: styles.photoSecond,
-    photoThird: styles.photoThird,
-    photoFourth: styles.photoFourth,
+    profileFirst: styles.profileFirst,
+    profileSecond: styles.profileSecond,
+    profileThird: styles.profileThird,
+    profileFourth: styles.profileFourth,
   };
 
   return (
@@ -32,12 +32,12 @@ const ProfileList = ({
       {page === 'profile' ? (
         <button
           onClick={() => onClick && onClick(id)}
-          className={`${styles.profilePhoto} ${classNames[photo]} ${
+          className={`${styles.profilePhoto} ${classNames[image]} ${
             id === active ? styles.active : ''
           }`}
         />
       ) : (
-        <button className={`${styles.profilePhotoEdit} ${classNames[photo]}`} />
+        <button className={`${styles.profilePhotoEdit} ${classNames[image]}`} />
       )}
       <p className={styles.profileName}>{name}</p>
     </div>

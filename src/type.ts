@@ -12,5 +12,5 @@ interface IImageDataSize {
 export interface IProfile {
   name: string;
   id: number;
-  profileClassName: string;
+  image: string;
 }
