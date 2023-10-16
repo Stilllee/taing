@@ -18,26 +18,25 @@ const Profile = () => {
   const { updateData } = useUpdateData(userId);
   const handleButtonClick = (index: number) => {
     const updatedProfileLists = profileLists.map(profile => {
-      if (profile.id === index) {
-        return { ...profile, isActive: true };
-      } else {
-        return { ...profile, isActive: false };
-      }
+      return {
+        ...profile,
+        isActive: profile.id === index,
+      };
     });
     setProfileLists(updatedProfileLists);
     const updatedData: IProfileData = {
       email: user?.email || '',
-      profile: updatedProfileLists, // 'id' 필드가 포함된 프로필 데이터를 전달합니다.
+      profile: updatedProfileLists,
     };
     updateData(updatedData); // 수정된 데이터를 전달하여 업데이트
- };
+  };
   const navigate = useNavigate();
   const onMoveEdit = () => {
     navigate('/profile-edit');
   };
 
   useEffect(() => {
-    readData(userId); // 프로필 데이터 불러오기
+    readData(userId);
   }, [userId]);
 
   useEffect(() => {
@@ -47,11 +46,6 @@ const Profile = () => {
       setProfileLists([]); // 또는 다른 적절한 초기값 설정
     }
   }, [data]);
-
-  useEffect(() => {
-    console.log(profileLists);
-    console.log(data[0]);
-  }, [profileLists]);
 
   if (profileLists === undefined) {
     return <div>Loading...</div>;
