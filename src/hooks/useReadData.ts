@@ -6,14 +6,14 @@ import {
   getFirestore,
 } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
-import { IImageData } from 'src/type';
+import { IProfileData } from 'src/type';
 import firebaseApp from '../../firebase';
 
 export function useReadData(collectionKey: string) {
   const db = getFirestore(firebaseApp);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | Error>(null);
-  const [data, setData] = useState<IImageData[]>([]);
+  const [data, setData] = useState<IProfileData[]>([]);
 
   const readData = useCallback(
     async (documentKey?: string) => {
