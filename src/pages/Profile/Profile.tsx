@@ -3,40 +3,57 @@ import styles from './Profile.module.scss';
 import ProfileTitle from '@components/ProfileTitle/ProfileTitle';
 import { useNavigate } from 'react-router';
 import ProfileList from '@components/ProfileList/ProfileList';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useReadData } from '@/hooks/useReadData';
 import { useAuthState } from '@/hooks/auth';
 import { useRecoilState } from 'recoil';
 import { profileState } from '@/state/profileState';
+import { useUpdateData } from '@/hooks/firestore/useUpdateData';
+import { IProfileData } from '@/type';
 const Profile = () => {
-  const [activeButtonIndex, setActiveButtonIndex] = useState(4);
   const { user } = useAuthState();
   const [profileLists, setProfileLists] = useRecoilState(profileState);
   const { readData, data } = useReadData('users');
+  const userId = user?.uid || '';
+  const { updateData } = useUpdateData(userId);
   const handleButtonClick = (index: number) => {
-    setActiveButtonIndex(index);
-  };
+    const updatedProfileLists = profileLists.map(profile => {
+      if (profile.id === index) {
+        return { ...profile, isActive: true };
+      } else {
+        return { ...profile, isActive: false };
+      }
+    });
+    setProfileLists(updatedProfileLists);
+    const updatedData: IProfileData = {
+      email: user?.email || '',
+      profile: updatedProfileLists, // 'id' 필드가 포함된 프로필 데이터를 전달합니다.
+    };
+    updateData(updatedData); // 수정된 데이터를 전달하여 업데이트
+ };
   const navigate = useNavigate();
   const onMoveEdit = () => {
     navigate('/profile-edit');
   };
 
   useEffect(() => {
-    readData(user?.uid);
+    readData(userId); // 프로필 데이터 불러오기
+  }, [userId]);
 
+  useEffect(() => {
     if (data && data[0] && data[0].profile) {
       setProfileLists(data[0].profile);
     } else {
       setProfileLists([]); // 또는 다른 적절한 초기값 설정
     }
-  }, [user]);
+  }, [data]);
 
   useEffect(() => {
+    console.log(profileLists);
     console.log(data[0]);
-  },[data])
+  }, [profileLists]);
 
   if (profileLists === undefined) {
-    // 데이터가 로딩 중인 동안 표시할 로딩 상태 또는 메시지를 추가할 수 있습니다.
     return <div>Loading...</div>;
   }
 
@@ -52,10 +69,10 @@ const Profile = () => {
             <ProfileList
               key={index}
               name={profile.name}
-              photo={profile.profileClassName}
+              image={profile.image}
               id={profile.id}
               onClick={handleButtonClick}
-              active={activeButtonIndex}
+              isActive={profile.isActive}
               page={'profile'}
             />
           ))}

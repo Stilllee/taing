@@ -1,3 +1,4 @@
+import { IClassNames } from '@/type';
 import styles from './ProfileList.module.scss';
 
 interface IProfileList {
@@ -5,11 +6,8 @@ interface IProfileList {
   name: string;
   page: 'profile' | 'profileEdit';
   id: number;
-  active?: number;
+  isActive?: boolean;
   onClick?: (index: number) => void;
-}
-interface IProfileClassNames {
-  [key: string]: string;
 }
 
 const ProfileList = ({
@@ -17,10 +15,10 @@ const ProfileList = ({
   image,
   page,
   id,
-  active,
+  isActive,
   onClick,
 }: IProfileList) => {
-  const classNames: IProfileClassNames = {
+  const classNames: IClassNames = {
     profileFirst: styles.profileFirst,
     profileSecond: styles.profileSecond,
     profileThird: styles.profileThird,
@@ -33,7 +31,7 @@ const ProfileList = ({
         <button
           onClick={() => onClick && onClick(id)}
           className={`${styles.profilePhoto} ${classNames[image]} ${
-            id === active ? styles.active : ''
+            isActive ? styles.active : ''
           }`}
         />
       ) : (

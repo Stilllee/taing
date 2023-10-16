@@ -1,5 +1,5 @@
 export interface IProfileData {
-  id: string;
+  email: string;
   name?: string;
   onBoarding?: IImageDataSize;
   main?: IImageDataSize;
@@ -13,4 +13,9 @@ export interface IProfile {
   name: string;
   id: number;
   image: string;
+  isActive: boolean;
+}
+
+export interface IClassNames {
+  [key: string]: string;
 }
