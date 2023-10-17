@@ -9,7 +9,8 @@ import DummyLink from '../common/DummyLink/DummyLink';
 import { IClassNames } from '@/type';
 const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const [headerProfile, setHeaderProfile] = useState('profileFirst');
+  const [headerProfileImage, setHeaderProfileImage] = useState('profileFirst');
+  const [headerProfileName, setHeaderProfileName] = useState('프로필1');
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
   const isOnboarding = ['/onboarding'].includes(pathname);
@@ -63,9 +64,10 @@ const Header = () => {
     if (storedProfileLists) {
       const storedProfile = JSON.parse(storedProfileLists);
       const activeProfile = storedProfile.find((profile: any) => profile.isActive);
-      setHeaderProfile(activeProfile.image);
+      setHeaderProfileImage(activeProfile.image);
+      setHeaderProfileName(activeProfile.name);
     }
-  }, [headerProfile]);
+  }, [headerProfileImage]);
 
   return (
     <motion.div style={{ backgroundColor }} className={headerClassNames}>
@@ -105,11 +107,11 @@ const Header = () => {
         </li>
 
         <li>
-          {headerProfile ? (
+          {headerProfileImage ? (
             <button
               onMouseEnter={toggleProfile}
               onMouseLeave={toggleProfile}
-              className={`${styles.profile} ${profileClassNames[headerProfile]}`}
+              className={`${styles.profile} ${profileClassNames[headerProfileImage]}`}
             ></button>
           ) : (
             <button
@@ -126,6 +128,8 @@ const Header = () => {
           show={openProfile}
           onMouseEnter={toggleProfile}
           onMouseLeave={toggleProfile}
+          name={headerProfileName}
+          image={headerProfileImage}
         />
       )}
     </motion.div>
