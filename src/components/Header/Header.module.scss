@@ -179,6 +179,7 @@
 
 .search {
   background-image: url($sprite-image);
+  margin-bottom: 5px;
   @include mobile {
     background-position: -1204px -42px;
     width: 14px;
@@ -190,6 +191,7 @@
     }
   }
   @include tablet {
+    margin-right: 15px;
     background-position: -1205px -81px;
     width: 18px;
     height: 19px;
@@ -212,6 +214,7 @@
 }
 .close {
   background-image: url($sprite-image);
+  margin-bottom: 5px;
   @include mobile {
     background-position: -845px -498px;
     width: 10px;
@@ -223,6 +226,7 @@
     }
   }
   @include tablet {
+    margin-right: 15px;
     background-position: -843px -540px;
     width: 14px;
     height: 14px;
@@ -245,23 +249,16 @@
 }
 .profile {
   border-radius: 2px;
-  margin-top: 7px;
   background-image: url($sprite-image);
   background-size: 364px 324px;
   width: 28px;
   height: 28px;
   background-position-y: 77%;
-  @include tablet {
-    background-size: 582px 518px;
-    width: 45px;
-    height: 45px;
-
-}
   @include desktop {
-  background-size: 727px 648px;
+  background-size: 582px 518px;
   background-position-y: 77.053%;
-  width: 57px;
-  height: 57px;
+  width: 45px;
+  height: 45px;
   }
 }
 

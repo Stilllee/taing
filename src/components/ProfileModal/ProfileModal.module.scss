@@ -69,10 +69,10 @@
     width: 28px;
     height: 28px;
     @include tablet {
-        margin-top: 2px;
+        margin-top: 0px;
         background-size: 582px 518px;
-        width: 38px;
-        height: 38px;
+        width: 45px;
+        height: 45px;
 
     }
     @include desktop {
