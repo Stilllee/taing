@@ -179,6 +179,7 @@
 
 .search {
   background-image: url($sprite-image);
+  margin-bottom: 5px;
   @include mobile {
     background-position: -1204px -42px;
     width: 14px;
@@ -190,6 +191,7 @@
     }
   }
   @include tablet {
+    margin-right: 15px;
     background-position: -1205px -81px;
     width: 18px;
     height: 19px;
@@ -212,6 +214,7 @@
 }
 .close {
   background-image: url($sprite-image);
+  margin-bottom: 5px;
   @include mobile {
     background-position: -845px -498px;
     width: 10px;
@@ -223,6 +226,7 @@
     }
   }
   @include tablet {
+    margin-right: 15px;
     background-position: -843px -540px;
     width: 14px;
     height: 14px;
@@ -244,22 +248,31 @@
   }
 }
 .profile {
+  border-radius: 2px;
   background-image: url($sprite-image);
-  @include mobile {
-    background-position: -1362px -864px;
-    width: 18px;
-    height: 18px;
-  }
-  @include tablet {
-    background-position: -1362px -902px;
-    width: 24px;
-    height: 24px;
-  }
+  background-size: 364px 324px;
+  width: 28px;
+  height: 28px;
+  background-position-y: 77%;
   @include desktop {
-    background-position: -1362px -946px;
-    width: 40px;
-    height: 40px;
+  background-size: 582px 518px;
+  background-position-y: 77.053%;
+  width: 45px;
+  height: 45px;
   }
+}
+
+.profileFirst {
+  background-position-x: 20.299%;
+}
+.profileSecond {
+    background-position-x: 40.299%;
+}
+.profileThird {
+    background-position-x: 30.299%;
+}
+.profileFourth {
+    background-position-x: 50.299%;
 }
 
 .simple > .aside,

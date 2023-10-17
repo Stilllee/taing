@@ -1,30 +1,28 @@
+import { IClassNames } from '@/type';
 import styles from './ProfileList.module.scss';
 
 interface IProfileList {
-  photo: string;
+  image: string;
   name: string;
   page: 'profile' | 'profileEdit';
   id: number;
-  active?: number;
+  isActive?: boolean;
   onClick?: (index: number) => void;
-}
-interface IProfileClassNames {
-  [key: string]: string;
 }
 
 const ProfileList = ({
   name,
-  photo,
+  image,
   page,
   id,
-  active,
+  isActive,
   onClick,
 }: IProfileList) => {
-  const classNames: IProfileClassNames = {
-    photoFirst: styles.photoFirst,
-    photoSecond: styles.photoSecond,
-    photoThird: styles.photoThird,
-    photoFourth: styles.photoFourth,
+  const classNames: IClassNames = {
+    profileFirst: styles.profileFirst,
+    profileSecond: styles.profileSecond,
+    profileThird: styles.profileThird,
+    profileFourth: styles.profileFourth,
   };
 
   return (
@@ -32,12 +30,12 @@ const ProfileList = ({
       {page === 'profile' ? (
         <button
           onClick={() => onClick && onClick(id)}
-          className={`${styles.profilePhoto} ${classNames[photo]} ${
-            id === active ? styles.active : ''
+          className={`${styles.profilePhoto} ${classNames[image]} ${
+            isActive ? styles.active : ''
           }`}
         />
       ) : (
-        <button className={`${styles.profilePhotoEdit} ${classNames[photo]}`} />
+        <button className={`${styles.profilePhotoEdit} ${classNames[image]}`} />
       )}
       <p className={styles.profileName}>{name}</p>
     </div>

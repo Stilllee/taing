@@ -3,12 +3,21 @@ import styles from './ProfileModal.module.scss';
 import LogoutModal from '@components/LogoutModal/LogoutModal';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { IClassNames } from '@/type';
 interface IProfileModal {
   onMouseEnter: () => void;
   onMouseLeave: () => void;
   show: boolean;
+  name: string;
+  image: string;
 }
-const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
+const ProfileModal = ({
+  onMouseEnter,
+  onMouseLeave,
+  show,
+  name,
+  image,
+}: IProfileModal) => {
   const navigate = useNavigate();
   const [logoutVisible, setLogoutVisible] = useState(false);
   const profileClass = `${styles.profileModal} ${show ? '' : styles.hidden}`;
@@ -19,6 +28,12 @@ const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
     navigate('/profile');
   };
 
+  const profileClassNames: IClassNames = {
+    profileFirst: styles.profileFirst,
+    profileSecond: styles.profileSecond,
+    profileThird: styles.profileThird,
+    profileFourth: styles.profileFourth,
+  };
   return (
     <div
       onMouseEnter={onMouseEnter}
@@ -26,9 +41,9 @@ const ProfileModal = ({ onMouseEnter, onMouseLeave, show }: IProfileModal) => {
       className={profileClass}
     >
       <div className={styles.profileTab}>
-        <div className={styles.profileImage} />
+        <div className={`${styles.profileImage} ${profileClassNames[image]}`} />
         <div className={styles.profile}>
-          <span className={styles.name}>닉네임</span>
+          <span className={styles.name}>{name}</span>
           <button onClick={onMoveProfile}>
             프로필 전환
             <span className={styles.arrowIcon} />

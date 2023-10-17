@@ -2,6 +2,7 @@ import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import firebaseApp from '../../../firebase';
 import { getFirestore } from 'firebase/firestore';
+import { DEFAULT_PROFILE_LISTS } from '@/constants/constants';
 
 const db = getFirestore(firebaseApp);
 
@@ -41,6 +42,7 @@ export function useCreateAuthUser(
           const userToSave = {
             email,
             createAt,
+            profile: DEFAULT_PROFILE_LISTS,
             ...additionData,
             ...(displayName ? { displayName } : {}),
           };

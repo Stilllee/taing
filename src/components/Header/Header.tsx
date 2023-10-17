@@ -1,14 +1,16 @@
 import { useLocation } from 'react-router';
 import styles from './Header.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useScroll, motion, useTransform } from 'framer-motion';
 import ProfileModal from '@components/ProfileModal/ProfileModal';
 import SearchModal from '../SearchModal/SearchModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { Link } from 'react-router-dom';
 import DummyLink from '../common/DummyLink/DummyLink';
+import { IClassNames, IProfile } from '@/type';
 const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
+  const [headerProfileImage, setHeaderProfileImage] = useState('profileFirst');
+  const [headerProfileName, setHeaderProfileName] = useState('프로필1');
   const { scrollY } = useScroll();
   const { pathname } = useLocation();
   const isOnboarding = ['/onboarding'].includes(pathname);
@@ -48,6 +50,27 @@ const Header = () => {
   const toggleProfile = () => {
     setOpenProfile(prevOpenProfile => !prevOpenProfile);
   };
+
+  const profileClassNames: IClassNames = {
+    profileFirst: styles.profileFirst,
+    profileSecond: styles.profileSecond,
+    profileThird: styles.profileThird,
+    profileFourth: styles.profileFourth,
+  };
+
+  useEffect(() => {
+    const storedProfileLists = localStorage.getItem('profileLists');
+
+    if (storedProfileLists) {
+      const storedProfile = JSON.parse(storedProfileLists);
+      const activeProfile = storedProfile.find(
+        (profile: IProfile) => profile.isActive,
+      );
+      setHeaderProfileImage(activeProfile.image);
+      setHeaderProfileName(activeProfile.name);
+    }
+  }, [headerProfileImage]);
+
   return (
     <motion.div style={{ backgroundColor }} className={headerClassNames}>
       <a href="/">
@@ -86,11 +109,19 @@ const Header = () => {
         </li>
 
         <li>
-          <button
-            onMouseEnter={toggleProfile}
-            onMouseLeave={toggleProfile}
-            className={styles.profile}
-          ></button>
+          {headerProfileImage ? (
+            <button
+              onMouseEnter={toggleProfile}
+              onMouseLeave={toggleProfile}
+              className={`${styles.profile} ${profileClassNames[headerProfileImage]}`}
+            ></button>
+          ) : (
+            <button
+              onMouseEnter={toggleProfile}
+              onMouseLeave={toggleProfile}
+              className={styles.profile}
+            ></button>
+          )}
         </li>
       </ul>
       {openSearchModal && <SearchModal onClose={onCloseSearchModal} />}
@@ -99,6 +130,8 @@ const Header = () => {
           show={openProfile}
           onMouseEnter={toggleProfile}
           onMouseLeave={toggleProfile}
+          name={headerProfileName}
+          image={headerProfileImage}
         />
       )}
     </motion.div>
