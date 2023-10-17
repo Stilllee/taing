@@ -244,12 +244,19 @@
   }
 }
 .profile {
+  border-radius: 2px;
   margin-top: 7px;
   background-image: url($sprite-image);
   background-size: 364px 324px;
   width: 28px;
   height: 28px;
   background-position-y: 77%;
+  @include tablet {
+    background-size: 582px 518px;
+    width: 45px;
+    height: 45px;
+
+}
   @include desktop {
   background-size: 727px 648px;
   background-position-y: 77.053%;
