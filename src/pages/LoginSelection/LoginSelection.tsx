@@ -5,11 +5,17 @@ import { Link } from 'react-router-dom';
 import { useSignInWithGoogle } from '@/hooks/auth';
 import { useEffect } from 'react';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
+import useRedirect from '@/hooks/useRedirect';
 
 const LoginSelection = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
   const { signInWithGoogle, user } = useSignInWithGoogle();
   const { navigateTo } = useCustomNavigate();
+  const { userLoggedInCheck, user: loggedInUser } = useRedirect();
+
+  useEffect(() => {
+    userLoggedInCheck();
+  }, [loggedInUser]);
 
   const logInWithGoogle = () => {
     signInWithGoogle();

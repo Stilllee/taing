@@ -124,7 +124,7 @@ const Header = () => {
           )}
         </li>
       </ul>
-      {openSearchModal && <SearchModal />}
+      {openSearchModal && <SearchModal onClose={onCloseSearchModal} />}
       {openProfile && (
         <ProfileModal
           show={openProfile}
