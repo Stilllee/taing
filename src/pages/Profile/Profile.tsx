@@ -30,6 +30,10 @@ const Profile = () => {
     };
     updateData(updatedData); // 수정된 데이터를 전달하여 업데이트
   };
+  useEffect(() => {
+    localStorage.setItem('profileLists', JSON.stringify(profileLists));
+  }, [profileLists]);
+
   const navigate = useNavigate();
   const onMoveEdit = () => {
     navigate('/profile-edit');
