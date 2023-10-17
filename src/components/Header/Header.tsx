@@ -6,7 +6,7 @@ import ProfileModal from '@components/ProfileModal/ProfileModal';
 import SearchModal from '../SearchModal/SearchModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import DummyLink from '../common/DummyLink/DummyLink';
-import { IClassNames } from '@/type';
+import { IClassNames, IProfile } from '@/type';
 const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
   const [headerProfileImage, setHeaderProfileImage] = useState('profileFirst');
@@ -63,7 +63,9 @@ const Header = () => {
 
     if (storedProfileLists) {
       const storedProfile = JSON.parse(storedProfileLists);
-      const activeProfile = storedProfile.find((profile: any) => profile.isActive);
+      const activeProfile = storedProfile.find(
+        (profile: IProfile) => profile.isActive,
+      );
       setHeaderProfileImage(activeProfile.image);
       setHeaderProfileName(activeProfile.name);
     }
