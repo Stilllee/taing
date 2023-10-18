@@ -6,6 +6,7 @@ import SwiperContent from '@/components/SwiperContent/SwiperContent';
 import { useAuthState } from '@/hooks/auth';
 import Loader from '@/components/Loader/Loader';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
+import { hasDayPassed } from '@/utils/hasDayPassed';
 
 enum FilterTypes {
   BANNER = 'banner',
@@ -35,8 +36,13 @@ const contentConfig: ISwiperContentProps[] = [
 ];
 
 const Home = () => {
-  // 팝업이 처음에 보이도록 상태값을 설정
-  const [popupVisible, setPopupVisible] = useState<boolean>(true);
+  // 로컬 스토리지 값에 따라 팝업에 대한 초기값을 설정
+  const shouldShowPopup = () => {
+    const hideForToday = localStorage.getItem('hideForToday');
+    return !(hideForToday && !hasDayPassed(hideForToday));
+  };
+  const [popupVisible, setPopupVisible] = useState<boolean>(shouldShowPopup());
+
   const { isLoading, user } = useAuthState();
   const closePopup = () => setPopupVisible(false);
   const { navigateTo } = useCustomNavigate();
