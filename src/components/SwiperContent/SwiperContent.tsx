@@ -72,7 +72,11 @@ const SwiperContent = ({ title, filterType }: ISwiperContentProps) => {
               <SwiperSlide className={classNames} key={item.id}>
                 <div
                   className={styles.programWrapper}
-                  onClick={() => moveDetailPage(item.id)}
+                  onClick={
+                    filterType === 'sports' || filterType === 'event'
+                      ? undefined
+                      : () => moveDetailPage(item.id)
+                  }
                 >
                   <img src={item.main?.[filterType]} alt={item.name} />
                   <span data-index={index + 1}>

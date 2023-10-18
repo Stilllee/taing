@@ -1,8 +1,6 @@
 export interface IProfileData {
   email: string;
   name?: string;
-  onBoarding?: IImageDataSize;
-  main?: IImageDataSize;
   profile?: IProfile[];
 }
 interface IImageDataSize {
@@ -18,4 +16,11 @@ export interface IProfile {
 
 export interface IClassNames {
   [key: string]: string;
+}
+
+export interface IImageData {
+  id: string;
+  name: string;
+  onBoarding?: IImageDataSize;
+  main?: IImageDataSize;
 }
