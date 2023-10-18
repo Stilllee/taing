@@ -75,9 +75,13 @@ const SignUp = () => {
   const { signUp: registerUser, error } = useSignUp(true);
   const { userLoggedInCheck, user } = useRedirect();
 
+  /* 
+  // 회원가입 후 "/login"으로 가기전에 "/"로 가지는 이유 주석처리
   useEffect(() => {
     userLoggedInCheck();
-  }, [user]);
+  }, [user]); 
+  */
+
   // 체크박스 초기 상태 설정
   const initialChecks = checkboxes.reduce((acc: CheckedItemsType, chk) => {
     acc[chk.id] = false;
