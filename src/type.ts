@@ -1,9 +1,14 @@
 export interface IProfileData {
   email: string;
   name?: string;
+  profile?: IProfile[];
+}
+
+export interface IImageData {
+  id: string;
+  name?: string;
   onBoarding?: IImageDataSize;
   main?: IImageDataSize;
-  profile?: IProfile[];
 }
 interface IImageDataSize {
   [key: string]: string | undefined;
