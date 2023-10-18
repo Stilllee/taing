@@ -16,7 +16,7 @@ const Profile = () => {
   const { readData, data } = useReadData('users');
   const userId = user?.uid || '';
   const { updateData } = useUpdateData(userId);
-  const handleButtonClick = (index: number) => {
+  const handleChangeProfile = (index: number) => {
     const updatedProfileLists = profileLists.map(profile => {
       return {
         ...profile,
@@ -30,13 +30,14 @@ const Profile = () => {
     };
     updateData(updatedData); // 수정된 데이터를 전달하여 업데이트
   };
+
   useEffect(() => {
     localStorage.setItem('profileLists', JSON.stringify(profileLists));
   }, [profileLists]);
 
   const navigate = useNavigate();
-  const onMoveEdit = () => {
-    navigate('/profile-edit');
+  const onMoveMain = () => {
+    navigate('/');
   };
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const Profile = () => {
               name={profile.name}
               image={profile.image}
               id={profile.id}
-              onClick={handleButtonClick}
+              onClick={handleChangeProfile}
               isActive={profile.isActive}
               page={'profile'}
             />
@@ -79,8 +80,8 @@ const Profile = () => {
       <Button
         type="button"
         state="default"
-        title="프로필편집"
-        onClick={onMoveEdit}
+        title="프로필 변경"
+        onClick={onMoveMain}
       />
     </div>
   );
