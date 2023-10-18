@@ -5,6 +5,7 @@ import {
   sendEmailVerification as firebaseSendEmailVerification,
   UserCredential,
   AuthError,
+  signOut,
 } from 'firebase/auth';
 import { auth } from './index';
 
@@ -40,6 +41,9 @@ export function useSignUp(
         if (sendEmailVerification && userCredentials.user) {
           await firebaseSendEmailVerification(userCredentials.user);
         }
+
+        // 회원가입 후 바로 로그아웃 처리(자동로그인 방지)
+        await signOut(auth);
 
         setUser(userCredentials);
         return userCredentials;

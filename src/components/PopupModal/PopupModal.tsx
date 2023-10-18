@@ -1,14 +1,6 @@
 import { useEffect } from 'react';
 import styles from './PopupModal.module.scss';
-
-const ONE_DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
-
-// 하루가 지났는지 확인하는 함수
-const hasDayPassed = (dateString: string) => {
-  const currentTime = new Date().getTime();
-  const time = new Date(dateString).getTime();
-  return currentTime - time >= ONE_DAY_IN_MILLISECONDS;
-};
+import { hasDayPassed } from '@/utils/hasDayPassed';
 
 interface IPopupModalProps {
   closePopup: () => void;

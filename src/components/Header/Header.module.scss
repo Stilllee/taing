@@ -75,9 +75,6 @@
     top: 29px;
     @include label-large;
   }
-  & a {
-    cursor: not-allowed;
-  }
 }
 .live {
   display: flex;
@@ -255,10 +252,10 @@
   height: 28px;
   background-position-y: 77%;
   @include desktop {
-  background-size: 582px 518px;
-  background-position-y: 77.053%;
-  width: 45px;
-  height: 45px;
+    background-size: 582px 518px;
+    background-position-y: 77.053%;
+    width: 45px;
+    height: 45px;
   }
 }
 
@@ -266,13 +263,13 @@
   background-position-x: 20.299%;
 }
 .profileSecond {
-    background-position-x: 40.299%;
+  background-position-x: 40.299%;
 }
 .profileThird {
-    background-position-x: 30.299%;
+  background-position-x: 30.299%;
 }
 .profileFourth {
-    background-position-x: 50.299%;
+  background-position-x: 50.299%;
 }
 
 .simple > .aside,

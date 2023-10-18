@@ -8,7 +8,6 @@
     color: $gray-200;
     &:hover {
       color: $white;
-      cursor: not-allowed;
     }
   }
 }
@@ -55,10 +54,6 @@
   color: $gray-500;
 }
 
-.message {
-  cursor: pointer;
-}
-
 .brandLink {
   display: none;
 
@@ -90,7 +85,6 @@
 
 .list {
   color: $gray-200;
-  cursor: pointer;
   border-top: 1px solid $dark-bg-2;
   display: flex;
   @include mobile {
@@ -146,9 +140,6 @@
   @include desktop {
     gap: 20px;
     margin: 24px 0;
-  }
-  & > a {
-    cursor: pointer !important;
   }
 }
 
