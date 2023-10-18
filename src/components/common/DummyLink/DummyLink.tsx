@@ -7,11 +7,7 @@ interface IDummyLinkProps {
 
 const DummyLink = ({ children, className }: IDummyLinkProps) => {
   return (
-    <Link
-      className={className}
-      to={'/#'}
-      aria-label="실제로 이동하지 않는 더미 링크"
-    >
+    <Link className={className} to={'/#'}>
       {children}
     </Link>
   );
