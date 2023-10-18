@@ -3,6 +3,13 @@ export interface IProfileData {
   name?: string;
   profile?: IProfile[];
 }
+
+export interface IImageData {
+  id: string;
+  name?: string;
+  onBoarding?: IImageDataSize;
+  main?: IImageDataSize;
+}
 interface IImageDataSize {
   [key: string]: string | undefined;
 }
@@ -16,11 +23,4 @@ export interface IProfile {
 
 export interface IClassNames {
   [key: string]: string;
-}
-
-export interface IImageData {
-  id: string;
-  name: string;
-  onBoarding?: IImageDataSize;
-  main?: IImageDataSize;
 }
