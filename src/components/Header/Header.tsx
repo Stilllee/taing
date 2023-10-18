@@ -7,8 +7,12 @@ import SearchModal from '../SearchModal/SearchModal';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import DummyLink from '../common/DummyLink/DummyLink';
 import { IClassNames, IProfile } from '@/type';
+import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { profileState } from '@/state/profileState';
 const Header = () => {
   const { lockScroll, openScroll } = useBodyScrollLock();
+  const profileList = useRecoilValue(profileState);
   const [headerProfileImage, setHeaderProfileImage] = useState('profileFirst');
   const [headerProfileName, setHeaderProfileName] = useState('프로필1');
   const { scrollY } = useScroll();
@@ -59,23 +63,20 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const storedProfileLists = localStorage.getItem('profileLists');
-
-    if (storedProfileLists) {
-      const storedProfile = JSON.parse(storedProfileLists);
-      const activeProfile = storedProfile.find(
-        (profile: IProfile) => profile.isActive,
-      );
+    const activeProfile = profileList.find(
+      (profile: IProfile) => profile.isActive,
+    );
+    if (activeProfile) {
       setHeaderProfileImage(activeProfile.image);
       setHeaderProfileName(activeProfile.name);
     }
-  }, [headerProfileImage]);
+  }, [profileList]);
 
   return (
     <motion.div style={{ backgroundColor }} className={headerClassNames}>
-      <a href="/">
+      <Link to="/">
         <h1 className={styles.logo}></h1>
-      </a>
+      </Link>
       <ul className={styles.nav}>
         <li>
           <DummyLink className={styles.live}>
