@@ -65,6 +65,7 @@ const Home = () => {
     <>
       <MetaTag title={metaData.title} description={metaData.description} />
       <div className={styles.Home}>
+        <h1 className={styles.visuallyHidden}>타잉 메인</h1>
         {contentConfig.map((config, index) => (
           <SwiperContent
             key={index}
