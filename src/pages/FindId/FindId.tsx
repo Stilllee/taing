@@ -46,7 +46,7 @@ const FindId = () => {
       <h1 className={styles.title}>계정 찾기</h1>
       <div className={styles.FindWrapper}>
         <form className={styles.emailBox} onSubmit={onFindEmail}>
-          <h4>이메일로 찾기</h4>
+          <h2>이메일로 찾기</h2>
           <p>가입 시 등록한 이메일을 입력해주세요.</p>
           <Input
             type={'email'}
@@ -67,7 +67,7 @@ const FindId = () => {
           <p>또는</p>
         </div>
         <div className={styles.findSelf}>
-          <h4>본인인증으로 찾기</h4>
+          <h2>본인인증으로 찾기</h2>
           <p>이미 본인인증이 완료된 계정에 한하여 아이디 찾기가 가능합니다.</p>
           <Button type={'button'} title={'본인인증하기'} state={'active'} />
         </div>

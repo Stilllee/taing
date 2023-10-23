@@ -28,7 +28,7 @@ const Intro = ({ background }: IIntro) => {
 
   return (
     <div className={styles.scroll_section_1} ref={introRef}>
-      <img src={background} className="intro" />
+      <img src={background} className="intro" alt="온보딩 페이지 배경화면" />
       <div className={styles.shadow} />
       <p className={`${styles.title} intro`}>
         티빙 오리지널 콘텐츠, <br /> 방송 영화, 해외시리즈까지! <br />
