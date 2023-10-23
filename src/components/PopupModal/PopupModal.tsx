@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from './PopupModal.module.scss';
 import { hasDayPassed } from '@/utils/hasDayPassed';
-import popupImage from '/src/assets/images/popup_image.png';
+import popupImage from '/src/assets/images/popup_image.webp';
 
 interface IPopupModalProps {
   closePopup: () => void;
