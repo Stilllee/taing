@@ -7,6 +7,7 @@ import { useAuthState } from '@/hooks/auth';
 import Loader from '@/components/Loader/Loader';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
 import { hasDayPassed } from '@/utils/hasDayPassed';
+import MetaTag from '@/components/MetaTag/MetaTag';
 
 enum FilterTypes {
   BANNER = 'banner',
@@ -46,7 +47,10 @@ const Home = () => {
   const { isLoading, user } = useAuthState();
   const closePopup = () => setPopupVisible(false);
   const { navigateTo } = useCustomNavigate();
-
+  const metaData = {
+    title: '메인',
+    description: '타잉의 메인 페이지 입니다',
+  };
   useEffect(() => {
     if (isLoading && user === null) {
       navigateTo('/onboarding', true);
@@ -58,20 +62,23 @@ const Home = () => {
   }
 
   return (
-    <div className={styles.Home}>
-      {contentConfig.map((config, index) => (
-        <SwiperContent
-          key={index}
-          title={config.title}
-          filterType={config.filterType}
-        />
-      ))}
-      {popupVisible && (
-        <Modal>
-          <PopupModal closePopup={closePopup} />
-        </Modal>
-      )}
-    </div>
+    <>
+      <MetaTag title={metaData.title} description={metaData.description} />
+      <div className={styles.Home}>
+        {contentConfig.map((config, index) => (
+          <SwiperContent
+            key={index}
+            title={config.title}
+            filterType={config.filterType}
+          />
+        ))}
+        {popupVisible && (
+          <Modal>
+            <PopupModal closePopup={closePopup} />
+          </Modal>
+        )}
+      </div>
+    </>
   );
 };
 export default Home;

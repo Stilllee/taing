@@ -8,6 +8,7 @@ import AutoSlider from '@components/AutoSlider/AutoSlider';
 import Intro from '@components/Intro/Intro';
 import Loader from '@/components/Loader/Loader';
 import useRedirect from '@/hooks/useRedirect';
+import MetaTag from '@/components/MetaTag/MetaTag';
 
 const OnBoarding = () => {
   const { filterData, isLoading } = useFilterData('onBoarding');
@@ -15,7 +16,10 @@ const OnBoarding = () => {
   const [onlySwipeLarge, setOnlySwipeLarge] = useState<IImageData[]>([]);
   const [FindSwipe, setFindSwipe] = useState<IImageData[]>([]);
   const { userLoggedInCheck, user } = useRedirect();
-
+  const metaData = {
+    title: '온보딩',
+    description: '타잉의 온보딩 페이지 입니다',
+  };
   useEffect(() => {
     userLoggedInCheck();
   }, [user]);
@@ -31,6 +35,7 @@ const OnBoarding = () => {
 
   return (
     <>
+      <MetaTag title={metaData.title} description={metaData.description} />
       <Intro background={filterData[0]?.onBoarding?.background} />
       <main>
         <ScrollSlider

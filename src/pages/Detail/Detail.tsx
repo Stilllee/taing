@@ -4,6 +4,7 @@ import useFilterData from '@/hooks/useFilterData';
 import SwiperContent from '@/components/SwiperContent/SwiperContent';
 import styles from './Detail.module.scss';
 import { IImageData } from '@/type';
+import MetaTag from '@/components/MetaTag/MetaTag';
 
 enum FilterTypes {
   MUST = 'must',
@@ -16,6 +17,11 @@ const Detail = () => {
   const [detailData, setDetailData] = useState<IImageData | undefined>(
     undefined,
   );
+
+  const metaData = {
+    title: '세부정보',
+    description: '미디어의 세부정보를 소개하는 페이지 입니다',
+  };
 
   useEffect(() => {
     if (id) {
@@ -39,39 +45,42 @@ const Detail = () => {
     }
   }, [detailData]);
   return (
-    <div className={styles.detail}>
-      <div className={styles.background}>
-        {detailImg && <img src={detailImg} />}
-      </div>
-      <div className={styles.detailInfo}>
-        <div className={styles.imgContainer}>
+    <>
+      <MetaTag title={metaData.title} description={metaData.description} />
+      <div className={styles.detail}>
+        <div className={styles.background}>
           {detailImg && <img src={detailImg} />}
         </div>
-        <h2 className={styles.title}>{detailData?.name}</h2>
-        <button className={styles.watchBtn}>
-          <PlayIcon /> 시청하기
-        </button>
-        <ul className={styles.icons}>
-          <li>
-            <button className={styles.iconBtn}>
-              <HeartIcon />찜
-            </button>
-          </li>
-          <li>
-            <button className={styles.iconBtn}>
-              <ArrowUpTrayIcon />
-              공유
-            </button>
-          </li>
-        </ul>
+        <div className={styles.detailInfo}>
+          <div className={styles.imgContainer}>
+            {detailImg && <img src={detailImg} />}
+          </div>
+          <h2 className={styles.title}>{detailData?.name}</h2>
+          <button className={styles.watchBtn}>
+            <PlayIcon /> 시청하기
+          </button>
+          <ul className={styles.icons}>
+            <li>
+              <button className={styles.iconBtn}>
+                <HeartIcon />찜
+              </button>
+            </li>
+            <li>
+              <button className={styles.iconBtn}>
+                <ArrowUpTrayIcon />
+                공유
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <SwiperContent
+            title={'비슷한 TV프로그램'}
+            filterType={FilterTypes.MUST}
+          />
+        </div>
       </div>
-      <div>
-        <SwiperContent
-          title={'비슷한 TV프로그램'}
-          filterType={FilterTypes.MUST}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 export default Detail;
