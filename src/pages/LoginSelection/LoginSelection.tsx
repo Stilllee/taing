@@ -33,7 +33,11 @@ const LoginSelection = () => {
   }
   return (
     <>
-      <MetaTag title={metaData.title} description={metaData.description} />
+      <MetaTag
+        title={metaData.title}
+        description={metaData.description}
+        href={filterData[0]?.onBoarding?.background}
+      />
       <main className={styles.LoginSelection}>
         <div className={styles.background}>
           <img src={filterData[0]?.onBoarding?.background} alt="배경이미지" />

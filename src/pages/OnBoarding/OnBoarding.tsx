@@ -35,7 +35,11 @@ const OnBoarding = () => {
 
   return (
     <>
-      <MetaTag title={metaData.title} description={metaData.description} />
+      <MetaTag
+        title={metaData.title}
+        description={metaData.description}
+        href={filterData[0]?.onBoarding?.background}
+      />
       <Intro background={filterData[0]?.onBoarding?.background} />
       <main>
         <ScrollSlider
