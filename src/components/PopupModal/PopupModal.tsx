@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styles from './PopupModal.module.scss';
 import { hasDayPassed } from '@/utils/hasDayPassed';
+import popupImage from '/src/assets/images/popup_image.png';
 
 interface IPopupModalProps {
   closePopup: () => void;
@@ -27,11 +28,7 @@ const PopupModal = ({ closePopup }: IPopupModalProps) => {
   };
   return (
     <div className={styles.PopupModal}>
-      <img
-        className={styles.popupImage}
-        src="/src/assets/images/popup_image.png"
-        alt="popupImage"
-      />
+      <img className={styles.popupImage} src={popupImage} alt="popupImage" />
       <div className={styles.buttonBox}>
         <button onClick={handleCloseForToday} type="button">
           오늘 하루 보지 않기

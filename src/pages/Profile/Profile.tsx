@@ -10,12 +10,17 @@ import { useRecoilState } from 'recoil';
 import { profileState } from '@/state/profileState';
 import { useUpdateData } from '@/hooks/firestore/useUpdateData';
 import { IProfileData } from '@/type';
+import MetaTag from '@/components/MetaTag/MetaTag';
 const Profile = () => {
   const { user } = useAuthState();
   const [profileLists, setProfileLists] = useRecoilState(profileState);
   const { readData, data } = useReadData('users');
   const userId = user?.uid || '';
   const { updateData } = useUpdateData(userId);
+  const metaData = {
+    title: '프로필',
+    description: '타잉의 프로필 페이지 입니다',
+  };
   const handleChangeProfile = (index: number) => {
     const updatedProfileLists = profileLists.map(profile => {
       return {
@@ -57,33 +62,36 @@ const Profile = () => {
   }
 
   return (
-    <div className={styles.profile}>
-      <ProfileTitle
-        title="프로필 선택"
-        paragraph="시청할 프로필을 선택해주세요"
-      />
-      <div>
-        <div className={styles.profileContainer}>
-          {profileLists.map((profile, index) => (
-            <ProfileList
-              key={index}
-              name={profile.name}
-              image={profile.image}
-              id={profile.id}
-              onClick={handleChangeProfile}
-              isActive={profile.isActive}
-              page={'profile'}
-            />
-          ))}
+    <>
+      <MetaTag title={metaData.title} description={metaData.description} />
+      <div className={styles.profile}>
+        <ProfileTitle
+          title="프로필 선택"
+          paragraph="시청할 프로필을 선택해주세요"
+        />
+        <div>
+          <div className={styles.profileContainer}>
+            {profileLists.map((profile, index) => (
+              <ProfileList
+                key={index}
+                name={profile.name}
+                image={profile.image}
+                id={profile.id}
+                onClick={handleChangeProfile}
+                isActive={profile.isActive}
+                page={'profile'}
+              />
+            ))}
+          </div>
         </div>
+        <Button
+          type="button"
+          state="default"
+          title="프로필 변경"
+          onClick={onMoveMain}
+        />
       </div>
-      <Button
-        type="button"
-        state="default"
-        title="프로필 변경"
-        onClick={onMoveMain}
-      />
-    </div>
+    </>
   );
 };
 export default Profile;

@@ -19,7 +19,7 @@ import EmailInput from '@/components/EmailInput/EmailInput';
 import PasswordInput from '@/components/PasswordInput/PasswordInput';
 import ConfirmPasswordInput from '@/components/ConfirmPasswordInput/ConfirmPasswordInput';
 import { CheckboxesGroup } from '@/components/CheckboxGroup/CheckbocGroup';
-import useRedirect from '@/hooks/useRedirect';
+import MetaTag from '@/components/MetaTag/MetaTag';
 
 type CheckedItemsType = { [key: string]: boolean };
 
@@ -33,6 +33,10 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useRecoilState(
     confirmPasswordErrorState,
   );
+  const metaData = {
+    title: '회원 가입',
+    description: '타잉의 회원 가입 페이지 입니다',
+  };
 
   const checkboxes = [
     { id: 'agree1', label: '만 14세 이상입니다.' },
@@ -143,29 +147,32 @@ const SignUp = () => {
   };
 
   return (
-    <main className={styles.SignUp}>
-      <div className={styles.titleBox}>
-        <h1 className={styles.title}>타잉 회원가입</h1>
-        <h4 className={styles.info}>이메일로 간편하게 티빙을 시작하세요!</h4>
-      </div>
-      <form className={styles.formBox} onSubmit={handleSubmit}>
-        <div className={styles.inputWrapper}>
-          <EmailInput />
-          <PasswordInput />
-          <ConfirmPasswordInput />
+    <>
+      <MetaTag title={metaData.title} description={metaData.description} />
+      <main className={styles.SignUp}>
+        <div className={styles.titleBox}>
+          <h1 className={styles.title}>타잉 회원가입</h1>
+          <h4 className={styles.info}>이메일로 간편하게 티빙을 시작하세요!</h4>
         </div>
-        <CheckboxesGroup
-          checkboxes={checkboxes}
-          onChange={handleCheckedItemsChange}
-        />
-        <Button
-          type={'submit'}
-          state={'login'}
-          title={'가입하기'}
-          disabled={isSubmitDisabled()}
-        />
-      </form>
-    </main>
+        <form className={styles.formBox} onSubmit={handleSubmit}>
+          <div className={styles.inputWrapper}>
+            <EmailInput />
+            <PasswordInput />
+            <ConfirmPasswordInput />
+          </div>
+          <CheckboxesGroup
+            checkboxes={checkboxes}
+            onChange={handleCheckedItemsChange}
+          />
+          <Button
+            type={'submit'}
+            state={'login'}
+            title={'가입하기'}
+            disabled={isSubmitDisabled()}
+          />
+        </form>
+      </main>
+    </>
   );
 };
 export default SignUp;

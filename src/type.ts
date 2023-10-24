@@ -9,6 +9,7 @@ export interface IImageData {
   name?: string;
   onBoarding?: IImageDataSize;
   main?: IImageDataSize;
+  profile?: IProfile[];
 }
 interface IImageDataSize {
   [key: string]: string | undefined;

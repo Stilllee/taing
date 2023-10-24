@@ -3,11 +3,17 @@ import Header from '@/components/Header/Header';
 import styles from './ErrorPage.module.scss';
 import IconSVG from '@/assets/images/attention_icon.svg';
 import { useCustomNavigate } from '@/hooks/useCustomNavigate';
+import MetaTag from '@/components/MetaTag/MetaTag';
 
 const ErrorPage = () => {
   const { navigateTo } = useCustomNavigate();
+  const metaData = {
+    title: '에러 페이지',
+    description: '타잉의 에러 페이지 입니다',
+  };
   return (
     <>
+      <MetaTag title={metaData.title} description={metaData.description} />
       <Header />
       <main className={styles.ErrorPage}>
         <section className={styles.contentWrapper}>
