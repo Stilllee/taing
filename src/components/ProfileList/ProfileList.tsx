@@ -29,6 +29,7 @@ const ProfileList = ({
     <div>
       {page === 'profile' ? (
         <button
+          aria-label={`${name}의 프로필`}
           onClick={() => onClick && onClick(id)}
           className={`${styles.profilePhoto} ${classNames[image]} ${
             isActive ? styles.active : ''

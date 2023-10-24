@@ -74,7 +74,7 @@ const Header = () => {
 
   return (
     <motion.div style={{ backgroundColor }} className={headerClassNames}>
-      <Link to="/">
+      <Link to="/" aria-label="타잉 로고">
         <h1 className={styles.logo}></h1>
       </Link>
       <ul className={styles.nav}>
@@ -100,29 +100,24 @@ const Header = () => {
             <button
               onClick={onCloseSearchModal}
               className={styles.close}
+              aria-label="검색창 열기"
             ></button>
           ) : (
             <button
               onClick={onOpenSearchModal}
               className={styles.search}
+              aria-label="검색창 닫기"
             ></button>
           )}
         </li>
 
         <li>
-          {headerProfileImage ? (
-            <button
-              onMouseEnter={toggleProfile}
-              onMouseLeave={toggleProfile}
-              className={`${styles.profile} ${profileClassNames[headerProfileImage]}`}
-            ></button>
-          ) : (
-            <button
-              onMouseEnter={toggleProfile}
-              onMouseLeave={toggleProfile}
-              className={styles.profile}
-            ></button>
-          )}
+          <button
+            onMouseEnter={toggleProfile}
+            onMouseLeave={toggleProfile}
+            className={`${styles.profile} ${profileClassNames[headerProfileImage]}`}
+            aria-label="프로필 아이콘"
+          ></button>
         </li>
       </ul>
       {openSearchModal && <SearchModal onClose={onCloseSearchModal} />}
