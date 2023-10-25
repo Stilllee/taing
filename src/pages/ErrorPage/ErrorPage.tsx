@@ -17,7 +17,7 @@ const ErrorPage = () => {
       <Header />
       <main className={styles.ErrorPage}>
         <section className={styles.contentWrapper}>
-          <img src={IconSVG} alt="알림 아이콘" />
+          <img src={IconSVG} alt="알림 아이콘" width="200" height="200" />
           <div className={styles.textWrapper}>
             <h1>이런! 현재 해당 페이지를 찾을 수 없습니다.</h1>
             <p>하지만 타잉에는 더 많은 타잉만의 오리지날 콘텐츠와</p>
