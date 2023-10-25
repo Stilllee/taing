@@ -152,7 +152,7 @@ const SignUp = () => {
       <main className={styles.SignUp}>
         <div className={styles.titleBox}>
           <h1 className={styles.title}>타잉 회원가입</h1>
-          <h4 className={styles.info}>이메일로 간편하게 티빙을 시작하세요!</h4>
+          <h2 className={styles.info}>이메일로 간편하게 티빙을 시작하세요!</h2>
         </div>
         <form className={styles.formBox} onSubmit={handleSubmit}>
           <div className={styles.inputWrapper}>
