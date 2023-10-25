@@ -80,12 +80,14 @@ const LogIn = () => {
             onChange={onPasswordChange}
             errorMessage={errorMessage && errorMessage}
           />
-          <Checkbox
-            id={'auto'}
-            label={'자동로그인'}
-            checked={isChecked}
-            onChange={checkChange}
-          />
+          <ul>
+            <Checkbox
+              id={'auto'}
+              label={'자동로그인'}
+              checked={isChecked}
+              onChange={checkChange}
+            />
+          </ul>
           <Button
             type={'submit'}
             title={isLoading ? BUTTON_TITLES.LOADING : BUTTON_TITLES.LOGIN}
