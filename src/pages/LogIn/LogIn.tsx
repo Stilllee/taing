@@ -65,7 +65,7 @@ const LogIn = () => {
     <>
       <MetaTag title={metaData.title} description={metaData.description} />
       <main className={styles.LogIn}>
-        <h1 className={styles.title}>TAING 로그인</h1>
+        <h2 className={styles.title}>TAING 로그인</h2>
         <form className={styles.loginForm} onSubmit={onLogIn}>
           <Input
             type={'email'}
