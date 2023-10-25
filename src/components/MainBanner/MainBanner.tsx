@@ -80,7 +80,12 @@ const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
       >
         {filterData.map((item: IImageData) => (
           <SwiperSlide className={styles.mainSlide} key={item.id}>
-            <img src={item.main?.banner} alt={item.name} />
+            <img
+              src={item.main?.banner}
+              alt={item.name}
+              width={1920}
+              height={855}
+            />
             <Button
               onClick={() => moveDetailPage(item.id)}
               type={'button'}
@@ -94,15 +99,36 @@ const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
             isPlaying ? styles.pause : styles.play
           }`}
           onClick={toggleAutoplay}
+          aria-label={
+            isPlaying
+              ? '메인배너 슬라이드를 일시정지'
+              : '메인배너 슬라이드를 재생'
+          }
         />
         <div className={styles.mainSwiperNavigation}>
           <div
             onClick={prevSlide}
+            onKeyPress={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                prevSlide();
+              }
+            }}
             className={`swiper-button-prev ${styles.prevButton}`}
+            role="button"
+            aria-label="메인배너 슬라이드 이전 슬라이드"
+            tabIndex={0}
           />
           <div
             onClick={nextSlide}
+            onKeyPress={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                nextSlide();
+              }
+            }}
             className={`swiper-button-next ${styles.nextButton}`}
+            role="button"
+            aria-label="메인배너 슬라이드 다음 슬라이드"
+            tabIndex={0}
           />
         </div>
       </Swiper>

@@ -9,9 +9,9 @@ function App() {
     <>
       <Header />
       <ScrollToTop />
-      <div className={styles.mainContent}>
+      <main className={styles.mainContent}>
         <Outlet />
-      </div>
+      </main>
       <Footer />
     </>
   );

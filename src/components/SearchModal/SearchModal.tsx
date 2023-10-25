@@ -125,6 +125,8 @@ const SearchModal = ({ onClose }: SearchModalProps) => {
                   className={styles.searchImg}
                   src={imgData.url}
                   alt={`검색 결과 이미지 ${index + 1}`}
+                  width={220}
+                  height={330}
                 />
                 <span
                   className={styles.imageName}

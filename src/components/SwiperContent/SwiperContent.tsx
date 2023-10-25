@@ -39,7 +39,7 @@ const SwiperContent = ({ title, filterType }: ISwiperContentProps) => {
         <MainBanner filterData={filterData} moveDetailPage={moveDetailPage} />
       ) : (
         <div className={styles.SwiperContent}>
-          <h2 className={styles.title}>{title}</h2>
+          <h3 className={styles.title}>{title}</h3>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             navigation={{
