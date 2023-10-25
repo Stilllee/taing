@@ -80,7 +80,12 @@ const MainBanner = ({ filterData, moveDetailPage }: IMainBannerProps) => {
       >
         {filterData.map((item: IImageData) => (
           <SwiperSlide className={styles.mainSlide} key={item.id}>
-            <img src={item.main?.banner} alt={item.name} />
+            <img
+              src={item.main?.banner}
+              alt={item.name}
+              width={1920}
+              height={855}
+            />
             <Button
               onClick={() => moveDetailPage(item.id)}
               type={'button'}
