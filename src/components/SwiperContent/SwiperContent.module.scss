@@ -286,6 +286,9 @@
   @include desktop {
     margin: 36px 0 -11px;
   }
+  & span {
+    display: none !important;
+  }
 }
 
 // 이벤트 배너
