@@ -12,10 +12,18 @@ const MetaTag = ({
   return (
     <Helmet>
       <title>{`TAING:${title}`}</title>
-      <meta property="og:site_name" content="TAING" />
-      <meta property="og:title" content={title} />
-      <meta property="og:url" content="https://main--taingtaing.netlify.app/" />
-      <meta property="og:description" content={description} />
+      <meta name="site_name" property="og:site_name" content="TAING" />
+      <meta name="title" property="og:title" content={title} />
+      <meta
+        name="url"
+        property="og:url"
+        content="https://main--taingtaing.netlify.app/"
+      />
+      <meta
+        name="description"
+        property="og:description"
+        content={description}
+      />
       {href && <link rel="preload" as="image" href={href} />}
     </Helmet>
   );
