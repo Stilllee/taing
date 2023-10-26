@@ -10,7 +10,9 @@ import { IClassNames, IProfile } from '@/type';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { profileState } from '@/state/profileState';
+import { useAuthState } from '@/hooks/auth';
 const Header = () => {
+  const { user } = useAuthState();
   const { lockScroll, openScroll } = useBodyScrollLock();
   const profileList = useRecoilValue(profileState);
   const [headerProfileImage, setHeaderProfileImage] = useState('profileFirst');
@@ -94,32 +96,34 @@ const Header = () => {
           <DummyLink className={styles.paramount}></DummyLink>
         </li>
       </ul>
-      <ul className={styles.aside}>
-        <li>
-          {openSearchModal ? (
-            <button
-              onClick={onCloseSearchModal}
-              className={styles.close}
-              aria-label="검색창 열기"
-            ></button>
-          ) : (
-            <button
-              onClick={onOpenSearchModal}
-              className={styles.search}
-              aria-label="검색창 닫기"
-            ></button>
-          )}
-        </li>
+      {user ? (
+        <ul className={styles.aside}>
+          <li>
+            {openSearchModal ? (
+              <button
+                onClick={onCloseSearchModal}
+                className={styles.close}
+                aria-label="검색창 열기"
+              ></button>
+            ) : (
+              <button
+                onClick={onOpenSearchModal}
+                className={styles.search}
+                aria-label="검색창 닫기"
+              ></button>
+            )}
+          </li>
 
-        <li>
-          <button
-            onMouseEnter={toggleProfile}
-            onMouseLeave={toggleProfile}
-            className={`${styles.profile} ${profileClassNames[headerProfileImage]}`}
-            aria-label="프로필 아이콘"
-          ></button>
-        </li>
-      </ul>
+          <li>
+            <button
+              onMouseEnter={toggleProfile}
+              onMouseLeave={toggleProfile}
+              className={`${styles.profile} ${profileClassNames[headerProfileImage]}`}
+              aria-label="프로필 아이콘"
+            ></button>
+          </li>
+        </ul>
+      ) : null}
       {openSearchModal && <SearchModal onClose={onCloseSearchModal} />}
       {openProfile && (
         <ProfileModal
