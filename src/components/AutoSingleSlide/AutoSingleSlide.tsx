@@ -8,7 +8,7 @@ interface IAutoSingleSlide {
 const AutoSingleSlide = ({ item }: IAutoSingleSlide) => {
   return (
     <div key={item.id} className={styles.single_slide}>
-      <img src={item?.onBoarding?.medium} alt={item?.name} />
+      <img src={item.onBoarding?.medium} alt={item.name} loading="lazy" />
     </div>
   );
 };

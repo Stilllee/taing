@@ -52,7 +52,11 @@ const ScrollSlider = ({ onlySwipeSmall, onlySwipeLarge }: IScrollSlider) => {
           {onlySwipeSmall.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="img_wrapper" key={item.id}>
-                <img src={item?.onBoarding?.small} alt={item?.name} />
+                <img
+                  src={item.onBoarding?.small}
+                  alt={item.name}
+                  loading="lazy"
+                />
               </div>
             </SwiperSlide>
           ))}
@@ -73,7 +77,11 @@ const ScrollSlider = ({ onlySwipeSmall, onlySwipeLarge }: IScrollSlider) => {
           {onlySwipeLarge.map((item, index) => (
             <SwiperSlide key={index}>
               <div key={item.id}>
-                <img src={item?.onBoarding?.large} alt={item?.name} />
+                <img
+                  src={item.onBoarding?.large}
+                  alt={item.name}
+                  loading="lazy"
+                />
               </div>
             </SwiperSlide>
           ))}
