@@ -22,6 +22,7 @@ module.exports = {
     'prettier/prettier': 'error', // Prettier 오류를 에러로 처리
     'react-hooks/rules-of-hooks': 'error', // React Hooks 규칙을 에러로 처리
     'react-hooks/exhaustive-deps': 'warn', // 의존성 배열의 누락/불필요한 의존성을 경고
+    'react/no-unknown-property': ['error', { ignore: ['fetchPriority'] }],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true }, // 컴포넌트 내보내기에 대한 경고, 상수 내보내기 허용

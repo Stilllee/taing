@@ -24,7 +24,9 @@ const MetaTag = ({
         property="og:description"
         content={description}
       />
-      {href && <link rel="preload" as="image" href={href} />}
+      {href && (
+        <link rel="preload" as="image" href={href} fetchPriority="high" />
+      )}
     </Helmet>
   );
 };
