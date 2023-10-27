@@ -279,12 +279,8 @@
 // 스포츠 배너
 .sports {
   width: 100% !important;
-  margin: 16px 0 -4px;
-  @include tablet {
-    margin: 28px 0 -7px;
-  }
-  @include desktop {
-    margin: 36px 0 -11px;
+  & span {
+    display: none !important;
   }
 }
 

@@ -48,7 +48,7 @@
   @include desktop {
     margin: 56px 0;
   }
-  & > h1 {
+  & > h2 {
     @include heading-medium;
     margin-bottom: 5px;
     @include tablet {
