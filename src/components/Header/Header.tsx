@@ -94,7 +94,9 @@ const Header = () => {
           <DummyLink className={styles.movie}>영화</DummyLink>
         </li>
         <li>
-          <DummyLink className={styles.paramount}></DummyLink>
+          <DummyLink className={styles.paramount}>
+            <span className="a11y">파라마운트</span>
+          </DummyLink>
         </li>
       </ul>
       {user ? (
