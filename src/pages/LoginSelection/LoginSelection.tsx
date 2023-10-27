@@ -40,7 +40,11 @@ const LoginSelection = () => {
       />
       <main className={styles.LoginSelection}>
         <div className={styles.background}>
-          <img src={filterData[0]?.onBoarding?.background} alt="배경이미지" />
+          <img
+            src={filterData[0]?.onBoarding?.background}
+            alt="배경이미지"
+            loading="eager"
+          />
           <div className={styles.shadow} />
         </div>
         <div className={styles.title}>
