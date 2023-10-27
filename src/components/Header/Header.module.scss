@@ -30,7 +30,8 @@
   }
 }
 
-.logo {
+.logo{
+  display: block;
   margin-top: 3px;
   background-image: url($sprite-image);
   background-position-x: -1002px;

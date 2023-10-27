@@ -76,9 +76,9 @@ const Header = () => {
 
   return (
     <motion.div style={{ backgroundColor }} className={headerClassNames}>
-      <Link to="/" aria-label="타잉 로고">
-        <h1 className={styles.logo}></h1>
-      </Link>
+      <h1 aria-label="타잉 로고">
+        <Link className={styles.logo} to="/" />
+      </h1>
       <ul className={styles.nav}>
         <li>
           <DummyLink className={styles.live}>
