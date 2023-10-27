@@ -49,18 +49,20 @@ const Detail = () => {
       <MetaTag title={metaData.title} description={metaData.description} />
       <div className={styles.detail}>
         <div className={styles.background}>
-          {detailImg && <img src={detailImg} alt={`${detailData?.name}의 배경 이미지`} />}
+          {detailImg && (
+            <img src={detailImg} alt={`${detailData?.name}의 배경 이미지`} />
+          )}
         </div>
         <div className={styles.detailInfo}>
           <div className={styles.imgContainer}>
-          {detailImg && (
-            <img
-              src={detailImg}
-              alt={`${detailData?.name}의 포스터`}
-              width="230px"
-              height="350px"
-            />
-          )}
+            {detailImg && (
+              <img
+                src={detailImg}
+                alt={`${detailData?.name}의 포스터`}
+                width={230}
+                height={350}
+              />
+            )}
           </div>
           <h2 className={styles.title}>{detailData?.name}</h2>
           <button className={styles.watchBtn}>

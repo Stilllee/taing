@@ -70,10 +70,10 @@
 
       & img {
         border-radius: 5px;
-        width: 230px;
         object-fit: fill;
         @include desktop {
-          width: 350px;
+          height: auto;
+          width: 100%;
         }
       }
 
